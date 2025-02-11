@@ -446,11 +446,13 @@ function formatTime(seconds) {
                         <input type="number" class="form-control" id="number_aborted_eggs" name="number_aborted_eggs">
                     </li>
                     <li>
-                     <label  for="egg_removal" ondblclick="toggleTextarea(this)" data-text="ESP/Retirada de huevos. Indicates that the eggs have been manually removed from the nest for artificial incubation or management purposes.
-                    Indica que los huevos han sido retirados manualmente del nido para incubación artificial o manejo.">Egg Removal</label>
+                     <label  for="egg_removal" ondblclick="toggleTextarea(this)" data-text="ESP/Retirada de huevos. Indicates that the eggs have been manually removed from the nest for artificial incubation or management purposes. Indica que los huevos han sido retirados manualmente del nido para incubación artificial o manejo.">Egg Removal</label>
                      </li>
                      <input class="form-control" type="number" id="egg_removal" name="egg_removal">
-                    
+                    <li>
+                        <input type="checkbox" id="abandoned_clutch" name="abandoned_clutch">
+                        <label class="form-check-label" for="abandoned_clutch" ondblclick="toggleTextarea(this)" data-text="ESP/Puesta abandonada. Indicates that the nest has been deserted by the parents, with no signs of incubation or parental care. Indica que el nido ha sido abandonado por los progenitores, sin señales de incubación o cuidado parental.">Abandoned Clutch</label>
+                    </li>
                 </ul>
             `;
         } else {
