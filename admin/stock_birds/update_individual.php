@@ -522,16 +522,18 @@ $data_biometry = $biometry->fetch(PDO::FETCH_OBJ);?>
       <table>
        <tbody>
          <tr>
-           <td><strong>Measurement Date:</strong><input class="form-control" name="Measurement" type="text" id="Measurement" placeholder="Insert Measurement Date" value="<?php echo $data_biometry->measurement_date  ?>"> </td>
+           <td><strong>Measurement Date:</strong><input class="form-control" name="Measurement" type="text" id="Measurement" placeholder="Insert Measurement Date" value="<?php echo !empty($data_biometry->measurement_date) ? $data_biometry->measurement_date : ''; ?>"> </td>
          </tr>
          <tr>
            <td><strong>Staff:</strong>
-             <?php $staff = $base_de_datos->prepare("SELECT * FROM staff where id_staff= ?");
-                    $staff->execute([$data_biometry->staff]);
-                    $staff_1 = $staff->fetch(PDO::FETCH_OBJ); ?>
+             <?php if (!empty($data_biometry->staff)){
+              $staff = $base_de_datos->prepare("SELECT * FROM staff where id_staff= ?");
+              $staff->execute([$data_biometry->staff]);
+              $staff_1 = $staff->fetch(PDO::FETCH_OBJ); 
+            }else{} ?>
 
                   <select name="staff" id="staff" class="form-control" required>
-                    <option value="<?php echo $staff_1->id_staff ?>"><?php echo $staff_1->first_name.' '.$staff_1->last_name ?></option>
+                    <option value="<?php echo !empty($staff_1->id_staff ) ? $staff_1->id_staff  : ''; ?>"><?php echo !empty($staff_1->first_name) ? $staff_1->first_name.' '.$staff_1->last_name  : 'Select Staff'; ?></option>
                     <?php 
                     $staff_1_1 = $base_de_datos->query("SELECT * FROM staff");
                     $staff_2 = $staff_1_1->fetchAll(PDO::FETCH_OBJ);
@@ -543,16 +545,16 @@ $data_biometry = $biometry->fetch(PDO::FETCH_OBJ);?>
            </td>
          </tr>
          <tr>
-           <td><strong>Wing Lenght:</strong><input class="form-control" name="wing_lenght" type="text" id="wing_lenght" placeholder="Insert Wing Lenght" value="<?php echo $data_biometry->wing_lenght ?>"></td>
+           <td><strong>Wing Lenght:</strong><input class="form-control" name="wing_lenght" type="text" id="wing_lenght" placeholder="Insert Wing Lenght" value="<?php echo !empty($data_biometry->wing_lenght) ? $data_biometry->wing_lenght : ''; ?>"></td>
          </tr>
          <tr>
-           <td><strong>F8:</strong><input class="form-control" name="f8" type="text" id="f8" placeholder="Insert F8" value="<?php echo $data_biometry->F8 ?>"></td>
+           <td><strong>F8:</strong><input class="form-control" name="f8" type="text" id="f8" placeholder="Insert F8" value="<?php echo !empty($data_biometry->F8) ? $data_biometry->F8 : ''; ?>"></td>
          </tr>
          <tr>
-           <td><strong>Tail:</strong><input class="form-control" name="tail" type="text" id="tail" placeholder="Insert Tail" value="<?php echo $data_biometry->tail ?>"></td>
+           <td><strong>Tail:</strong><input class="form-control" name="tail" type="text" id="tail" placeholder="Insert Tail" value="<?php echo !empty($data_biometry->tail) ? $data_biometry->tail : ''; ?>"></td>
          </tr>
          <tr>
-           <td><strong>Tarsus:</strong><input class="form-control" name="tarsus" type="text" id="tarsus" placeholder="Insert Tarsus" value="<?php echo $data_biometry->tarsus ?>"></td>
+           <td><strong>Tarsus:</strong><input class="form-control" name="tarsus" type="text" id="tarsus" placeholder="Insert Tarsus" value="<?php echo !empty($data_biometry->tarsus) ? $data_biometry->tarsus : ''; ?>"></td>
          </tr>
        </tbody>
      </table>
@@ -564,31 +566,31 @@ $data_biometry = $biometry->fetch(PDO::FETCH_OBJ);?>
 
 
          <tr>
-           <td><strong>Beak Length:</strong><input class="form-control" name="beak_length" type="text" id="beak_length" placeholder="Insert Beak Lenght" value="<?php echo $data_biometry->beak_length ?>"></td>
+           <td><strong>Beak Length:</strong><input class="form-control" name="beak_length" type="text" id="beak_length" placeholder="Insert Beak Lenght" value="<?php echo !empty($data_biometry->beak_length) ? $data_biometry->beak_length : ''; ?>"></td>
          </tr>
          <tr>
-           <td><strong>Beak Head:</strong><input class="form-control" name="beak_head" type="text" id="beak_head" placeholder="Insert Beak Head" value="<?php echo $data_biometry->beak_head ?>"></td>
+           <td><strong>Beak Head:</strong><input class="form-control" name="beak_head" type="text" id="beak_head" placeholder="Insert Beak Head" value="<?php echo !empty( $data_biometry->beak_head) ?  $data_biometry->beak_head : ''; ?>"></td>
          </tr>
          <tr>
-           <td><strong>Beak Height:</strong><input class="form-control" name="beak_height" type="text" id="beak_height" placeholder="Insert Beak Height" value="<?php echo $data_biometry->beak_height ?>"></td>
+           <td><strong>Beak Height:</strong><input class="form-control" name="beak_height" type="text" id="beak_height" placeholder="Insert Beak Height" value="<?php echo !empty($data_biometry->beak_height) ? $data_biometry->beak_height : ''; ?>"></td>
          </tr>
          <tr>
-           <td><strong>Beak Width:</strong><input class="form-control" name="beak_width" type="text" id="beak_width" placeholder="Insert Beak Width" value="<?php echo $data_biometry->beak_width ?>"></td>
+           <td><strong>Beak Width:</strong><input class="form-control" name="beak_width" type="text" id="beak_width" placeholder="Insert Beak Width" value="<?php echo !empty($data_biometry->beak_width) ? $data_biometry->beak_width : ''; ?>"></td>
          </tr>
          <tr>
-           <td><strong>Grease:</strong><input class="form-control" name="grease" type="text" id="grease" placeholder="Insert Grease" value="<?php echo $data_biometry->grease ?>"> </td>
+           <td><strong>Grease:</strong><input class="form-control" name="grease" type="text" id="grease" placeholder="Insert Grease" value="<?php echo !empty( $data_biometry->grease) ?  $data_biometry->grease : ''; ?>"> </td>
          </tr>
          <tr>
-           <td><strong>Muscle:</strong><input class="form-control" name="muscle" type="text" id="muscle" placeholder="Insert Muscle" value="<?php echo $data_biometry->muscle ?>"> </td>
+           <td><strong>Muscle:</strong><input class="form-control" name="muscle" type="text" id="muscle" placeholder="Insert Muscle" value="<?php echo !empty($data_biometry->muscle) ? $data_biometry->muscle : ''; ?>"> </td>
          </tr>
          <tr>
-           <td><strong>Weight:</strong><input class="form-control" name="weight" type="text" id="weight" placeholder="Insert Weight" value="<?php echo $data_biometry->weight ?>"></td>
+           <td><strong>Weight:</strong><input class="form-control" name="weight" type="text" id="weight" placeholder="Insert Weight" value="<?php echo !empty($data_biometry->weight ) ? $data_biometry->weight  : ''; ?>"></td>
          </tr>
        </tbody>
      </table>
    </div>
    <label for="notes_bio"><strong>Notes Biometry:</strong></label>
-    <textarea id="notes_bio" name="notes_bio"  rows="3" class="form-control"> <?php echo $data_biometry->notes_bio ?></textarea>
+    <textarea id="notes_bio" name="notes_bio"  rows="3" class="form-control"><?php echo !empty($data_biometry->notes_bio) ? $data_biometry->notes_bio : ''; ?></textarea>
   
 </div>
 <br>
@@ -596,7 +598,7 @@ $data_biometry = $biometry->fetch(PDO::FETCH_OBJ);?>
 <center><h4><font color="black">HISTORIC</font></h4></center><hr>
 <div class="row">
   <label for="notes_histo"><strong>Notes Historic:</strong></label>
-  <textarea id="notes_histo" name="notes_histo" rows="3" class="form-control"> <?php echo $producto->notes?></textarea>
+  <textarea id="notes_histo" name="notes_histo" rows="3" class="form-control"><?php echo !empty($producto->notes) ? $producto->notes : ''; ?></textarea>
 
 </div>
 
