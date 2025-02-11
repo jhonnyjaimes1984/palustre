@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cronómetro con Acumulación de Tiempo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+        .time-input {
+            width: 200px;
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        #startButton {
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="timeInput1" class="time-input" value="00:00:00" readonly>
+    <input type="text" id="timeInput2" class="time-input" value="00:00:00" readonly>
+    <input type="text" id="timeInput3" class="time-input" value="00:00:00" readonly>
+    <button id="startButton">Mantén presionado para iniciar</button>
+
+    <script>
+        let startTime;
+        let accumulatedTime1 = 0;
+        let accumulatedTime2 = 0;
+        let accumulatedTime3 = 0;
+        let timerInterval;
+        let activeInput = 1;
+
+        const timeInput1 = document.getElementById('timeInput1');
+        const timeInput2 = document.getElementById('timeInput2');
+        const timeInput3 = document.getElementById('timeInput3');
+        const startButton = document.getElementById('startButton');
+
+        startButton.addEventListener('mousedown', () => {
+            startTime = Date.now();
+            timerInterval = setInterval(updateTime, 100);
+        });
+
+        startButton.addEventListener('mouseup', () => {
+            clearInterval(timerInterval);
+            const elapsedTime = Date.now() - startTime;
+            if (activeInput === 1) {
+                accumulatedTime1 += elapsedTime;
+                timeInput1.value = formatTime(accumulatedTime1);
+                activeInput = 2;
+            } else if (activeInput === 2) {
+                accumulatedTime2 += elapsedTime;
+                timeInput2.value = formatTime(accumulatedTime2);
+                activeInput = 3;
+            } else {
+                accumulatedTime3 += elapsedTime;
+                timeInput3.value = formatTime(accumulatedTime3);
+                activeInput = 1;
+            }
+        });
+
+        function updateTime() {
+            const currentTime = Date.now() - startTime;
+            if (activeInput === 1) {
+                timeInput1.value = formatTime(accumulatedTime1 + currentTime);
+            } else if (activeInput === 2) {
+                timeInput2.value = formatTime(accumulatedTime2 + currentTime);
+            } else {
+                timeInput3.value = formatTime(accumulatedTime3 + currentTime);
+            }
+        }
+
+        function formatTime(ms) {
+            const totalSeconds = Math.floor(ms / 1000);
+            const hours = Math.floor(totalSeconds / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = totalSeconds % 60;
+            return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+        }
+
+        function pad(number) {
+            return number.toString().padStart(2, '0');
+        }
+    </script>
+</body>
+</html>
