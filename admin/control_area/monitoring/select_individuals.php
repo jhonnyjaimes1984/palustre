@@ -103,10 +103,10 @@ $usuario = $sentencia->fetchAll(PDO::FETCH_OBJ);
             <center><a class="btn btn-info btn-sm" href="<?php echo "view_monitoring.php?id=" .  $individuals->id_individual?>"><span data-feather="eye"></span></a></center>
           </td>
            <td>
-            <center><a class="btn btn-warning btn-sm" href="<?php echo "../admin/select_all.php?id=" .  $individuals->id_individual?>"><span data-feather="edit"></span></a></center>
+            <center><a class="btn btn-warning btn-sm" href="<?php echo "update_individual_monitoring.php?id=" .  $individuals->id_individual?>"><span data-feather="edit"></span></a></center>
           </td>
            <td>
-            <center><a class="btn btn-danger btn-sm" href="<?php echo "../admin/select_all.php?id=" .  $individuals->id_individual?>"><span data-feather="trash"></span></a></center>
+            <center><a class="btn btn-danger btn-sm" href="<?php echo "delete_individual_monitoring.php?id=" .  $individuals->id_individual?>"><span data-feather="trash"></span></a></center>
           </td>
           
           
