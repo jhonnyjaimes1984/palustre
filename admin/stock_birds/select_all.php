@@ -248,22 +248,23 @@ $data_biometry = $biometry->fetch(PDO::FETCH_OBJ);?>
     <table>
      <tbody>
        <tr>
-         <td><strong>Measurement Date:</strong> <?php echo $data_biometry->measurement_date;  ?></td>
+         <td><strong>Measurement Date:</strong> <?php echo !empty($data_biometry->measurement_date) ? $data_biometry->measurement_date : ''; ?>
+       </td>
        </tr>
        <tr>
-         <td><strong>Staff:</strong> <?php echo $data_biometry->staff  ?></td>
+         <td><strong>Staff:</strong><?php echo !empty($data_biometry->staff) ? $data_biometry->staff : ''; ?> </td>
        </tr>
        <tr>
-         <td><strong>Wing Lenght:</strong> <?php echo $data_biometry->wing_lenght ?> mm</td>
+         <td><strong>Wing Lenght:</strong><?php echo !empty($data_biometry->wing_lenght) ? $data_biometry->wing_lenght : ''; ?> mm</td>
        </tr>
        <tr>
-         <td><strong>F8:</strong> <?php echo $data_biometry->F8 ?> mm</td>
+         <td><strong>F8:</strong><?php echo !empty($data_biometry->F8) ? $data_biometry->F8 : ''; ?> mm</td>
        </tr>
        <tr>
-         <td><strong>Tail:</strong> <?php echo $data_biometry->tail ?> mm</td>
+         <td><strong>Tail:</strong><?php echo !empty($data_biometry->tail) ? $data_biometry->tail : ''; ?> mm</td>
        </tr>
        <tr>
-         <td><strong>Tarsus:</strong> <?php echo $data_biometry->tarsus ?> mm</td>
+         <td><strong>Tarsus:</strong><?php echo !empty($data_biometry->tarsus) ? $data_biometry->tarsus : ''; ?> mm</td>
        </tr>
      </tbody>
    </table>
@@ -275,31 +276,31 @@ $data_biometry = $biometry->fetch(PDO::FETCH_OBJ);?>
 
 
      <tr>
-       <td><strong>Beak Length:</strong> <?php echo $data_biometry->beak_length ?> mm</td>
+       <td><strong>Beak Length:</strong><?php echo !empty($data_biometry->beak_length) ? $data_biometry->beak_length : ''; ?> mm</td>
      </tr>
      <tr>
-       <td><strong>Beak Head:</strong> <?php echo $data_biometry->beak_head ?> mm</td>
+       <td><strong>Beak Head:</strong><?php echo !empty($data_biometry->beak_head) ? $data_biometry->beak_head : ''; ?> mm</td>
      </tr>
      <tr>
-       <td><strong>Beak Height:</strong> <?php echo $data_biometry->beak_height ?> mm</td>
+       <td><strong>Beak Height:</strong><?php echo !empty($data_biometry->beak_height) ? $data_biometry->beak_height : ''; ?> mm</td>
      </tr>
      <tr>
-       <td><strong>Beak Width:</strong> <?php echo $data_biometry->beak_width ?> mm</td>
+       <td><strong>Beak Width:</strong><?php echo !empty($data_biometry->beak_width) ? $data_biometry->beak_width : ''; ?> mm</td>
      </tr>
      <tr>
-       <td><strong>Grease:</strong> <?php echo $data_biometry->grease ?> </td>
+       <td><strong>Grease:</strong><?php echo !empty($data_biometry->grease) ? $data_biometry->grease : ''; ?> </td>
      </tr>
      <tr>
-       <td><strong>Muscle:</strong> <?php echo $data_biometry->muscle ?> </td>
+       <td><strong>Muscle:</strong><?php echo !empty($data_biometry->muscle) ? $data_biometry->muscle : ''; ?> </td>
      </tr>
      <tr>
-       <td><strong>Weight:</strong> <?php echo $data_biometry->weight ?> gr</td>
+       <td><strong>Weight:</strong><?php echo !empty($data_biometry->weight) ? $data_biometry->weight : ''; ?> gr</td>
      </tr>
    </tbody>
  </table>
 </div>
 <label for="obser"><strong>Notes:</strong></label>
-<textarea id="obser" name="obser"  rows="3" class="form-control" disabled=""> <?php echo $data_biometry->notes_bio ?></textarea>
+<textarea id="obser" name="obser"  rows="3" class="form-control" disabled=""><?php echo !empty($data_biometry->notes_bio) ? $data_biometry->notes_bio : ''; ?></textarea>
 
 <div class="col-12 col-lg-6"> 
 
