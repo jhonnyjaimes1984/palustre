@@ -229,6 +229,23 @@ function formatTime(seconds) {
                         <input type="checkbox" id="millet_spray" name="millet_spray"> 
                         <label class="form-check-label" for="millet_spray" ondblclick="toggleTextarea(this)" data-text="ESP/Espigas de mijo. Indicates that the bird is feeding on millet sprays."> Millet Spray</label>
                     </li>
+                    <li>
+                        <label class="form-check-label" for="time_spent_foraging" ondblclick="toggleTextarea(this)" data-text="ESP/Tiempo dedicado a la búsqueda de alimento. Indicates the amount of time the animal spends moving and searching for food. ">Time spent foraging:</label>
+                    </li>
+                            <input type="text" id="time_spent_foraging" name="time_spent_foraging" value="00:00:00" readonly>
+                            <button type="button" onclick="startTimer('time_spent_foraging')">Start</button>
+                            <button type="button" onclick="stopTimer('time_spent_foraging')">Stop</button>
+                            <button type="button" onclick="resetTimer('time_spent_foraging')">Reset</button>
+                    <li>
+                        <label class="form-check-label" for="time_spent_inactive" ondblclick="toggleTextarea(this)" data-text="ESP/Tiempo de inactividad. Indicates the amount of time the animal is neither moving nor searching for food. ">Time spent inactive:</label>
+                    </li>
+                            <input type="text" id="time_spent_inactive" name="time_spent_inactive" value="00:00:00" readonly>
+                            <button type="button" onclick="startTimer('time_spent_inactive')">Start</button>
+                            <button type="button" onclick="stopTimer('time_spent_inactive')">Stop</button>
+                            <button type="button" onclick="resetTimer('time_spent_inactive')">Reset</button>
+                        
+                    
+
                 </ul>
             `;
         } else {
