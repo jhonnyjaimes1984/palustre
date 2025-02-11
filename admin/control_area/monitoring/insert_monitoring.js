@@ -441,6 +441,10 @@ function formatTime(seconds) {
                         <label for="number_eggs_nest">Number of Eggs in the Nest</label>
                         <input type="number" class="form-control" id="number_eggs_nest" name="number_eggs_nest">
                     </li>
+                    <li>
+                        <label for="number_aborted_eggs">Number Aborted Eggs</label>
+                        <input type="number" class="form-control" id="number_aborted_eggs" name="number_aborted_eggs">
+                    </li>
                 </ul>
             `;
         } else {
