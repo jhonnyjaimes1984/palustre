@@ -46,23 +46,29 @@ $resultado_mon_gen = $consulta_mon_gen->fetch(PDO::FETCH_OBJ);
         <div class="row">
           <div class="col-12">
         <li class="breadcrumb float-sm-right text-center">
-          <strong><?php echo "Star Time:  ". date('Y/m/d h:i a ',strtotime($resultado_mon_gen->start_time_mon)); ?></strong> 
+          <strong>Star Time: <?php echo !empty($resultado_mon_gen->start_time_mon) ?  date('Y/m/d h:i a ',strtotime($resultado_mon_gen->start_time_mon)) : ''; ?></strong> 
           </li>
         </div>
         <div class="col-12"> 
           <li class="breadcrumb float-sm-right text-center">
           <br>
-          <strong>Finish Time: <?php echo date('Y/m/d h:i a ',strtotime($resultado_mon_gen->finish_time_mon)); ?></strong>
+          <strong>Finish Time: <?php echo !empty($resultado_mon_gen->finish_time_mon) ? "Star Time:  ". date('Y/m/d h:i a ',strtotime($resultado_mon_gen->finish_time_mon)) : ''; ?></strong>
         </li>
       </div>
       <div class="col-12 ">
         <li class="breadcrumb float-sm-right text-center">
         <strong>NAME STAFF MONITORING:
-          <?php
-          $consulta_staff = $base_de_datos->prepare("SELECT * FROM staff WHERE id_staff = ?");
-          $consulta_staff->execute([$id_individual]);
+          <?php if (!empty($rerultado_mon_gen->id_staff_mon)){
+
+            $consulta_staff = $base_de_datos->prepare("SELECT * FROM staff WHERE id_staff = ?");
+          $consulta_staff->execute([$rerultado_mon_gen->id_staff_mon]);
           $resultado_staff = $consulta_staff->fetch(PDO::FETCH_OBJ);
-          echo $resultado_staff->first_name. ' - ' . $resultado_staff->last_name ?>
+          echo $resultado_staff->first_name. ' - ' . $resultado_staff->last_name ;
+
+          }else{
+
+          }
+          ?>
            </strong>
           </li>
         
@@ -87,8 +93,8 @@ $resultado_mon_gen = $consulta_mon_gen->fetch(PDO::FETCH_OBJ);
         <div class="card-header text-center">
           <h3><strong>External Distutbance</strong></h3>
           <center>
-              <?php
-              switch ($resultado_mon_gen->id_external_distutbance) {
+              <?php if (!empty($resultado_mon_gen->id_external_distutbance)){
+                switch ($resultado_mon_gen->id_external_distutbance) {
                 case '1': ?>
                 <p for="external_1"  ondblclick="toggleTextarea(this)" data-text="Completely quiet environment, no nearby noises or movements. /  Ambiente completamente tranquilo, sin ruidos ni movimientos cercanos.">No external disturbances</p>
                 <?php break;
@@ -117,7 +123,12 @@ $resultado_mon_gen = $consulta_mon_gen->fetch(PDO::FETCH_OBJ);
                 default:
                                    // code...
                 break;
-              } ?>
+              }
+
+              }else{
+
+              }
+               ?>
             </center>
           </div>
         </div>
@@ -128,12 +139,14 @@ $resultado_mon_gen = $consulta_mon_gen->fetch(PDO::FETCH_OBJ);
             <div class="card-body">
                 <center>
                 <?php
-              if ($resultado_mon_gen->interior_mon > 0) { ?>
+              if (!empty($resultado_mon_gen->interior_mon)) { ?>
                         
                             <p  ondblclick="toggleTextarea(this)" data-text="Indicates that the monitoring is conducted from the interior corridor / Indica que el monitoreo se realiza desde el pasillo interior.">Interior</p>
                        
-                  <?php  }else{}
-              if ($resultado_mon_gen->external_mon > 0) { ?>
+                  <?php  }else{
+
+                  }
+              if (!empty($resultado_mon_gen->external_mon)) { ?>
 
                         
                             <p   ondblclick="toggleTextarea(this)" data-text=" Indicates that the monitoring is conducted from outside the cages / Indica que el monitoreo se realiza desde el exterior de las jaulas.">Exterior</p>
@@ -157,13 +170,13 @@ $resultado_mon_gen = $consulta_mon_gen->fetch(PDO::FETCH_OBJ);
        $consulta_control_type->execute([$id_individual]);
        $resultado_control_type = $consulta_control_type->fetch(PDO::FETCH_OBJ);
 
-       if ($resultado_control_type->id_master_routine > 0) { ?>
+       if (!empty($resultado_control_type->id_master_routine)) { ?>
         <p>Routine Control</p>
        <?php  }  
-       if ($resultado_control_type->id_master_reproductive > 0) { ?>
+       if (!empty($resultado_control_type->id_master_reproductive)) { ?>
         <p>Reproductive Control</p>
          <?php  }  
-       if ($resultado_control_type->id_master_chicken > 0) { ?>
+       if (!empty($resultado_control_type->id_master_chicken)) { ?>
         <p>Chicken Control</p>
           <?php } ?>
           
