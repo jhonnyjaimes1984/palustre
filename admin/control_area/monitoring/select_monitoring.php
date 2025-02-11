@@ -34,26 +34,59 @@ require_once BASE_URL . "/paginas/cabecera_tercer_nivel.php";
 		<h1 class="mb-4 text-primary">Welcome to the Monitoring Area</h1>
 <p class="lead">This section allows you to systematically track the health, behavior, and overall condition of birds. Through detailed observations, users can record physical conditions, activity levels, and potential health concerns to ensure early detection of issues and proper management. Use the options below to manage records efficiently.</p>
 
+<div class="row mt-5">
+            <div class="col-md-3 mb-4">
+                <div class="card border-primary" onclick="location.href='view.php';">
+                    <div class="card-body">
+                        <h3 class="card-title text-primary">View</h3>
+                        <p class="card-text">View all breeding pairs, their compatibility, and reproductive history.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4 card border-primary">
+                <br>
+                <div class="card border-success" onclick="location.href='select_individuals.php';">
+                    <div class="card-body">
+                        <h3 class="card-title text-success">Insert - Individuals</h3>
+                        <p class="card-text">View existing records in the stock. This allows you to see and review all the birds that are currently listed.</p>
+                    </div>
+                </div>
+                <div class="card border-success" onclick="location.href='select_pairs.php';">
+                    <div class="card-body">
+                        <h3 class="card-title text-success">Insert - Pairs</h3>
+                        <p class="card-text">Add new entries to the stock database. Use this option to register new birds and update relevant details.</p>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card border-warning" onclick="location.href='update.php';">
+                    <div class="card-body">
+                        <h3 class="card-title text-warning">Update</h3>
+                        <p class="card-text">Modify pair data, including status, success rates, and separation details.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card border-danger" onclick="location.href='delete.php';">
+                    <div class="card-body">
+                        <h3 class="card-title text-danger">Delete</h3>
+                        <p class="card-text">Remove outdated or incorrect pair records from the system.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 	</div>  
 
 	<div class="row">
 	
 
 			 <div class="col-md-6 mb-6">
-                <div class="card border-primary" onclick="location.href='select_individuals.php';">
-                    <div class="card-body">
-                        <h3 class="card-title text-primary">Individuals</h3>
-                        <p class="card-text">View existing records in the stock. This allows you to see and review all the birds that are currently listed.</p>
-                    </div>
-                </div>
+                
             </div>
             <div class="col-md-6 mb-6">
-                <div class="card border-success" onclick="location.href='select_pairs.php';">
-                    <div class="card-body">
-                        <h3 class="card-title text-success">Pairs</h3>
-                        <p class="card-text">Add new entries to the stock database. Use this option to register new birds and update relevant details.</p>
-                    </div>
-                </div>
+                
             </div>
         </div>
 
