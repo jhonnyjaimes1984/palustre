@@ -79,16 +79,7 @@ require_once BASE_URL . "/paginas/cabecera_tercer_nivel.php";
 
 	</div>  
 
-	<div class="row">
 	
-
-			 <div class="col-md-6 mb-6">
-                
-            </div>
-            <div class="col-md-6 mb-6">
-                
-            </div>
-        </div>
 
 <br>
 
