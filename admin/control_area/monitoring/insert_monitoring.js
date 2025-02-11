@@ -445,6 +445,12 @@ function formatTime(seconds) {
                         <label for="number_aborted_eggs">Number Aborted Eggs</label>
                         <input type="number" class="form-control" id="number_aborted_eggs" name="number_aborted_eggs">
                     </li>
+                    <li>
+                     <label  for="egg_removal" ondblclick="toggleTextarea(this)" data-text="ESP/Retirada de huevos. Indicates that the eggs have been manually removed from the nest for artificial incubation or management purposes.
+                    Indica que los huevos han sido retirados manualmente del nido para incubación artificial o manejo.">Egg Removal</label>
+                     </li>
+                     <input class="form-control" type="number" id="egg_removal" name="egg_removal">
+                    
                 </ul>
             `;
         } else {
