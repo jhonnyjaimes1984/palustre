@@ -425,6 +425,15 @@ function formatTime(seconds) {
                         </div>
                     </li>
                     <li>
+                        <div>
+                            <label for="no_incubation">No Incubating:</label>
+                            <input type="text" id="no_incubation" name="no_incubation" value="00:00:00" readonly>
+                            <button type="button" onclick="startTimer('no_incubation')">Start</button>
+                            <button type="button" onclick="stopTimer('no_incubation')">Stop</button>
+                            <button type="button" onclick="resetTimer('no_incubation')">Reset</button>
+                        </div>
+                    </li>
+                    <li>
                         <label for="clutch_number">Clutch Number</label>
                         <input type="number" class="form-control" id="clutch_number" name="clutch_number">
                     </li>
