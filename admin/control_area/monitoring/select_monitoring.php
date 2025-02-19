@@ -38,8 +38,8 @@ require_once BASE_URL . "/paginas/cabecera_tercer_nivel.php";
             <div class="col-md-3 mb-4">
                 <div class="card border-primary" onclick="location.href='view.php';">
                     <div class="card-body">
-                        <h3 class="card-title text-primary">View</h3>
-                        <p class="card-text">View all breeding pairs, their compatibility, and reproductive history.</p>
+                        <h3 class="card-title text-primary">View All</h3>
+                        <p class="card-text">Access all monitoring records generated over time. This section allows you to review all recorded observations, including health assessments, activity levels, and other key indicators.</p>
                     </div>
                 </div>
             </div>
@@ -48,13 +48,13 @@ require_once BASE_URL . "/paginas/cabecera_tercer_nivel.php";
                 <div class="card border-success" onclick="location.href='select_individuals.php';">
                     <div class="card-body">
                         <h3 class="card-title text-success">Insert - Individuals</h3>
-                        <p class="card-text">View existing records in the stock. This allows you to see and review all the birds that are currently listed.</p>
+                        <p class="card-text">Register individual birds from stock by assigning them unique monitoring IDs. This ensures that each bird's health, behavior, and other critical data can be tracked separately..</p>
                     </div>
                 </div>
                 <div class="card border-success" onclick="location.href='select_pairs.php';">
                     <div class="card-body">
                         <h3 class="card-title text-success">Insert - Pairs</h3>
-                        <p class="card-text">Add new entries to the stock database. Use this option to register new birds and update relevant details.</p>
+                        <p class="card-text">Create monitoring records for breeding pairs by assigning a joint ID. This helps track the health and interactions of paired birds, improving data consistency and reproductive monitoring.</p>
                     </div>
                 </div>
                 
@@ -62,8 +62,8 @@ require_once BASE_URL . "/paginas/cabecera_tercer_nivel.php";
             <div class="col-md-3 mb-4">
                 <div class="card border-warning" onclick="location.href='update.php';">
                     <div class="card-body">
-                        <h3 class="card-title text-warning">Update</h3>
-                        <p class="card-text">Modify pair data, including status, success rates, and separation details.</p>
+                        <h3 class="card-title text-warning">Update All</h3>
+                        <p class="card-text">Review and edit all generated monitoring IDs. This function allows you to correct errors, update bird status, and ensure that all records remain accurate and up to date.</p>
                     </div>
                 </div>
             </div>
@@ -71,7 +71,7 @@ require_once BASE_URL . "/paginas/cabecera_tercer_nivel.php";
                 <div class="card border-danger" onclick="location.href='delete.php';">
                     <div class="card-body">
                         <h3 class="card-title text-danger">Delete</h3>
-                        <p class="card-text">Remove outdated or incorrect pair records from the system.</p>
+                        <p class="card-text">Remove incorrect or outdated monitoring records. This function ensures that only relevant and accurate data is maintained in the system.</p>
                     </div>
                 </div>
             </div>

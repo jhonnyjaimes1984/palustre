@@ -62,17 +62,8 @@ $id_individual= $_GET['id'];
                             </center>
                         </div>
                     </div>
-                    <div class="card mb-12">
-                        <div class="card-header text-center">
-                            <h3><strong>NAME STAFF MONITORING</strong></h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label for="conclusions_text">AQUI SALGA EL NOMBRE SOLO</label>
-                                <textarea class="form-control" id="conclusions_text" name="conclusions_text" rows="3"></textarea>
-                            </div>
-                        </div>
-                    </div>
+                    <input type="hidden" name="id_staff" value="<?php echo $_SESSION['id_staff'] ?>">
+                            
 
                     <div class="card mb-12">
                         <div class="card-header text-center">
