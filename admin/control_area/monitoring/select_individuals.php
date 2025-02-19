@@ -97,7 +97,7 @@ $usuario = $sentencia->fetchAll(PDO::FETCH_OBJ);
           
            <td>
              <center>
-                <a class="btn btn-success btn-sm" href="<?php echo "insert_monitoring.php?id=" .  $individuals->id_individual?>"><span data-feather="save"></span></a></center>
+                <a class="btn btn-success btn-sm" href="<?php echo "insert_monitoring.php?id=" .  $individuals->id_individual."&specie=".$individuals->scientific_name?>"><span data-feather="save"></span></a></center>
               </td>
                <td>
             <center><a class="btn btn-info btn-sm" href="<?php echo "view_monitoring.php?id=" .  $individuals->id_individual?>"><span data-feather="eye"></span></a></center>

@@ -152,6 +152,8 @@ flare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
     
   });
 
+    
+
     document.addEventListener("DOMContentLoaded", function () {
     let body = document.body;
     let content = document.querySelector(".content-wrapper");

@@ -9,8 +9,16 @@ $itemData_insert = array('n_monitoring' => $row_insert['total']);
 $conteo = $itemData_insert['n_monitoring'] + 1;
 
 $id_individual= $_GET['id'];
-
+$especie_individual = $_GET['specie'];
 ?>
+<link rel="stylesheet" href="../../../plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+<link rel="stylesheet" href="../../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../../../plugins/datatables/jquery.dataTables.js"></script>
+<script src="../../../plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+<script src="../../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="../../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 
 <style>
     .custom-textarea {
@@ -28,16 +36,8 @@ $id_individual= $_GET['id'];
         overflow-y: auto; /* Permite desplazamiento vertical */
     }
 
-
-   
-
-   
 </style>
 
-<script type="text/javascript" src="../validator/vendor/jquery/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" src="../validator/vendor/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../validator/dist/js/bootstrapValidator.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 
 <main role="main" class="content-wrapper">
@@ -52,7 +52,7 @@ $id_individual= $_GET['id'];
                     <!-- ORIGIN TYPE -->
                     <div class="card mb-12">
                         <div class="card-header text-center">
-                            <h3><strong>Time <?php echo date('h:i:s a'); ?></strong></h3>
+                            <h3><strong>Time <?php echo date('h:i:s a');?></strong></h3>
                         </div>
                         <div class="card-body">
                             <center>
@@ -63,6 +63,7 @@ $id_individual= $_GET['id'];
                         </div>
                     </div>
                     <input type="hidden" name="id_staff" value="<?php echo $_SESSION['id_staff'] ?>">
+                     <input type="hidden" name="species" value="<?php echo $especie_individual ?>">
                             
 
                     <div class="card mb-12">
@@ -106,7 +107,7 @@ $id_individual= $_GET['id'];
                 <h3><strong>Monitoring Location</strong></h3>
             </div>
             <div class="card-body">
-                <input type="hidden" value="<?php echo $id_individual ?>" name="id_individual_mon" required>
+               
                 <div class="row">
                     <div class="col-12 col-lg-6  d-flex justify-content-center">
                         <div class="form-check">
@@ -193,6 +194,20 @@ $id_individual= $_GET['id'];
         </div>
     </div>
 </div>
+<div id="tablesContainer" class="col-12 col-lg-10"></div>
+<br><br>
+<div class="d-flex justify-content-center">
+    <div class="row w-100 justify-content-between">
+        <button type="button" class="btn btn-success col-5" onclick="addTable('individuals')">
+            Insert - Individuals
+        </button>
+        <button type="button" class="btn btn-success col-5" onclick="addTable('pairs')">
+            Insert - Pairs
+        </button>
+    </div>
+</div>
+
+        <br><br>
     <div class="row">
     <div class="form-group col-lg-6">
         <button type="submit" class="btn btn-primary col-lg-12" >Save Data</button>
@@ -204,8 +219,351 @@ $id_individual= $_GET['id'];
 </form>
 
 </main>
+<?php
+$sentencia = $base_de_datos->query("SELECT * FROM individuals, species  where species.id_species = individuals.specie");
+$usuario = $sentencia->fetchAll(PDO::FETCH_OBJ);
+?>
+
+ <?php
+// Conexión a la base de datos
+  $sentencia_pairs = $base_de_datos->query("SELECT * FROM pairs where finish_pairing_date is null ");
+  $parejas = $sentencia_pairs->fetchAll(PDO::FETCH_OBJ);
+  ?>
+  <script>
+        let tableCounter = 0;
 
 
+        function initializeDataTable(tableId) {
+            $(`#${tableId}`).DataTable({
+                order: [[0, "asc"]], // Orden ascendente por la primera columna
+                language: {
+                    "emptyTable": "No hay datos para mostrar",
+                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                    "search": "Buscar:",
+                    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                    "lengthMenu": 'Mostrando <select>' +
+                        '<option value="10">10</option>' +
+                        '<option value="20">20</option>' +
+                        '<option value="50">50</option>' +
+                        '<option value="100">100</option>' +
+                        '<option value="-1">Todos</option>' +
+                        '</select> Entradas',
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Último",
+                        "next": "Next",
+                        "previous": "Anterior"
+                    }
+                }
+            });
+        }
+
+        function addTable(type) {
+            tableCounter++;
+            const container = document.getElementById("tablesContainer");
+            const div = document.createElement("div");
+            div.className = "table-container";
+            div.id = `tableDiv${tableCounter}`;
+            const tableId = `dynamicTable${tableCounter}`;
+
+       
+            let tableHTML = type === 'individuals' ? `
+                <h3>Individuals Table (${tableCounter})</h3>
+                <table id="${tableId}" class="table table-bordered table-striped table-responsive">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nickname</th>
+                            <th>Specie</th>
+                            <th>Assignment</th>
+                            <th>Sex</th>
+                            <th>Year</th>
+                            <th>Status</th>
+                            <th>Left Leg</th>
+                            <th>Right Leg</th>
+                            <th>Insert</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                <?php foreach($usuario as $individuals){ ?>
+          <td><center><?php echo $individuals->id_individual ?></center></td>
+          <td><center><?php echo $individuals->nickname ?></center></td>
+          <td><center><?php echo $individuals->scientific_name ?></center></td>
+          <?php
+          $sentencia_assi = $base_de_datos->prepare("SELECT id_assignment, assignment_date, id_facility_name, notes  FROM facility_assignment where id_individual_assi = ? AND assignment_date!='' AND finish_date is null");
+          $sentencia_assi->execute([$individuals->id_individual]);
+          $assi = $sentencia_assi->fetch(PDO::FETCH_OBJ);?>
+          <td><center>
+
+          <?php if(empty($assi->id_facility_name)){
+            echo "Not have assignament";
+
+          }else{
+            $sentencia_fac = $base_de_datos->prepare("SELECT name_facility, type_facility, location, notes FROM facilities WHERE id_facility  = ?;");
+          $sentencia_fac->execute([$assi->id_facility_name]);
+          $fac = $sentencia_fac->fetch(PDO::FETCH_OBJ); 
+          echo $fac->name_facility.'<br>'.$fac->type_facility.'<br>'.$fac->location; } ?></center></td>
+          <td><center><?php switch ($individuals->sex) {
+
+            case '0':
+              echo "Indeterminate";
+              break;
+            case '1':
+              echo "Male";
+              break;
+              case '2':
+              echo "Female";
+              break;
+            
+           
+          } ?></center></td>
+          <td><center><?php echo $individuals->year ?></center></td>
+          <td><center><?php echo $individuals->status ?></center></td>
+
+          <td><div class="col-12" style="background-color:<?php echo $individuals->left_ring_color ?> ; border: 1px solid #000000">
+          <center><font color="<?php echo $individuals->left_letter_color ?>"><?php echo $individuals->left_ring_numer ?></font></center></div></td>
+
+          <td><div class="col-12" style="background-color:<?php echo $individuals->right_ring_color ?> ; border: 1px solid #000000">
+          <center><font color="<?php echo $individuals->right_letter_color ?>"><?php echo $individuals->right_ring_numer ?></font></center></div></td>
+          <td>
+             <center>
+                <a class="btn btn-success btn-sm" href="<?php echo "insert_monitoring.php?id=" .  $individuals->id_individual."&specie=".$individuals->scientific_name?>"><span data-feather="save"></span></a></center>
+              </td>
+        </tr>
+        <?php } ?>
+                </tbody> 
+            </table>`
+                : `
+                <h3>Pairs Table (${tableCounter})</h3>
+                <table id="${tableId}" class="table table-bordered table-striped table-responsive">
+                    <thead>
+                  <tr>
+                   <th><center>Id Pair</center></th> 
+                   <th><center>Date</center></th>
+                   <th><center>Pair</center></th>
+                   <th><center>Facility</center></th> 
+                   <th><center>Notes</center></th>
+                    <th><center>Insert</center></th>
+                   
+                 </tr>
+               </thead>
+               <tbody>
+                <?php foreach($parejas as $individual_cop){ ?>
+                  <tr> 
+                    <td><center><?php echo $individual_cop->pair_id; ?></center></td>
+                    <td width="10%"><center><?php echo $individual_cop->pairing_date; ?></center></td>
+                    <td width="30%"><?php
+
+                    $male_individual1 = $base_de_datos->prepare("SELECT * FROM individuals WHERE id_individual = ?;");
+                    $male_individual1->execute([$individual_cop->male_individual1]);
+                    $male_1 = $male_individual1->fetch(PDO::FETCH_OBJ);
+
+                    $male_individual2 = $base_de_datos->prepare("SELECT * FROM individuals WHERE id_individual = ?;");
+                    $male_individual2->execute([$individual_cop->male_individual2]);
+                    $male_2 = $male_individual2->fetch(PDO::FETCH_OBJ);
+
+                    $male_individual3 = $base_de_datos->prepare("SELECT * FROM individuals WHERE id_individual = ?;");
+                    $male_individual3->execute([$individual_cop->male_individual3]);
+                    $male_3 = $male_individual3->fetch(PDO::FETCH_OBJ);
+
+                    $female_individual1 = $base_de_datos->prepare("SELECT * FROM individuals WHERE id_individual = ?;");
+                    $female_individual1->execute([$individual_cop->female_individual1]);
+                    $fame_1 = $female_individual1->fetch(PDO::FETCH_OBJ);
+
+                    $female_individual2 = $base_de_datos->prepare("SELECT * FROM individuals WHERE id_individual = ?;");
+                    $female_individual2->execute([$individual_cop->female_individual2]);
+                    $fame_2 = $female_individual2->fetch(PDO::FETCH_OBJ);
+
+                    $female_individual3 = $base_de_datos->prepare("SELECT * FROM individuals WHERE id_individual = ?;");
+                    $female_individual3->execute([$individual_cop->female_individual3]);
+                    $fame_3 = $female_individual3->fetch(PDO::FETCH_OBJ);
+
+
+
+                    if ($individual_cop->male_individual1 != 0){?>
+                      <div class="row"> 
+                        <div class="col-5" style="background-color:<?php echo $male_1->left_ring_color ?> ; border: 1px solid #000000">
+                          <center>
+                            <font color="<?php echo $male_1->left_letter_color ?>"><?php echo $male_1->left_ring_numer ?></font>
+                          </center>
+                        </div>
+                        <div class="col-2"><center><?php echo $male_1->id_individual ?></center></div>
+                        <div class="col-5" style="background-color:<?php echo $male_1->right_ring_color ?> ; border: 1px solid #000000">
+                          <center>
+                            <font color="<?php echo $male_1->right_letter_color ?>"><?php echo $male_1->right_ring_numer ?></font>
+                          </center>
+                        </div>
+                      </div>
+                      <div class="w-100"><br></div>
+                    <?php }else{ ?>
+                      <div class="row"> 
+                        <div class="col-5"></div>
+                        <div class="col-2"></div>
+                        <div class="col-5"></div>
+                      </div>
+                      <div class="w-100"><br></div>
+                    <?php } 
+                    if ($individual_cop->male_individual2 != 0){?>
+                      <div class="row"> 
+                        <div class="col-5" style="background-color:<?php echo $male_2->left_ring_color ?> ; border: 1px solid #000000">
+                          <center>
+                            <font color="<?php echo $male_2->left_letter_color ?>"><?php echo $male_2->left_ring_numer ?></font>
+                          </center>
+                        </div>
+                        <div class="col-2"><center><?php echo $male_2->id_individual ?></center></div>
+                        <div class="col-5" style="background-color:<?php echo $male_2->right_ring_color ?> ; border: 1px solid #000000">
+                          <center>
+                            <font color="<?php echo $male_2->right_letter_color ?>"><?php echo $male_2->right_ring_numer ?></font>
+                          </center>
+                        </div>
+                      </div>
+                      <div class="w-100"><br></div>
+                    <?php }else{ ?>
+                      <div class="row"> 
+                        <div class="col-5"></div>
+                        <div class="col-2"></div>
+                        <div class="col-5"></div>
+                      </div>
+                      <div class="w-100"><br></div>
+                    <?php } 
+                    if ($individual_cop->male_individual3 != 0){?>
+                      <div class="row"> 
+                        <div class="col-5" style="background-color:<?php echo $male_3->left_ring_color ?> ; border: 1px solid #000000">
+                          <center>
+                            <font color="<?php echo $male_3->left_letter_color ?>"><?php echo $male_3->left_ring_numer ?></font>
+                          </center>
+                        </div>
+                        <div class="col-2"><center><?php echo $male_3->id_individual ?></center></div>
+                        <div class="col-5" style="background-color:<?php echo $male_3->right_ring_color ?> ; border: 1px solid #000000">
+                          <center>
+                            <font color="<?php echo $male_3->right_letter_color ?>"><?php echo $male_3->right_ring_numer ?></font>
+                          </center>
+                        </div>
+                      </div>
+                      <div class="w-100"><br></div>
+                    <?php }else{ ?>
+                      <div class="row"> 
+                        <div class="col-5"></div>
+                        <div class="col-2"></div>
+                        <div class="col-5" ></div>
+                      </div>
+                      <div class="w-100"><br></div>
+                    <?php }
+                    if ($individual_cop->female_individual1 != 0){?>
+                      <div class="row"> 
+                        <div class="col-5" style="background-color:<?php echo $fame_1->left_ring_color ?> ; border: 1px solid #000000">
+                          <center>
+                            <font color="<?php echo $fame_1->left_letter_color ?>"><?php echo $fame_1->left_ring_numer ?></font>
+                          </center>
+                        </div>
+                        <div class="col-2"><center><?php echo $fame_1->id_individual ?></center></div>
+                        <div class="col-5" style="background-color:<?php echo $fame_1->right_ring_color ?> ; border: 1px solid #000000">
+                          <center>
+                            <font color="<?php echo $fame_1->right_letter_color ?>"><?php echo $fame_1->right_ring_numer ?></font>
+                          </center>
+                        </div>
+                      </div>
+                      <div class="w-100"><br></div>
+                    <?php }else{ ?>
+                      <div class="row"> 
+                        <div class="col-5"></div>
+                        <div class="col-2"></div>
+                        <div class="col-5"></div>
+                      </div>
+                      <div class="w-100"><br></div>
+                    <?php }
+                    if ($individual_cop->female_individual2 != 0){?>
+                      <div class="row">
+                        <div class="col-5" style="background-color:<?php echo $fame_2->left_ring_color ?> ; border: 1px solid #000000">
+                          <center>
+                            <font color="<?php echo $fame_2->left_letter_color ?>"><?php echo $fame_2->left_ring_numer ?></font>
+                          </center>
+                        </div>
+                        <div class="col-2"><center><?php echo $fame_2->id_individual ?></center></div>
+                        <div class="col-5" style="background-color:<?php echo $fame_2->right_ring_color ?> ; border: 1px solid #000000">
+                          <center>
+                            <font color="<?php echo $fame_2->right_letter_color ?>"><?php echo $fame_2->right_ring_numer ?></font>
+                          </center>
+                        </div>
+                      </div>
+                      <div class="w-100"><br></div>
+
+                    <?php }else{ ?>
+                      <div class="row"> 
+                        <div class="col-5"></div>
+                        <div class="col-2"></div>
+                        <div class="col-5"></div>
+                      </div>
+                      <div class="w-100"><br></div>
+                    <?php }  
+                    if ($individual_cop->female_individual3 != 0){?>
+                      <div class="row"> 
+                        <div class="col-5" style="background-color:<?php echo $fame_3->left_ring_color ?> ; border: 1px solid #000000">
+                          <center>
+                            <font color="<?php echo $fame_3->left_letter_color ?>"><?php echo $fame_3->left_ring_numer ?></font>
+                          </center>
+                        </div>
+                        <div class="col-2"><center><?php echo $fame_3->id_individual ?></center></div>
+                        <div class="col-5" style="background-color:<?php echo $fame_3->right_ring_color ?> ; border: 1px solid #000000">
+                          <center
+                          ><font color="<?php echo $fame_3->right_letter_color ?>"><?php echo $fame_3->right_ring_numer ?></font>
+                        </center>
+                      </div>
+                    </div>
+                    <div class="w-100"><br></div>
+                  <?php }else{ ?>
+                    <div class="row"> 
+                      <div class="col-5"></div>
+                      <div class="col-2"></div>
+                      <div class="col-5"></div>
+                    </div>
+                    <div class="w-100"><br></div> 
+                  <?php } ?>
+                </td>
+                <td ><center>
+                  <?php 
+                  $sentencia_fac_pairs = $base_de_datos->prepare("SELECT * FROM facilities WHERE id_facility  = ?;");
+                  $sentencia_fac_pairs->execute([$individual_cop->id_facility_assignment]);
+                  $fac_pairs = $sentencia_fac_pairs->fetch(PDO::FETCH_OBJ); 
+                  echo $fac_pairs->name_facility.' - '.$fac_pairs->type_facility.' - '.$fac_pairs->location.'<br><strong>Notes:</strong> '.$fac_pairs->notes ;?> 
+                </center></td>
+                <td ><center><?php echo $individual_cop->notes; ?> </center></td> 
+                <td>
+             <center>
+                <a class="btn btn-success btn-sm" href="<?php echo "insert_monitoring.php?id=" .  $individual_cop->pair_id?>"><span data-feather="save"></span></a></center>
+              </td>
+              
+              </tr>
+            <?php } ?>
+          </tbody> 
+        </table>`;
+
+            tableHTML += `<button type="button" class=" btn btn-danger remove-btn" onclick="removeTable('tableDiv${tableCounter}')">Remove Table</button>`;
+
+            div.innerHTML = tableHTML;
+        container.appendChild(div);
+        initializeDataTable(tableId); //  Inicializa DataTables después de añadir la tabla
+        feather.replace()
+    }
+
+    function removeTable(divId) {
+        const div = document.getElementById(divId);
+        if (div) div.remove();
+    }
+
+    $(document).ready(function() {
+        $('#form_insert').on('submit', function (event) {
+            event.preventDefault();
+            alert("Form submitted successfully!");
+        });
+    });
+
+
+
+       
+    </script>
+    
 <script src="insert_monitoring.js"></script>
 
 
