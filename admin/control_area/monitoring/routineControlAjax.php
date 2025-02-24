@@ -1,3 +1,4 @@
+<?php $id_insertado = $_GET['id_insertado'] ?>
 <tr>
    <td>
     <div class="form-check">
