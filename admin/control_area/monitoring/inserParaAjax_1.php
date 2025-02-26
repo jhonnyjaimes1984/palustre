@@ -82,14 +82,14 @@
                 <div class='row'>
                     <div class='col-12 col-lg-6  d-flex justify-content-center'>
                         <div class='form-check'>
-                            <input class='form-check-input' type='radio' value='1' id='interior_1<?php echo $id_insertado ?>' name='id_observer_1[]' checked>
+                            <input class='form-check-input' type='radio' value='1' id='interior_<?php echo $id_insertado ?>' name='id_observer_1[]' checked>
                             <label for='interior_1<?php echo $id_insertado ?>'  ondblclick="toggleTextarea(this)" data-text='Indicates that the monitoring is conducted from the interior corridor / 
                             Indica que el monitoreo se realiza desde el pasillo interior.'>1. Interior</label>
                         </div>
                     </div>
                     <div class='col-12 col-lg-6 d-flex justify-content-center'>
                         <div class='form-check'>
-                            <input class='form-check-input' type='radio' value='2' id='exterior_2<?php echo $id_insertado ?>' name='id_observer_1[]' >
+                            <input class='form-check-input' type='radio' value='2' id='exterior_<?php echo $id_insertado ?>' name='id_observer_1[]' >
                             <label for='exterior_2<?php echo $id_insertado ?>'  ondblclick="toggleTextarea(this)" data-text=' Indicates that the monitoring is conducted from outside the cages / Indica que el monitoreo se realiza desde el exterior de las jaulas.'>2. Exterior</label>
                         </div>
                     </div>
@@ -107,16 +107,16 @@
     <div class='justify-content-center'>
         <div class='row'>
             <div class='custom-control custom-radio offset-lg-1 col-12 col-lg-4'>
-                <input class='custom-control-input' type='radio' value='6' id='control_<?php echo $id_insertado ?>' name='id_control_type' required onclick="loadContent('routineControlAjax.php?id_insertado=<?php echo $id_insertado ?>')">
-                <label for='control_<?php echo $id_insertado ?>' class='custom-control-label'>1. Routine Control</label>
+                <input class='custom-control-input' type='radio' value='6' id='control_1_<?php echo $id_insertado ?>' name='id_control_type' required onclick="loadContent('routineControlAjax.php?id_insertado=<?php echo $id_insertado ?>')">
+                <label for='control_1_<?php echo $id_insertado ?>' class='custom-control-label'>1. Routine Control</label>
             </div>
             <div class='custom-control custom-radio col-12 col-lg-4'>
-                <input class='custom-control-input' type='radio' value='7' id='control_<?php echo $id_insertado ?>' name='id_control_type' required onclick="loadContent('reproductiveControl.php')">
-                <label for='control_<?php echo $id_insertado ?>' class='custom-control-label'>2. Reproductive Control</label>
+                <input class='custom-control-input' type='radio' value='7' id='control_2_<?php echo $id_insertado ?>' name='id_control_type' required onclick="loadContent('reproductiveControl.php')">
+                <label for='control_2_<?php echo $id_insertado ?>' class='custom-control-label'>2. Reproductive Control</label>
             </div>
             <div class='custom-control custom-radio col-12 col-lg-3'>
-                <input class='custom-control-input' type='radio' value='8' id='control_<?php echo $id_insertado ?>' name='id_control_type' required onclick="loadContent('chickenControl.php')">
-                <label for='control_<?php echo $id_insertado ?>' class='custom-control-label'>3. Chicken Control</label>
+                <input class='custom-control-input' type='radio' value='8' id='control_3_<?php echo $id_insertado ?>' name='id_control_type' required onclick="loadContent('chickenControl.php')">
+                <label for='control_3_<?php echo $id_insertado ?>' class='custom-control-label'>3. Chicken Control</label>
             </div>
         </div>
         <div class='invalid-feedback'>Select an option.</div>
