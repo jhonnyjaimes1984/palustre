@@ -43,25 +43,7 @@ $tableCounter = 1000;
 </style>
 
 
-   <script>
-    window.onbeforeunload = function (e) {
-        const message = '¿Estás seguro de que quieres salir? Se eliminarán los datos de monitoreo.';
-        e.returnValue = message;
-
-        // Crear un objeto con los datos a enviar
-        const data = {
-            id_monitoring: 123 // Reemplaza con el valor correcto
-        };
-
-        // Convertir el objeto a JSON
-        const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
-
-        // Enviar los datos usando sendBeacon
-        navigator.sendBeacon('eliminar_monitoreo.php', blob);
-
-        return message;
-    };
-</script>
+   
 
 
 <main role="main" class="content-wrapper">
@@ -586,10 +568,44 @@ function removeTable(divId) {
 
      
 
-     
-     function replaceTableWithHTML1(id, specie, idTables) {
+     let id_staff = <?php echo $_SESSION['id_staff'];  ?>
 
-        
+     async function replaceTableWithHTML1(id, specie, idTables) {
+    
+    // Función para realizar la consulta AJAX
+    async function ajax() {
+        const parametros = {
+            id: id, // ID del individuo
+            specie: specie, // Especie del individuo
+            id_staff: id_staff
+        };
+
+        try {
+            const resultado = await $.ajax({
+                data: parametros,
+                url: 'insertarAjax.php',
+                type: 'post',
+                beforeSend: function () {
+                    console.log("Enviando solicitud...");
+                }
+            });
+
+            console.log("Resultado de la consulta AJAX:", resultado);
+            return resultado;
+
+        } catch (error) {
+            console.error("Error en la solicitud AJAX:", error);
+            return "Error"; // Devuelve un valor en caso de error
+        }
+    }
+
+    // Esperamos el resultado de AJAX antes de continuar
+    let resultado = await ajax();
+
+
+
+
+
     // Generar el HTML con `tableNumber`
     const htmlContent = `
 
@@ -616,8 +632,8 @@ function removeTable(divId) {
 
 
     <div class='d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom'> 
-        <h1 class='h2 text-center'>Insert Monitoring for individual 'N° 0000${id}</h1>
-        <ol class='breadcrumb float-sm-right text-center'><h2>Monitoring Individual N° 0000${idTables}</h2></ol>
+        <h1 class='h2 text-center'>Insert Monitoring for individual N° 0000${id}</h1>
+        <ol class='breadcrumb float-sm-right text-center'><h2>Monitoring Individual N° 0000${resultado}</h2></ol>
     </div>
 
             <div class='col-12'>
@@ -800,6 +816,48 @@ function removeTable(divId) {
     </script>
     
 <script src="insert_monitoring.js"></script>
+
+
+<script>
+    let isReloading = false;
+
+    window.addEventListener("beforeunload", function (event) {
+        if (!isReloading) {
+            const message = "¿Estás seguro de que quieres recargar la página?";
+            event.returnValue = message; // Para navegadores modernos
+            isReloading = true; // Evita múltiples ejecuciones
+
+            // Espera a que el usuario acepte la recarga
+            setTimeout(function () {
+                window.location.href = "eliminarTempMonitoring.php"; // Reemplaza con tu URL de destino
+            }, 50);
+        }
+    });
+
+    let isNavigatingBack = false;
+
+    window.addEventListener("popstate", function (event) {
+        if (!isNavigatingBack) {
+            const message = "¿Estás seguro de que quieres retroceder?";
+            
+            if (!confirm(message)) {
+                // Si el usuario cancela, evitamos la navegación hacia atrás
+                history.pushState(null, null, window.location.href);
+            } else {
+                // Si el usuario acepta, redirigir a la URL deseada
+                window.location.href = "eliminarTempMonitoring.php"; // Reemplaza con tu URL
+            }
+
+            isNavigatingBack = true;
+        }
+    });
+
+    // Agrega un nuevo estado en el historial para capturar "Atrás"
+    history.pushState(null, null, window.location.href);
+</script>
+
+
+
 
 
 <?php include_once BASE_URL . "/paginas/pie_3.php"; ?>

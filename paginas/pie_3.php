@@ -14,8 +14,8 @@
 </script>
 <!-- Bootstrap 4 -->
 <script src="../../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- ChartJS -->
-<script src="../../../plugins/chart.js/Chart.min.js"></script>
+<!-- ChartJS 
+<script src="../../../plugins/chart.js/Chart.min.js"></script> -->
 <!-- Sparkline -->
 <script src="../../../plugins/sparklines/sparkline.js"></script>
 <!-- JQVMap -->
@@ -43,8 +43,7 @@
 <script src="../../../plugins/jquery-ui/jquery-ui.min.js"></script>
 <script src="../../../assets/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script> 
-<script src="https://cdnjs.cloud
-flare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script> 
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script> -->
 <script src="../../../dist//dashboard.js"></script></body>
 <script src="../../../plugins/datatables/jquery.dataTables.js"></script>
 <script src="../../../plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
