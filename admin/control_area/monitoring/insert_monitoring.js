@@ -56,7 +56,7 @@ function formatTime(seconds) {
 function loadContent(file, tableCounter) {
     let contentDiv = document.getElementById(`controlContent_${tableCounter}`);
     if (!contentDiv) {
-        console.error("No se encontró el div:", `controlContent_${tableCounter}`);
+        console.error('No se encontró el div:',`controlContent_${tableCounter}`);
         return;
     }
 
@@ -99,7 +99,7 @@ function toggleBehaviorOptions(tableCounter) {
                 </ul>
             `;
         } else {
-            behaviorOptions.innerHTML = ""; // Si se desmarca, borra el contenido
+            behaviorOptions.innerHTML = ''; // Si se desmarca, borra el contenido
         }
     }
 
@@ -133,7 +133,7 @@ function toggleBehaviorOptions(tableCounter) {
                 </ul>
             `;
         } else {
-            socialOptions.innerHTML = ""; // Si se desmarca, borra el contenido
+            socialOptions.innerHTML = ''; // Si se desmarca, borra el contenido
         }
     }
 
@@ -164,9 +164,9 @@ function toggleBehaviorOptions(tableCounter) {
                         <div>
                             <label for="time_birds_movements"_${tableCounter}>Time Birds Movements:</label>
                             <input type="text" id="time_birds_movements_${tableCounter}" name="time_birds_movements" value="00:00:00" readonly>
-                            <button type="button" onclick="startTimer('time_birds_movements')">Start</button>
-                            <button type="button" onclick="stopTimer('time_birds_movements')">Stop</button>
-                            <button type="button" onclick="resetTimer('time_birds_movements')">Reset</button>
+                            <button type="button" onclick="startTimer('time_birds_movements_${tableCounter}')">Start</button>
+                            <button type="button" onclick="stopTimer('time_birds_movements_${tableCounter}')">Stop</button>
+                            <button type="button" onclick="resetTimer('time_birds_movements_${tableCounter}')">Reset</button>
                         </div>
                     </li>
                     <li>
@@ -176,7 +176,7 @@ function toggleBehaviorOptions(tableCounter) {
                 </ul>
             `;
         } else {
-            environmentOptions.innerHTML = ""; // Si se desmarca, borra el contenido
+            environmentOptions.innerHTML = ''; // Si se desmarca, borra el contenido
         }
     }
 
@@ -239,23 +239,23 @@ function toggleBehaviorOptions(tableCounter) {
                         <label class="form-check-label" for="time_spent_foraging_${tableCounter}" ondblclick="toggleTextarea(this)" data-text="ESP/Tiempo dedicado a la búsqueda de alimento. Indicates the amount of time the animal spends moving and searching for food. ">Time spent foraging:</label>
                     </li>
                             <input type="text" id="time_spent_foraging_${tableCounter}" name="time_spent_foraging" value="00:00:00" readonly>
-                            <button type="button" onclick="startTimer('time_spent_foraging')">Start</button>
-                            <button type="button" onclick="stopTimer('time_spent_foraging')">Stop</button>
-                            <button type="button" onclick="resetTimer('time_spent_foraging')">Reset</button>
+                            <button type="button" onclick="startTimer('time_spent_foraging_${tableCounter}')">Start</button>
+                            <button type="button" onclick="stopTimer('time_spent_foraging_${tableCounter}')">Stop</button>
+                            <button type="button" onclick="resetTimer('time_spent_foraging_${tableCounter}')">Reset</button>
                     <li>
                         <label class="form-check-label" for="time_spent_inactive_${tableCounter}" ondblclick="toggleTextarea(this)" data-text="ESP/Tiempo de inactividad. Indicates the amount of time the animal is neither moving nor searching for food. ">Time spent inactive:</label>
                     </li>
                             <input type="text" id="time_spent_inactive_${tableCounter}" name="time_spent_inactive" value="00:00:00" readonly>
-                            <button type="button" onclick="startTimer('time_spent_inactive')">Start</button>
-                            <button type="button" onclick="stopTimer('time_spent_inactive')">Stop</button>
-                            <button type="button" onclick="resetTimer('time_spent_inactive')">Reset</button>
+                            <button type="button" onclick="startTimer('time_spent_inactive_${tableCounter}')">Start</button>
+                            <button type="button" onclick="stopTimer('time_spent_inactive_${tableCounter}')">Stop</button>
+                            <button type="button" onclick="resetTimer('time_spent_inactive_${tableCounter}')">Reset</button>
                         
                     
 
                 </ul>
             `;
         } else {
-            feedingOptions.innerHTML = ""; // Borra el contenido si se desmarca
+            feedingOptions.innerHTML = ''; // Borra el contenido si se desmarca
         }
     }
 
@@ -289,7 +289,7 @@ function toggleBehaviorOptions(tableCounter) {
                 </ul>
             `;
         } else {
-            pathologicalOptions.innerHTML = ""; // Borra el contenido si se desmarca
+            pathologicalOptions.innerHTML = ''; // Borra el contenido si se desmarca
         }
     }
 
@@ -333,7 +333,7 @@ function toggleBehaviorOptions(tableCounter) {
                 </ul>
             `;
         } else {
-            container.innerHTML = ""; // Vacía el TD si se deselecciona
+            container.innerHTML = ''; // Vacía el TD si se deselecciona
         }
     }
 
@@ -358,7 +358,7 @@ function toggleBehaviorOptions(tableCounter) {
                     </li>
                     <li>
                         <label for="number_copulations_${tableCounter}">Number of Copulations</label>
-                        <input type="number_${tableCounter}" class="form-control" placeholder="Enter number of copulations" id="number_copulations" name="number_copulations">
+                        <input type="number" class="form-control" placeholder="Enter number of copulations" id="number_copulations_${tableCounter}" name="number_copulations">
                     </li>
                     <li>
                         <div class="form-check">
@@ -369,7 +369,7 @@ function toggleBehaviorOptions(tableCounter) {
                 </ul>
             `;
         } else {
-            container.innerHTML = ""; // Vacía el TD si se deselecciona
+            container.innerHTML = ''; // Vacía el TD si se deselecciona
         }
     }
 
@@ -409,7 +409,7 @@ function toggleBehaviorOptions(tableCounter) {
                 </ul>
             `;
         } else {
-            container.innerHTML = ""; // Vacía el TD si se deselecciona
+            container.innerHTML = ''; // Vacía el TD si se deselecciona
         }
     }
 
@@ -424,36 +424,36 @@ function toggleBehaviorOptions(tableCounter) {
                         <div>
                             <label for="incubating_male_${tableCounter}">Incubating Male:</label>
                             <input type="text" id="incubating_male_${tableCounter}" name="incubating_male" value="00:00:00" readonly>
-                            <button type="button" onclick="startTimer('incubating_male')">Start</button>
-                            <button type="button" onclick="stopTimer('incubating_male')">Stop</button>
-                            <button type="button" onclick="resetTimer('incubating_male')">Reset</button>
+                            <button type="button" onclick="startTimer('incubating_male_${tableCounter}')">Start</button>
+                            <button type="button" onclick="stopTimer('incubating_male_${tableCounter}')">Stop</button>
+                            <button type="button" onclick="resetTimer('incubating_male_${tableCounter}')">Reset</button>
                         </div>
                     </li>
                     <li>
                         <div>
                             <label for="incubating_female_${tableCounter}">Incubating Female:</label>
                             <input type="text" id="incubating_female_${tableCounter}" name="incubating_female" value="00:00:00" readonly>
-                            <button type="button" onclick="startTimer('incubating_female')">Start</button>
-                            <button type="button" onclick="stopTimer('incubating_female')">Stop</button>
-                            <button type="button" onclick="resetTimer('incubating_female')">Reset</button>
+                            <button type="button" onclick="startTimer('incubating_female_${tableCounter}')">Start</button>
+                            <button type="button" onclick="stopTimer('incubating_female_${tableCounter}')">Stop</button>
+                            <button type="button" onclick="resetTimer('incubating_female_${tableCounter}')">Reset</button>
                         </div>
                     </li>
                     <li>
                         <div>
                             <label for="both_incubation_${tableCounter}">Both Incubating:</label>
                             <input type="text" id="both_incubation_${tableCounter}" name="both_incubation" value="00:00:00" readonly>
-                            <button type="button" onclick="startTimer('both_incubation')">Start</button>
-                            <button type="button" onclick="stopTimer('both_incubation')">Stop</button>
-                            <button type="button" onclick="resetTimer('both_incubation')">Reset</button>
+                            <button type="button" onclick="startTimer('both_incubation_${tableCounter}')">Start</button>
+                            <button type="button" onclick="stopTimer('both_incubation_${tableCounter}')">Stop</button>
+                            <button type="button" onclick="resetTimer('both_incubation_${tableCounter}')">Reset</button>
                         </div>
                     </li>
                     <li>
                         <div>
                             <label for="no_incubation_${tableCounter}">No Incubating:</label>
                             <input type="text" id="no_incubation_${tableCounter}" name="no_incubation" value="00:00:00" readonly>
-                            <button type="button" onclick="startTimer('no_incubation')">Start</button>
-                            <button type="button" onclick="stopTimer('no_incubation')">Stop</button>
-                            <button type="button" onclick="resetTimer('no_incubation')">Reset</button>
+                            <button type="button" onclick="startTimer('no_incubation_${tableCounter}')">Start</button>
+                            <button type="button" onclick="stopTimer('no_incubation_${tableCounter}')">Stop</button>
+                            <button type="button" onclick="resetTimer('no_incubation_${tableCounter}')">Reset</button>
                         </div>
                     </li>
                     <li>
@@ -479,7 +479,7 @@ function toggleBehaviorOptions(tableCounter) {
                 </ul>
             `;
         } else {
-            container.innerHTML = ""; // Vacía el TD si se deselecciona
+            container.innerHTML = ''; // Vacía el TD si se deselecciona
         }
     }
 
@@ -535,7 +535,7 @@ function toggleBehaviorOptions(tableCounter) {
                 </ul>
             `;
         } else {
-            container.innerHTML = ""; // Vacía el TD si se deselecciona
+            container.innerHTML = ''; // Vacía el TD si se deselecciona
         }
     }
 
@@ -598,7 +598,7 @@ function toggleBehaviorOptions(tableCounter) {
                 </ul>
             `;
         } else {
-            container.innerHTML = ""; // Vacía el TD si se deselecciona
+            container.innerHTML = ''; // Vacía el TD si se deselecciona
         }
     }
 
@@ -644,7 +644,7 @@ function toggleBehaviorOptions(tableCounter) {
                 </ul>
             `;
         } else {
-            container.innerHTML = ""; // Vacía el TD si se deselecciona
+            container.innerHTML = ''; // Vacía el TD si se deselecciona
         }
     }
 
@@ -712,6 +712,6 @@ function toggleBehaviorOptions(tableCounter) {
 
             `;
         } else {
-            container.innerHTML = ""; // Vacía el TD si se deselecciona
+            container.innerHTML = ''; // Vacía el TD si se deselecciona
         }
     }
