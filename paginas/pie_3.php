@@ -23,11 +23,7 @@
 <script src="../../../plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
 <!-- jQuery Knob Chart -->
 <script src="../../../plugins/jquery-knob/jquery.knob.min.js"></script>
-<!-- daterangepicker -->
-<script src="../../../plugins/moment/moment.min.js"></script>
-<script src="../../../plugins/daterangepicker/daterangepicker.js"></script>
-<!-- Tempusdominus Bootstrap 4 -->
-<script src="../../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+
 <!-- Summernote -->
 <script src="../../../plugins/summernote/summernote-bs4.min.js"></script>
 <!-- overlayScrollbars -->
@@ -43,8 +39,8 @@
 <script src="../../../plugins/jquery-ui/jquery-ui.min.js"></script>
 <script src="../../../assets/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script> 
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script> -->
-<script src="../../../dist//dashboard.js"></script></body>
+
+<script src="../../../dist/dashboard.js"></script></body>
 <script src="../../../plugins/datatables/jquery.dataTables.js"></script>
 <script src="../../../plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 

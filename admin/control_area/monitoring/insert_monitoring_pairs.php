@@ -2,7 +2,9 @@
 include_once "../../../conf/Config.php"; 
 
 require_once BASE_URL . "/paginas/cabecera_tercer_nivel.php"; 
-
+// aqui guardamos varibales enviadas por get
+    $id_pairs= $_GET['id'];
+    $especie_individual = $_GET['specie'];
 // hacemos una consulta para saber el ultimo conteo
 $sentencia_insert = $db->query("SELECT max(cont_id_real) as total FROM monitoring");
 $row_insert = $sentencia_insert->fetch_assoc(); 
@@ -13,7 +15,7 @@ $conteo = (empty($itemData_insert['n_monitoring'])) ? 1 : $itemData_insert['n_mo
 // aqui hacemos una condicional para saber si temos $conteo =  1
 if($conteo == 1){
 //aqui hacemos una insercion para hacer una insert temporal
-    $sentencia_insert_indidual = $base_de_datos->query("INSERT INTO `monitoring`(`cont_id_real`,`id_staff_mon`, `specie`, `id_individual_mon`, `status_mon`, `pair_id`, `id_external_distutbance`, `interior_mon`, `external_mon`, `date`, `start_time_mon`, `finish_time_mon`, `take_mon_photo_video`, `id_master_routine`, `id_master_reproductive`, `id_master_chicken`, `id_meteorology`, `notes`) VALUES ('".$conteo."','".$_SESSION['id_staff']."','','','','','','','','".date('Y-m-d')."','".date('Y-m-d H:i:s a')."','','','','','','','')");
+    $sentencia_insert_pairs = $base_de_datos->query("INSERT INTO `monitoring`(`cont_id_real`,`id_staff_mon`, `specie`, `id_individual_mon`, `status_mon`, `pair_id`, `id_external_distutbance`, `interior_mon`, `external_mon`, `date`, `start_time_mon`, `finish_time_mon`, `take_mon_photo_video`, `id_master_routine`, `id_master_reproductive`, `id_master_chicken`, `id_meteorology`, `notes`) VALUES ('".$conteo."','".$_SESSION['id_staff']."','','','','".$id_pairs."','','','','".date('Y-m-d')."','".date('Y-m-d H:i:s a')."','','','','','','','')");
 }else{ ?>
     <script type="text/javascript">
         setTimeout(function () {
@@ -24,9 +26,7 @@ if($conteo == 1){
 
     $id_monitoring_insert = $base_de_datos->lastInsertId();
 
-// aqui guardamos varibales enviadas por get
-    $id_individual= $_GET['id'];
-    $especie_individual = $_GET['specie'];
+
 // esta variable es para las tablas raiz esto para diferenciar de las dinamicas
     $tableCounter = 1000; 
     ?>
@@ -64,8 +64,8 @@ if($conteo == 1){
     <main role="main" class="content-wrapper">
 
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"> 
-            <h1 class="h2 text-center">Insert Monitoring for individual <?php echo 'N° 0000' . $id_individual ?></h1>
-            <ol class="breadcrumb float-sm-right text-center"><h2>Monitoring Individual N° 0000<?php echo $conteo ?></h2></ol>
+            <h1 class="h2 text-center">Insert Monitoring for pairs <?php echo 'N° 0000' . $id_pairs ?></h1>
+            <ol class="breadcrumb float-sm-right text-center"><h2>Monitoring Pairs N° 0000<?php echo $conteo ?></h2></ol>
         </div>
 
         <div class="col-12">
@@ -85,7 +85,7 @@ if($conteo == 1){
                 </div>
                 <input type="hidden" name="id_monitoring_insert[]" value="<?php echo $id_monitoring_insert ?>">
                 <input type="hidden" name="id_staff[]" value="<?php echo $_SESSION['id_staff'] ?>">
-                <input type="hidden" name="species[]" value="<?php echo $especie_individual ?>">
+                <input type="hidden" name="species[]" value="Sin_especie">
 
 
                 <div class="card mb-12">
@@ -95,7 +95,7 @@ if($conteo == 1){
                   <div class="card-body">
                       <div class="d-flex justify-content-center">
                        <div class="row">
-                         <input type="hidden" value="<?php echo $id_individual ?>" name="id_individual_mon[]" required>
+                         <input type="hidden" value="<?php echo $id_pairs ?>" name="id_individual_mon[]" required>
 
                          <div class="custom-control custom-radio col-12 col-lg-2 offset-lg-1">
                             <input class="custom-control-input" type="radio" value="1" id="external_1" name="id_external_distutbance[]" checked required>
@@ -574,13 +574,13 @@ function addTable(type) {
                 </center></td>
                 <td width="20%"><center><?php echo $individual_cop->notes; ?> </center></td> 
                 <td>
-                  
 
 <a class="btn btn-success btn-sm" href="#${tableCounter}" id="table${tableCounter}" onclick="replaceTableWithHTML2('<?php echo $individual_cop->pair_id; ?>', 'Sin_especie', ${tableCounter})">
     <span data-feather="save"></span>
 </a>
 
-                </td>
+              
+             </td>
 
               </tr>
             <?php } ?>
@@ -613,7 +613,30 @@ function addTable(type) {
 
 
         let id_staff = <?php echo $_SESSION['id_staff'];  ?>
+// a partir de aqui se coloca toda la logica de individuals
+        // a partir de aqui se coloca toda la logica de individuals
+        // a partir de aqui se coloca toda la logica de individuals
+        // a partir de aqui se coloca toda la logica de individuals
+        // a partir de aqui se coloca toda la logica de individuals
+        // a partir de aqui se coloca toda la logica de individuals
 
+        // a partir de aqui se coloca toda la logica de individuals
+
+        // a partir de aqui se coloca toda la logica de individuals
+
+
+        // a partir de aqui se coloca toda la logica de individuals
+
+        // a partir de aqui se coloca toda la logica de individuals
+
+        // a partir de aqui se coloca toda la logica de individuals
+
+        // a partir de aqui se coloca toda la logica de individuals
+
+        // a partir de aqui se coloca toda la logica de individuals
+
+
+        // a partir de aqui se coloca toda la logica de individuals
         async function replaceTableWithHTML1(id, specie, idTables) {
 
     isAjaxNavigation = true; // Marcamos la navegación como AJAX
@@ -674,144 +697,144 @@ setTimeout(() => { isAjaxNavigation = false; }, 100);
 const htmlContent = `
 
 
-            <div class="custom-html">
-            <style>
-    .custom-textarea {
-        width: 100%;
-        max-width: 350px; /* Evita que sea demasiado ancho en pantallas grandes */
-        height: 150px; /* Aumenta el tamaño para mejor legibilidad */
-        margin-top: 10px;
-        display: none; /* Oculto por defecto */
-        resize: none;
-        padding: 10px;
-        font-size: 14px;
-        border: 1px solid #ced4da;
-        border-radius: 5px;
-        background-color: #f8f9fa;
-        overflow-y: auto; /* Permite desplazamiento vertical */
-    }
+<div class="custom-html">
+    <style>
+        .custom-textarea {
+            width: 100%;
+            max-width: 350px; /* Evita que sea demasiado ancho en pantallas grandes */
+            height: 150px; /* Aumenta el tamaño para mejor legibilidad */
+            margin-top: 10px;
+            display: none; /* Oculto por defecto */
+            resize: none;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+            overflow-y: auto; /* Permite desplazamiento vertical */
+        }
 
-</style>
+    </style>
 
 
 
     <div class='d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom' id="${tableCounter}"> 
-        <h1 class='h2 text-center'>Insert Monitoring for individual N° 0000${id}</h1>
-        <ol class='breadcrumb float-sm-right text-center'><h2>Monitoring Individual N° 0000${id_cont_real}</h2></ol>
+        <h1 class='h2 text-center'>Insert Monitoring for individuals N° 0000${id}</h1>
+        <ol class='breadcrumb float-sm-right text-center'><h2>Monitoring individuals N° 0000${id_cont_real}</h2></ol>
     </div>
 
-            <div class='col-12'>
+    <div class='col-12'>
 
-                    <!-- ORIGIN TYPE -->
-                    <div class='card mb-12'>
-                        <div class='card-header text-center'>
-                            <h3><strong>Time <?php echo date('h:i:s a');?></strong></h3>
-                        </div>
-
-                    </div>
-                    <input type="hidden" name="id_monitoring_insert[]" value=${id_monitoring_insert}">
-
-                    <input type='hidden' name='id_staff[${idTables}]' value='<?php echo $_SESSION['id_staff'] ?>'>
-                     <input type='hidden' name='species[${idTables}]' value='${id}'>
-
-
-                    <div class='card mb-12'>
-                        <div class='card-header text-center'>
-                          <h3><strong>External Distutbance</strong></h3>
-                      </div>
-                      <div class='card-body'>
-                          <div class='d-flex justify-content-center'>
-                             <div class='row'>
-                               <input type='hidden' value='${id}' name='id_individual_mon[${idTables}]' required>
-
-                               <div class='custom-control custom-radio col-12 col-lg-2 offset-lg-1'>
-                                <input class='custom-control-input' type='radio' value='1' id='external_1_${idTables}' name='id_external_distutbance[${idTables}]' >
-                                <label for='external_1_${idTables}' class='custom-control-label' ondblclick='toggleTextarea(this)' data-text='Completely quiet environment, no nearby noises or movements. /  Ambiente completamente tranquilo, sin ruidos ni movimientos cercanos.'>1. No external disturbances</label>
-                                <!-- Aquí aparecerá el textarea -->
-                            </div>
-                            <div class='custom-control custom-radio col-12 col-lg-2'>
-                                <input class='custom-control-input' type='radio' value='2' id='external_2_${idTables}' name='id_external_distutbance[${idTables}]' >
-                                <label for='external_2_${idTables}' class='custom-control-label' ondblclick='toggleTextarea(this)' data-text='Weak noises or human/animal activity in the distance, with no impact on bird behavior. / Ruidos o actividad humana/animal débil en la distancia, sin afectar el comportamiento de las aves.'>2. Slight distant disturbances</label>
-                            </div>
-                            <div class='custom-control custom-radio col-12 col-lg-2'>
-                                <input class='custom-control-input' type='radio' value='3' id='external_3_${idTables}' name='id_external_distutbance[${idTables}]' >
-                                <label for='external_3_${idTables}' class='custom-control-label' ondblclick='toggleTextarea(this)' data-text='Medium-intensity sounds or occasional movement near the facility (e.g., people passing by, occasional vehicle noise, nearby wildlife activity). Birds may show slight behavioral changes. / Sonidos de media intensidad o movimiento ocasional cerca de la instalación (ej. paso de personas, ruidos de vehículos no constantes, actividad de otras especies cerca). Puede haber leves cambios en el comportamiento de las aves.'>3. Moderate disturbances</label> 
-                            </div>
-                            <div class='custom-control custom-radio col-12 col-lg-2'>
-                                <input class='custom-control-input' type='radio' value='4' id='external_4_${idTables}' name='id_external_distutbance[${idTables}]' >
-                                <label for='external_4_${idTables}' class='custom-control-label' ondblclick='toggleTextarea(this)' data-text='Loud or constant noises (nearby construction, heavy traffic, frequent visitors), presence of predators, or close human activity causing stress in birds. Behavioral alterations are observed. / Molestias considerables. Ruidos fuertes o constantes (construcción cercana, tráfico intenso, visitas frecuentes), presencia de depredadores o actividad humana cercana que genera estrés en las aves. Se observan alteraciones en su conducta.'>4. Considerable disturbances</label>
-                            </div>
-                            <div class='custom-control custom-radio col-12 col-lg-2'>
-                                <input class='custom-control-input' type='radio' value='5' id='external_5_${idTables}' name='id_external_distutbance[${idTables}]' >
-                                <label for='external_5_${idTables}' class='custom-control-label' ondblclick='toggleTextarea(this)' data-text='Very high noise levels or constant movement near the facility (intense construction, direct predator presence, people within visual or physical proximity to enclosures). Observations may be interrupted, or birds may attempt to escape. /  Nivel de ruido muy alto o movimiento constante cerca de la instalación (obras intensas, presencia de depredadores directos, personas en contacto visual o físico con las jaulas). Puede interrumpir la observación o provocar reacciones de escape en las aves.'>5. Severe disturbances or extreme disruption</label>
-                            </div>
-
-                        </div>
-                    </div>
-                </center>
-            </div>
-        </div>
+        <!-- ORIGIN TYPE -->
         <div class='card mb-12'>
             <div class='card-header text-center'>
-                <h3><strong>Monitoring Location</strong></h3>
+                <h3><strong>Time <?php echo date('h:i:s a');?></strong></h3>
             </div>
-            <div class='card-body'>
 
-                <div class='row'>
-                    <div class='col-12 col-lg-6  d-flex justify-content-center'>
-                        <div class='form-check'>
-                            <input class='form-check-input' type='radio' value='1' id='interior_1_${idTables}' name='id_observer_1[${idTables}]' checked>
-                            <label for='interior_1_${idTables}'  ondblclick='toggleTextarea(this)' data-text='Indicates that the monitoring is conducted from the interior corridor / 
-                            Indica que el monitoreo se realiza desde el pasillo interior.'>1. Interior (Tabla ${idTables})</label>
-                        </div>
-                    </div>
-                    <div class='col-12 col-lg-6 d-flex justify-content-center'>
-                        <div class='form-check'>
-                            <input class='form-check-input' type='radio' value='2' id='exterior_2_${idTables}' name='id_observer_1[${idTables}]' >
-                            <label for='exterior_2_${idTables}'  ondblclick='toggleTextarea(this)' data-text=' Indicates that the monitoring is conducted from outside the cages / Indica que el monitoreo se realiza desde el exterior de las jaulas.'>2. Exterior (Tabla ${idTables})</label>
-                        </div>
-                    </div>
+        </div>
+        <input type="hidden" name="id_monitoring_insert[]" value=${id_monitoring_insert}">
+
+        <input type='hidden' name='id_staff[${idTables}]' value='<?php echo $_SESSION['id_staff'] ?>'>
+        <input type='hidden' name='species[${idTables}]' value='${id}'>
+
+
+        <div class='card mb-12'>
+            <div class='card-header text-center'>
+              <h3><strong>External Distutbance</strong></h3>
+          </div>
+          <div class='card-body'>
+              <div class='d-flex justify-content-center'>
+               <div class='row'>
+                 <input type='hidden' value='${id}' name='id_individual_mon[${idTables}]' required>
+
+                 <div class='custom-control custom-radio col-12 col-lg-2 offset-lg-1'>
+                    <input class='custom-control-input' type='radio' value='1' id='external_1_${idTables}' name='id_external_distutbance[${idTables}]' >
+                    <label for='external_1_${idTables}' class='custom-control-label' ondblclick='toggleTextarea(this)' data-text='Completely quiet environment, no nearby noises or movements. /  Ambiente completamente tranquilo, sin ruidos ni movimientos cercanos.'>1. No external disturbances</label>
+                    <!-- Aquí aparecerá el textarea -->
+                </div>
+                <div class='custom-control custom-radio col-12 col-lg-2'>
+                    <input class='custom-control-input' type='radio' value='2' id='external_2_${idTables}' name='id_external_distutbance[${idTables}]' >
+                    <label for='external_2_${idTables}' class='custom-control-label' ondblclick='toggleTextarea(this)' data-text='Weak noises or human/animal activity in the distance, with no impact on bird behavior. / Ruidos o actividad humana/animal débil en la distancia, sin afectar el comportamiento de las aves.'>2. Slight distant disturbances</label>
+                </div>
+                <div class='custom-control custom-radio col-12 col-lg-2'>
+                    <input class='custom-control-input' type='radio' value='3' id='external_3_${idTables}' name='id_external_distutbance[${idTables}]' >
+                    <label for='external_3_${idTables}' class='custom-control-label' ondblclick='toggleTextarea(this)' data-text='Medium-intensity sounds or occasional movement near the facility (e.g., people passing by, occasional vehicle noise, nearby wildlife activity). Birds may show slight behavioral changes. / Sonidos de media intensidad o movimiento ocasional cerca de la instalación (ej. paso de personas, ruidos de vehículos no constantes, actividad de otras especies cerca). Puede haber leves cambios en el comportamiento de las aves.'>3. Moderate disturbances</label> 
+                </div>
+                <div class='custom-control custom-radio col-12 col-lg-2'>
+                    <input class='custom-control-input' type='radio' value='4' id='external_4_${idTables}' name='id_external_distutbance[${idTables}]' >
+                    <label for='external_4_${idTables}' class='custom-control-label' ondblclick='toggleTextarea(this)' data-text='Loud or constant noises (nearby construction, heavy traffic, frequent visitors), presence of predators, or close human activity causing stress in birds. Behavioral alterations are observed. / Molestias considerables. Ruidos fuertes o constantes (construcción cercana, tráfico intenso, visitas frecuentes), presencia de depredadores o actividad humana cercana que genera estrés en las aves. Se observan alteraciones en su conducta.'>4. Considerable disturbances</label>
+                </div>
+                <div class='custom-control custom-radio col-12 col-lg-2'>
+                    <input class='custom-control-input' type='radio' value='5' id='external_5_${idTables}' name='id_external_distutbance[${idTables}]' >
+                    <label for='external_5_${idTables}' class='custom-control-label' ondblclick='toggleTextarea(this)' data-text='Very high noise levels or constant movement near the facility (intense construction, direct predator presence, people within visual or physical proximity to enclosures). Observations may be interrupted, or birds may attempt to escape. /  Nivel de ruido muy alto o movimiento constante cerca de la instalación (obras intensas, presencia de depredadores directos, personas en contacto visual o físico con las jaulas). Puede interrumpir la observación o provocar reacciones de escape en las aves.'>5. Severe disturbances or extreme disruption</label>
+                </div>
+
+            </div>
+        </div>
+    </center>
+</div>
+</div>
+<div class='card mb-12'>
+    <div class='card-header text-center'>
+        <h3><strong>Monitoring Location</strong></h3>
+    </div>
+    <div class='card-body'>
+
+        <div class='row'>
+            <div class='col-12 col-lg-6  d-flex justify-content-center'>
+                <div class='form-check'>
+                    <input class='form-check-input' type='radio' value='1' id='interior_1_${idTables}' name='id_observer_1[${idTables}]' checked>
+                    <label for='interior_1_${idTables}'  ondblclick='toggleTextarea(this)' data-text='Indicates that the monitoring is conducted from the interior corridor / 
+                    Indica que el monitoreo se realiza desde el pasillo interior.'>1. Interior (Tabla ${idTables})</label>
+                </div>
+            </div>
+            <div class='col-12 col-lg-6 d-flex justify-content-center'>
+                <div class='form-check'>
+                    <input class='form-check-input' type='radio' value='2' id='exterior_2_${idTables}' name='id_observer_1[${idTables}]' >
+                    <label for='exterior_2_${idTables}'  ondblclick='toggleTextarea(this)' data-text=' Indicates that the monitoring is conducted from outside the cages / Indica que el monitoreo se realiza desde el exterior de las jaulas.'>2. Exterior (Tabla ${idTables})</label>
                 </div>
             </div>
         </div>
-
-
-
-        <div class='card mb-12'>
-            <div class='card-header text-center'>
-                <h3><strong>Control Type</strong></h3>
-            </div>
-           <div class='card-body'>
-    <div class='justify-content-center'>
-        <div class='row'>
-            <div class='custom-control custom-radio offset-lg-1 col-12 col-lg-4'>
-                <input class='custom-control-input' type='radio' value='6' id='control_1_${idTables}' name='id_control_type[${idTables}]' onclick="loadContent('routineControl.php', ${idTables})">
-                <label for='control_1_${idTables}' class='custom-control-label'>1. Routine Control </label>
-            </div>
-            <div class='custom-control custom-radio col-12 col-lg-4'>
-                <input class='custom-control-input' type='radio' value='7' id='control_2_${idTables}' name='id_control_type[${idTables}]' onclick="loadContent('reproductiveControl.php', ${idTables})">
-                <label for='control_2_${idTables}' class='custom-control-label'>2. Reproductive Control </label>
-            </div>
-            <div class='custom-control custom-radio col-12 col-lg-3'>
-                <input class='custom-control-input' type='radio' value='8' id='control_3_${idTables}' name='id_control_type[${idTables}]' onclick="loadContent('chickenControl.php', ${idTables})">
-                <label for='control_3_${idTables}' class='custom-control-label'>3. Chicken Control </label>
-            </div>
-        </div>
-        <div class='invalid-feedback'>Select an option.</div>
-        <br>
-        <table class='table table-bordered table-responsive'>
-            <thead>
-                <tr>
-                    <th class='col-2 col-ms-2'>Behavior Type</th>
-                    <th class='col-10 col-ms-10'>Action</th>
-                </tr>
-            </thead>
-            <tbody id='controlContent_${idTables}'> (Tabla ${idTables})
-                <!-- Aquí se cargará dinámicamente el contenido -->
-            </tbody>
-        </table>
     </div>
 </div>
+
+
+
+<div class='card mb-12'>
+    <div class='card-header text-center'>
+        <h3><strong>Control Type</strong></h3>
+    </div>
+    <div class='card-body'>
+        <div class='justify-content-center'>
+            <div class='row'>
+                <div class='custom-control custom-radio offset-lg-1 col-12 col-lg-4'>
+                    <input class='custom-control-input' type='radio' value='6' id='control_1_${idTables}' name='id_control_type[${idTables}]' onclick="loadContent('routineControl.php', ${idTables})">
+                    <label for='control_1_${idTables}' class='custom-control-label'>1. Routine Control </label>
+                </div>
+                <div class='custom-control custom-radio col-12 col-lg-4'>
+                    <input class='custom-control-input' type='radio' value='7' id='control_2_${idTables}' name='id_control_type[${idTables}]' onclick="loadContent('reproductiveControl.php', ${idTables})">
+                    <label for='control_2_${idTables}' class='custom-control-label'>2. Reproductive Control </label>
+                </div>
+                <div class='custom-control custom-radio col-12 col-lg-3'>
+                    <input class='custom-control-input' type='radio' value='8' id='control_3_${idTables}' name='id_control_type[${idTables}]' onclick="loadContent('chickenControl.php', ${idTables})">
+                    <label for='control_3_${idTables}' class='custom-control-label'>3. Chicken Control </label>
+                </div>
+            </div>
+            <div class='invalid-feedback'>Select an option.</div>
+            <br>
+            <table class='table table-bordered table-responsive'>
+                <thead>
+                    <tr>
+                        <th class='col-2 col-ms-2'>Behavior Type</th>
+                        <th class='col-10 col-ms-10'>Action</th>
+                    </tr>
+                </thead>
+                <tbody id='controlContent_${idTables}'> (Tabla ${idTables})
+                    <!-- Aquí se cargará dinámicamente el contenido -->
+                </tbody>
+            </table>
+        </div>
+    </div>
 
 
 
@@ -843,7 +866,7 @@ const htmlContent = `
         </div>
     </div>
 </div>
-            </div>
+</div>
 
 
 `;
@@ -859,8 +882,6 @@ setTimeout(() => { isAjaxNavigation = false; }, 100);
 
 
 }
-
-
 
 
 // a partir de aqui se coloca toda la logica de pairs
@@ -1123,6 +1144,7 @@ setTimeout(() => { isAjaxNavigation = false; }, 100);
 setTimeout(() => { isAjaxNavigation = false; }, 100);
     
 }
+
 
 </script>
 

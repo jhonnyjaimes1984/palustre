@@ -8,7 +8,7 @@ include_once "../../../conf/Config.php"; include_once BASE_URL ."/conf/configura
   <meta name="description" content="">
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Jekyll v4.1.1">
-  <link rel="icon" href="<?php echo BASE_URL;?>/image/imagen_2.png">
+  <link rel="icon" href="../../../image/imagen_2.png">
   <title>Pagina de Administrador</title>
 
   <link rel="stylesheet" href="../../../plugins/fontawesome-free/css/all.min.css">
@@ -30,7 +30,7 @@ include_once "../../../conf/Config.php"; include_once BASE_URL ."/conf/configura
   <link rel="stylesheet" href="../../../plugins/summernote/summernote-bs4.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-
+  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/dashboard/">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script> 

@@ -218,7 +218,7 @@ require_once BASE_URL . "/paginas/cabecera_tercer_nivel.php";
                 <td width="30%"><center><?php echo $individual_cop->notes; ?> </center></td> 
                 <td>
              <center>
-                <a class="btn btn-success btn-sm" href="<?php echo "insert_monitoring.php?id=" .  $individual_cop->pair_id?>"><span data-feather="save"></span></a></center>
+                <a class="btn btn-success btn-sm" href="<?php echo "insert_monitoring_pairs.php?id=" .  $individual_cop->pair_id."&specie=Sin_especie"?>"><span data-feather="save"></span></a></center>
               </td>
                <td>
             <center><a class="btn btn-info btn-sm" href="<?php echo "../admin/select_all.php?id=" .  $individual_cop->pair_id?>"><span data-feather="eye"></span></a></center>
