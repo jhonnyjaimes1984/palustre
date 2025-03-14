@@ -43,7 +43,7 @@ if($producto === FALSE){
   <main role="main" class="content-wrapper">
    <div class="row">
     <div class='col-12 col-lg-6'>
-      <h3><STRONG>BASE DE DATOS PALUSTRE</STRONG></h3>
+      <h3><STRONG>DATABASE PALUSTRE</STRONG></h3>
 
     </div>
 
@@ -168,216 +168,214 @@ if ($cons_fac && isset($cons_fac->id_facility_name) && $cons_fac->id_facility_na
   <h4  align="center"><font color="black"> Individual Data </font></h4><hr>
   <form method="post" action="new_individual.php" enctype="multipart/form-data" id="form_insert">
   <div class="row">
-
-
     <div class="col-12"> 
       <table>
        <tbody>
          <tr>
            <td>
             <div class="form-group">
-            <div class="col-3 col-lg-2"><label for="species">Specie</label></div>
-            <select name="species" class="form-control" required>
-             <?php $species = $base_de_datos->prepare("SELECT * FROM species where id_species= ?");
-             $species->execute([$producto->specie]);
-             $specie_1 = $species->fetch(PDO::FETCH_OBJ); ?>
-             <option value="<?php echo $specie_1->id_species ?>"><?php echo $specie_1->scientific_name ?></option>
-             <?php 
-             $sentencia_species = $base_de_datos->query("SELECT * FROM species");
-             $species = $sentencia_species->fetchAll(PDO::FETCH_OBJ);
-             foreach($species as $specie) { ?>
-              <option value='<?php echo $specie->id_species ?>'><?php echo $specie->scientific_name ?></option>
-            <?php } ?>
-          </select></div></td>
-         </tr>
-         <tr>
+              <div class="col-3 col-lg-2"><label for="species">Specie</label></div>
+              <select name="species" class="form-control" required>
+               <?php $species = $base_de_datos->prepare("SELECT * FROM species where id_species= ?");
+               $species->execute([$producto->specie]);
+               $specie_1 = $species->fetch(PDO::FETCH_OBJ); ?>
+               <option value="<?php echo $specie_1->id_species ?>"><?php echo $specie_1->scientific_name ?></option>
+               <?php 
+               $sentencia_species = $base_de_datos->query("SELECT * FROM species");
+               $species = $sentencia_species->fetchAll(PDO::FETCH_OBJ);
+               foreach($species as $specie) { ?>
+                <option value='<?php echo $specie->id_species ?>'><?php echo $specie->scientific_name ?></option>
+              <?php } ?>
+            </select></div></td>
+          </tr>
+          <tr>
            <td>
             <div class="form-group">
-            <div class="col-3 col-lg-2">  <label>Nickname</label>  </div> 
-            <input class="form-control" name="nickname"  type="text" placeholder="Insert nickname" value="<?php echo $producto->nickname  ?>"></div></td>
-         </tr>
-         <tr>
-           <td>
-            <div class="form-group">
-            <div class="col-3 col-lg-2"> 
-            <label>Genetic Code</label>  </div> 
-            <input class="form-control" name="Genetic_code"  type="text" placeholder="Insert Genetic Code" value="<?php echo $producto->genetic_code  ?>"></div></td>
-         </tr>
-         <tr>
-           <td><div class="form-group">
-            <div class="col-3 col-lg-2"> 
-            <label>ORIGIN</label> </div> 
-              <div class="row">
-                
-                  <label for="comauto"><strong>Autonomous Community:</strong></label>
-                  <?php $origen = $base_de_datos->prepare("SELECT * FROM origin where id_cod_locality= ?");
-                    $origen->execute([$producto->origin]);
-                    $origen_1 = $origen->fetch(PDO::FETCH_OBJ); 
+              <div class="col-3 col-lg-2">  <label>Nickname</label>  </div> 
+              <input class="form-control" name="nickname"  type="text" placeholder="Insert nickname" value="<?php echo $producto->nickname  ?>"></div></td>
+            </tr>
+            <tr>
+             <td>
+              <div class="form-group">
+                <div class="col-3 col-lg-2"> 
+                  <label>Genetic Code</label>  </div> 
+                  <input class="form-control" name="Genetic_code"  type="text" placeholder="Insert Genetic Code" value="<?php echo $producto->genetic_code  ?>"></div></td>
+                </tr>
+                <tr>
+                 <td><div class="form-group">
+                  <div class="col-3 col-lg-2"> 
+                    <label>ORIGIN</label> </div> 
+                    <div class="row">
 
-                    $origen_2 = $base_de_datos->prepare("SELECT * FROM  cod_comauto where id_comauto= ?");
-                    $origen_2->execute([$origen_1->cod_comauto]);
-                    $origen_2_1 = $origen_2->fetch(PDO::FETCH_OBJ);
+                      <label for="comauto"><strong>Autonomous Community:</strong></label>
+                      <?php $origen = $base_de_datos->prepare("SELECT * FROM origin where id_cod_locality= ?");
+                      $origen->execute([$producto->origin]);
+                      $origen_1 = $origen->fetch(PDO::FETCH_OBJ); 
 
-
-                    ?>
-                  <select name="comauto" id="comauto" class="form-control" required>
-                    <option value="<?php echo $origen_2_1->id_comauto?>"><?php echo $origen_2_1->nombre_comauto?></option>
-                    <?php 
-                    $peticion = $base_de_datos->query("SELECT * FROM cod_comauto");
-                    $tipos = $peticion->fetchAll(PDO::FETCH_OBJ);
-                    foreach($tipos as $tipo) { ?>
-                      <option value="<?php echo $tipo->id_comauto ?>"><?php echo $tipo->nombre_comauto ?></option>
-                    <?php } ?>
-                  </select>
-               
-                  <label for="province"><strong>Province/Isle:</strong></label>
-                   <?php $origen_3 = $base_de_datos->prepare("SELECT * FROM cod_province where cod_province= ?");
-                    $origen_3->execute([$origen_1->cod_province]);
-                    $origen_3_1 = $origen_3->fetch(PDO::FETCH_OBJ);?>
+                      $origen_2 = $base_de_datos->prepare("SELECT * FROM  cod_comauto where id_comauto= ?");
+                      $origen_2->execute([$origen_1->cod_comauto]);
+                      $origen_2_1 = $origen_2->fetch(PDO::FETCH_OBJ);
 
 
-                  <select name="province" id="province" class="form-control" required>
-                     <?php $origen_3 = $base_de_datos->prepare("SELECT * FROM cod_province where cod_province= ?");
-                    $origen_3->execute([$origen_1->cod_province]);
-                    $origen_3_1 = $origen_3->fetch(PDO::FETCH_OBJ);?>
-                    <option value="<?php echo $origen_3_1->cod_province ?>"><?php echo $origen_3_1->name_province ?></option>
-                  </select>
-               
-                  <label for="locality"><strong>Locality:</strong></label>
-                  <?php $origen_4 = $base_de_datos->prepare("SELECT * FROM cod_locality where id_locality= ?");
-                    $origen_4->execute([$origen_1->id_cod_locality]);
-                    $origen_4_1 = $origen_4->fetch(PDO::FETCH_OBJ);?>
-                  <select name="locality" id="locality" class="form-control" required>
-                    <option value="<?php echo $origen_4_1->id_locality ?>"><?php echo $origen_4_1->name ?></option>
-                  </select>
+                      ?>
+                      <select name="comauto" id="comauto" class="form-control" required>
+                        <option value="<?php echo $origen_2_1->id_comauto?>"><?php echo $origen_2_1->nombre_comauto?></option>
+                        <?php 
+                        $peticion = $base_de_datos->query("SELECT * FROM cod_comauto");
+                        $tipos = $peticion->fetchAll(PDO::FETCH_OBJ);
+                        foreach($tipos as $tipo) { ?>
+                          <option value="<?php echo $tipo->id_comauto ?>"><?php echo $tipo->nombre_comauto ?></option>
+                        <?php } ?>
+                      </select>
 
-                  <script>
-                          $(document).ready(function(e){
-                            $("#comauto").change(function(){
-                              var parametros= "id="+$("#comauto").val();
-                              $.ajax({
-                                data: parametros,
-                                url: 'ajax_auto.php',
-                                type: 'post',
-                                beforeSend: function (){},
-                                success: function(response){
-                                  $("#province").html(response);
+                      <label for="province"><strong>Province/Isle:</strong></label>
+                      <?php $origen_3 = $base_de_datos->prepare("SELECT * FROM cod_province where cod_province= ?");
+                      $origen_3->execute([$origen_1->cod_province]);
+                      $origen_3_1 = $origen_3->fetch(PDO::FETCH_OBJ);?>
 
-                                }
-                              });
 
-                            }) 
+                      <select name="province" id="province" class="form-control" required>
+                       <?php $origen_3 = $base_de_datos->prepare("SELECT * FROM cod_province where cod_province= ?");
+                       $origen_3->execute([$origen_1->cod_province]);
+                       $origen_3_1 = $origen_3->fetch(PDO::FETCH_OBJ);?>
+                       <option value="<?php echo $origen_3_1->cod_province ?>"><?php echo $origen_3_1->name_province ?></option>
+                     </select>
 
-                            $("#province").change(function(){
-                              var parametros= "id="+$("#province").val();
-                              $.ajax({
-                                data: parametros,
-                                url: 'ajax_province.php',
-                                type: 'post',
-                                beforeSend: function (){},
-                                success: function(response){
-                                  $("#locality").html(response);
+                     <label for="locality"><strong>Locality:</strong></label>
+                     <?php $origen_4 = $base_de_datos->prepare("SELECT * FROM cod_locality where id_locality= ?");
+                     $origen_4->execute([$origen_1->id_cod_locality]);
+                     $origen_4_1 = $origen_4->fetch(PDO::FETCH_OBJ);?>
+                     <select name="locality" id="locality" class="form-control" required>
+                      <option value="<?php echo $origen_4_1->id_locality ?>"><?php echo $origen_4_1->name ?></option>
+                    </select>
 
-                                }
-                              });
+                    <script>
+                      $(document).ready(function(e){
+                        $("#comauto").change(function(){
+                          var parametros= "id="+$("#comauto").val();
+                          $.ajax({
+                            data: parametros,
+                            url: 'ajax_auto.php',
+                            type: 'post',
+                            beforeSend: function (){},
+                            success: function(response){
+                              $("#province").html(response);
 
-                            }) 
-                          }) 
+                            }
+                          });
 
-                        </script>
+                        }) 
 
+                        $("#province").change(function(){
+                          var parametros= "id="+$("#province").val();
+                          $.ajax({
+                            data: parametros,
+                            url: 'ajax_province.php',
+                            type: 'post',
+                            beforeSend: function (){},
+                            success: function(response){
+                              $("#locality").html(response);
+
+                            }
+                          });
+
+                        }) 
+                      }) 
+
+                    </script>
+
+                  </div>
                 </div>
-              </div>
-                 <div class="form-group ">
+                <div class="form-group ">
+                  <div class="col-3 col-lg-2"> 
+                    <label for="born" id="msgid12"><strong>Born Center:</strong></label> </div>
+                    <input class="form-control" name="born" type="text" placeholder="Insert Born Center" id="msgid13" value="<?php echo $producto->born_center ?>">
+
+                  </div>
+
+                  <div class="form-group ">
+                    <div class="col-3 col-lg-2"> 
+                      <label for="zepa" id="msgid16"><strong>P.N/Zepa:</strong></label></div>
+                      <input class="form-control" name="zepa" type="text" placeholder="Insert P.N/zepa" id="msgid17" value="<?php echo $producto->{'P.N/Zepa'}; ?>">
+
+
+                    </div>
+
+                    <div class="form-group ">
                       <div class="col-3 col-lg-2"> 
-  <label for="born" id="msgid12"><strong>Born Center:</strong></label> </div>
-  <input class="form-control" name="born" type="text" placeholder="Insert Born Center" id="msgid13" value="<?php echo $producto->born_center ?>">
- 
-</div>
+                        <label for="transfer" id="msgid14"><strong>Transfer Center:</strong></label> </div>
+                        <input class="form-control" name="transfer" type="text" placeholder="Insert Transfer Center" id="msgid15" value="<?php echo $producto->Transfer_center ?>">
 
-<div class="form-group ">
-  <div class="col-3 col-lg-2"> 
-  <label for="zepa" id="msgid16"><strong>P.N/Zepa:</strong></label></div>
-  <input class="form-control" name="zepa" type="text" placeholder="Insert P.N/zepa" id="msgid17" value="<?php echo $producto->{'P.N/Zepa'}; ?>">
-
-  
-</div>
-
-<div class="form-group ">
-  <div class="col-3 col-lg-2"> 
-  <label for="transfer" id="msgid14"><strong>Transfer Center:</strong></label> </div>
-  <input class="form-control" name="transfer" type="text" placeholder="Insert Transfer Center" id="msgid15" value="<?php echo $producto->Transfer_center ?>">
- 
-</div>
+                      </div>
 
 
 
-              </div>
-            </div>
+                    </div>
+                  </div>
 
 
-           </div></td>
-         </tr>
-         <tr>
-           <td><div class="form-group">
-             <div class="col-3 col-lg-2"> 
-            <label>Sex:</label> </div>
-             <select name="province" id="province" class="form-control" required>
+                </div></td>
+              </tr>
+              <tr>
+               <td><div class="form-group">
+                 <div class="col-3 col-lg-2"> 
+                  <label>Sex:</label> </div>
+                  <select name="province" id="province" class="form-control" required>
 
-            <option value="<?php echo $producto->sexe ?>"><?php switch ($producto->sex) {
-             case '1':
+                    <option value="<?php echo $producto->sexe ?>"><?php switch ($producto->sex) {
+                     case '1':
                // code...
-              echo "Male";
-               break;
+                     echo "Male";
+                     break;
 
-                case '2':
+                     case '2':
                // code...
-              echo "Female";
-               break;
-             
-             default:
+                     echo "Female";
+                     break;
+
+                     default:
                // code...
-             echo "Indeterminate";
-               break;
-           }   ?></option>
-           <option value='0'>Indeterminate</option>
-                    <option value='1'>Male</option>
-                    <option value='2'>Female</option>
-                  </select>
+                     echo "Indeterminate";
+                     break;
+                   }   ?></option>
+                   <option value='0'>Indeterminate</option>
+                   <option value='1'>Male</option>
+                   <option value='2'>Female</option>
+                 </select>
 
-            </td>
-         </tr>
-         <tr>
-           <td><div class="form-group">
-             <div class="col-3 col-lg-2"> 
-            <label>Capture/Entry Date:</label> </div>
-            <input class="form-control" id="capture_date" name="capture_date" type="date" placeholder="YYYY-MM-DD" value="<?php echo $producto->entry_date ?>" required> </td>
-         </tr>
-         <tr>
-           <td><div class="form-group">
-            <div class="col-3 col-lg-2"> 
-            <label>Year:</label> </div>
-            <input class="form-control" id="year" name="year" type="number" placeholder="YYYY" min="1900" max="2100" value="<?php echo $producto->year ?>" required></td>
-         </tr>
-         <tr>
-           <td><div class="form-group">
-            <div class="col-3 col-lg-2">
-            <label>Status:</label> </div>
-             <select name="status" id="status" class="form-control" required>
-                    <option value='<?php echo $producto->status ?>'><?php echo $producto->status ?></option>
-                    <option value='Breeder'>Breeder</option>
-                    <option value='Juvenile'>Juvenile</option>
-                    <option value='No_breeder'>No Breeder</option>
-                    <option value='Forest'>Forest</option>
-                    <option value='Genetically_excluded'>Genetically excluded</option>
-                    <option value='Die'>Die</option>
-                    <option value='Released'>Released</option>
-                  </select>
+               </td>
+             </tr>
+             <tr>
+               <td><div class="form-group">
+                 <div class="col-3 col-lg-2"> 
+                  <label>Capture/Entry Date:</label> </div>
+                  <input class="form-control" id="capture_date" name="capture_date" type="date" placeholder="YYYY-MM-DD" value="<?php echo $producto->entry_date ?>" required> </td>
+                </tr>
+                <tr>
+                 <td><div class="form-group">
+                  <div class="col-3 col-lg-2"> 
+                    <label>Year:</label> </div>
+                    <input class="form-control" id="year" name="year" type="number" placeholder="YYYY" min="1900" max="2100" value="<?php echo $producto->year ?>" required></td>
+                  </tr>
+                  <tr>
+                   <td><div class="form-group">
+                    <div class="col-3 col-lg-2">
+                      <label>Status:</label> </div>
+                      <select name="status" id="status" class="form-control" required>
+                        <option value='<?php echo $producto->status ?>'><?php echo $producto->status ?></option>
+                        <option value='Breeder'>Breeder</option>
+                        <option value='Juvenile'>Juvenile</option>
+                        <option value='No_breeder'>No Breeder</option>
+                        <option value='Forest'>Forest</option>
+                        <option value='Genetically_excluded'>Genetically excluded</option>
+                        <option value='Die'>Die</option>
+                        <option value='Released'>Released</option>
+                      </select>
 
-            </td>
-         </tr>
-       </tbody>
-     </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
    </div>
 
    <div class="col-12"> 
@@ -588,10 +586,32 @@ $data_biometry = $biometry->fetch(PDO::FETCH_OBJ);?>
          </tr>
        </tbody>
      </table>
-   </div>
-   <label for="notes_bio"><strong>Notes Biometry:</strong></label>
+     </div>
+     <!-- aqui es el detalle -->
+
+    <!-- aqui es el detalle -->
+    <!-- aqui es el detalle -->
+    <!-- aqui es el detalle -->
+    <!-- aqui es el detalle -->
+    <!-- aqui es el detalle -->
+    <!-- aqui es el detalle -->
+    <!-- aqui es el detalle -->
+    <!-- aqui es el detalle -->
+
+    <!-- aqui es el detalle -->
+    <!-- aqui es el detalle -->
+    <!-- aqui es el detalle -->
+    <!-- aqui es el detalle -->
+    <!-- aqui es el detalle -->
+    <!-- aqui es el detalle -->
+    <!-- aqui es el detalle -->
+    <!-- aqui es el detalle -->
+
+     <label for="notes_bio"><strong>Notes Biometry:</strong></label>
     <textarea id="notes_bio" name="notes_bio"  rows="3" class="form-control"><?php echo !empty($data_biometry->notes_bio) ? $data_biometry->notes_bio : ''; ?></textarea>
   
+   
+   
 </div>
 <br>
 
@@ -890,9 +910,90 @@ if ($individual_cop->female_individual3 != 0){?>
 </table>
 </center>
 
-</div>       
+       
 <hr> <center><h4><font color="black">Fotografias</font></h4></center><hr>
-<div class="col-12">
+
+
+<div class="container">
+    <div class="d-flex flex-wrap justify-content-start" style="gap: 20px;">
+        <?php 
+        $consulta_photos = $base_de_datos->query("SELECT * FROM individuals_photos WHERE id_individual='".$id."' ");
+        $respuesta_photo = $consulta_photos->fetchAll(PDO::FETCH_OBJ);
+
+        foreach ($respuesta_photo as $res_photo) { 
+            // Obtener información del staff
+            $id_staff_photo = $base_de_datos->prepare("SELECT first_name, last_name FROM staff WHERE id_staff = ?;");
+            $id_staff_photo->execute([$res_photo->id_staff]);
+            $res_id_staff = $id_staff_photo->fetch(PDO::FETCH_OBJ);
+        ?>
+        <div class="card shadow-sm p-3 mb-4" 
+             style="flex: 1 1 calc(32% - 20px); max-width: calc(32% - 20px); 
+                    border-radius: 10px; margin-right: 10px; background-color: #fff; border: 1px solid #ddd;">
+            <img src="../../img_individuals/<?php echo htmlspecialchars($res_photo->name_photo_ind); ?>" 
+                 class="card-img-top img-fluid" 
+                 style="max-width: 100%; height: 200px; object-fit: cover; border-radius: 8px; padding: 5px;" 
+                 alt="Photo of <?php echo htmlspecialchars($res_id_staff->first_name . ' ' . $res_id_staff->last_name); ?>">
+
+            <div class="card-body">
+                <p class="card-text">
+                    <strong>Name Staff:</strong> 
+                    <?php echo htmlspecialchars($res_id_staff->first_name . " " . $res_id_staff->last_name); ?>
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <!-- BOTÓN VIEW (ABRE EL MODAL) -->
+                        <button type="button" class="btn btn-sm btn-outline-secondary" 
+                                data-bs-toggle="modal" data-bs-target="#modal_<?php echo $res_photo->id_photos_ind; ?>">
+                            View
+                        </button>
+
+                        <!-- BOTÓN DELETE (CONFIRMA BORRADO) -->
+                        <?php if($_SESSION['privilegio']==="Administrator"){ ?>
+                          <button type="button" class="btn btn-sm btn-outline-danger" 
+                                onclick="confirmDelete(<?php echo $res_photo->id_photos_ind; ?>, <?php echo $id; ?>, '<?php echo $_SESSION['privilegio']; ?>')">
+                            Delete Photo
+                        </button>
+
+                        <?php } ?>
+
+                        
+                    </div>
+                    <small class="text-body-secondary"><?php echo htmlspecialchars($res_photo->date_photo_ind); ?></small>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL PARA AMPLIAR IMAGEN -->
+        <div class="modal fade" id="modal_<?php echo $res_photo->id_photos_ind; ?>" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">View Image</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <img src="../../img_individuals/<?php echo htmlspecialchars($res_photo->name_photo_ind); ?>" 
+                             class="img-fluid" style="max-width: 100%; height: auto; border-radius: 10px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <?php } ?>
+    </div>
+</div>
+
+<!-- SCRIPT PARA CONFIRMAR ELIMINACIÓN -->
+<script>
+    function confirmDelete(photoId, id_individuals, privilegioStaff) {
+        if (confirm("¿Estás seguro de que quieres eliminar esta foto? Esta acción no se puede deshacer.")) {
+            window.location.href = "delete_photo.php?id_photo=" + photoId + "&id_individuals=" + id_individuals + "&privilegioStaff=" + encodeURIComponent(privilegioStaff);
+        }
+    }
+</script>
+
+
+
   <div class="row">
     <div class="col-lg-6"> 
       <a class=" form-control btn btn-info" id="foto" target="_blank">Fotos de equipos </a> 
@@ -932,6 +1033,7 @@ if ($individual_cop->female_individual3 != 0){?>
 </div>
 </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <?php  include_once BASE_URL . "/paginas/pie_2.php";   ?>
 <script>
     //Variable que almacena el método window.open()
