@@ -36,9 +36,7 @@ $conteo = $row_insert['total'] + 1;
                 <th><center>Specie</center></th>
                 <th><center>Assignment</center></th>
                 <th><center>Notes</center></th>
-                <th><center>Sex</center></th>
-                <th><center>Year</center></th>
-                <th><center>Status</center></th>
+                <th><center>Date Insert</center></th>
                 <th><center>Left Leg</center></th>
                 <th><center>Right Leg</center></th>
               </tr>
@@ -53,9 +51,9 @@ $conteo = $row_insert['total'] + 1;
                     </center>
                   </td>
                   <td><center><?php echo $individuals->nickname ?></center></td>
-                  <td width="20%"><center><?php echo $individuals->scientific_name ?></center></td>
+                  <td width="15%"><center><?php echo $individuals->scientific_name ?></center></td>
                   <?php
-                  $sentencia_assi = $base_de_datos->prepare("SELECT id_assignment, assignment_date, id_facility_name, notes  FROM facility_assignment where id_individual_assi = ? AND assignment_date!='' AND finish_date is null");
+                  $sentencia_assi = $base_de_datos->prepare("SELECT id_assignment, assignment_date, id_facility_name, notes_assig  FROM facility_assignment where id_individual_assi = ? AND assignment_date!='' AND finish_date is null");
                   $sentencia_assi->execute([$individuals->id_individual]);
                   $assi = $sentencia_assi->fetch(PDO::FETCH_OBJ);
                   ?>
@@ -84,14 +82,18 @@ $conteo = $row_insert['total'] + 1;
                   </center>
                 </td>
 
-                <td width="30%" height="300px">
-                  <textarea rows="10" name="notes[]" class="form-control"></textarea> 
+                <td width="300px" height="100px">
+                 <center> <textarea rows="5" name="notes[]"  ></textarea></center> 
                 </td>
 
-                <td><center><?php echo ($individuals->sex == '1') ? "Male" : (($individuals->sex == '2') ? "Female" : "Indeterminate"); ?></center></td>
-                <td><center><?php echo $individuals->year ?></center></td>
-                <td><center><?php echo $individuals->status ?></center></td>
-
+               
+                <td><?php if(!empty($assi->assignment_date)){ ?>
+                  <center><input type="date" name='date[]' value="<?php echo date('Y-m-d', strtotime($assi->assignment_date)); ?>"></center>
+               <?php }else { ?>
+                <center><input type="date" name='date[]' value=""></center>
+                <?php } ?>
+              </td>
+                
                 <td>
                   <div class="col-12" style="background-color:<?php echo $individuals->left_ring_color ?> ; border: 1px solid #000000">
                     <center><font color="<?php echo $individuals->left_letter_color ?>"><?php echo $individuals->left_ring_numer ?></font></center>
@@ -114,6 +116,27 @@ $conteo = $row_insert['total'] + 1;
     </div>
   </form>
 </div>
+<!-- Añade este script al final del formulario -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Seleccionar todos los elementos select
+    const facilitySelects = document.querySelectorAll('select[name="id_facility[]"]');
+    
+    // Añadir evento change a cada select
+    facilitySelects.forEach(select => {
+        select.addEventListener('change', function() {
+            // Encontrar el input date en la misma fila
+            const row = this.closest('tr');
+            const dateInput = row.querySelector('input[type="date"]');
+            
+            // Vaciar el valor del date
+            if (dateInput) {
+                dateInput.value = '';
+            }
+        });
+    });
+});
+</script>
 </main>
 
 <?php include_once BASE_URL . "/paginas/pie_3.php"; ?>

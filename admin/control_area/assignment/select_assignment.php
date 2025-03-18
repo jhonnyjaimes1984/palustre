@@ -28,7 +28,7 @@ include_once BASE_URL . "/paginas/cabecera_tercer_nivel.php";
         
         <div class="row mt-5">
             <div class="col-md-3 mb-4">
-                <div class="card border-primary" onclick="location.href='select_assignment.php';">
+                <div class="card border-primary" onclick="location.href='view_assignment.php';">
                     <div class="card-body">
                         <h3 class="card-title text-primary">View</h3>
                         <p class="card-text">Review all current assignments and track the location history of each individual.</p>

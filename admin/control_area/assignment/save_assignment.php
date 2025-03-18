@@ -9,7 +9,7 @@ try {
     $result = $stmt->fetch(PDO::FETCH_OBJ);
     $new_id_real_assig = $result->max_id ? $result->max_id + 1 : 1;
 
-    // Obtener instalaciones actuales para todos los individuos en POST
+    // Obtener instalaciones actuales
     $ids = $_POST['id_individuals'];
     $placeholders = implode(',', array_fill(0, count($ids), '?'));
     $stmt = $base_de_datos->prepare("
@@ -29,7 +29,7 @@ try {
     $changed_individuals = [];
     $original_facilities = [];
 
-    // Identificar cambios y eliminaciones
+    // Identificar cambios
     foreach ($_POST['id_individuals'] as $index => $id_individual) {
         $submitted_facility = $_POST['id_facility'][$index];
         $current_facility = $current_facilities[$id_individual];
@@ -39,20 +39,20 @@ try {
                 'id_individual' => $id_individual,
                 'current_facility' => $current_facility,
                 'new_facility' => $submitted_facility,
-                'notes' => $_POST['notes'][$index]
+                'notes' => $_POST['notes'][$index],
+                'date' => !empty($_POST['date'][$index]) ? $_POST['date'][$index] : date('Y-m-d')
             ];
 
             if ($current_facility !== null) {
                 $original_facilities[$current_facility] = true;
             }
         } elseif (empty($submitted_facility)) {
-            // Eliminar asignaciones existentes
             $stmt = $base_de_datos->prepare("DELETE FROM facility_assignment WHERE id_individual_assi = ?");
             $stmt->execute([$id_individual]);
         }
     }
 
-    // Procesar instalaciones originales para individuos no cambiados
+    // Procesar instalaciones originales
     foreach (array_keys($original_facilities) as $facility) {
         foreach ($_POST['id_individuals'] as $index => $id_individual) {
             $submitted_facility = $_POST['id_facility'][$index];
@@ -68,54 +68,57 @@ try {
                 ");
                 $stmt->execute([$id_individual]);
 
-                // Crear nueva asignación
+                // Nueva asignación con fecha personalizada
+                $assignment_date = !empty($_POST['date'][$index]) ? $_POST['date'][$index] : date('Y-m-d');
                 $stmt = $base_de_datos->prepare("
                     INSERT INTO facility_assignment 
-                        (id_real_assig, id_individual_assi, id_facility_name, assignment_date, notes) 
-                    VALUES (?, ?, ?, NOW(), ?)
+                        (id_real_assig, id_individual_assi, id_facility_name, assignment_date, notes_assig) 
+                    VALUES (?, ?, ?, ?, ?)
                 ");
                 $stmt->execute([
                     $new_id_real_assig,
                     $id_individual,
                     $current_facility,
+                    $assignment_date,
                     $_POST['notes'][$index]
                 ]);
             }
         }
     }
 
-    // Procesar individuos cambiados
-    foreach ($changed_individuals as $individual) {
-        $id_individual = $individual['id_individual'];
-        $new_facility = $individual['new_facility'];
-        $notes = $individual['notes'];
+    // Procesar cambios
+foreach ($changed_individuals as $individual) {
+    $id_individual = $individual['id_individual'];
+    $new_facility = $individual['new_facility'];
+    $notes = $individual['notes'];
+    $assignment_date = $individual['date']; // Fecha del formulario o actual
 
-        // Cerrar asignación actual si existe
-        if ($individual['current_facility'] !== null) {
-            $stmt = $base_de_datos->prepare("
-                UPDATE facility_assignment 
-                SET finish_date = NOW() 
-                WHERE id_individual_assi = ? 
-                AND finish_date IS NULL
-            ");
-            $stmt->execute([$id_individual]);
-        }
-
-        // Insertar nueva asignación si la instalación no está vacía
-        if (!empty($new_facility)) {
-            $stmt = $base_de_datos->prepare("
-                INSERT INTO facility_assignment 
-                    (id_real_assig, id_individual_assi, id_facility_name, assignment_date, notes) 
-                VALUES (?, ?, ?, NOW(), ?)
-            ");
-            $stmt->execute([
-                $new_id_real_assig,
-                $id_individual,
-                $new_facility,
-                $notes
-            ]);
-        }
+    if ($individual['current_facility'] !== null) {
+        // Usar la misma fecha que la nueva asignación para finish_date
+        $stmt = $base_de_datos->prepare("
+            UPDATE facility_assignment 
+            SET finish_date = ? 
+            WHERE id_individual_assi = ? 
+            AND finish_date IS NULL
+        ");
+        $stmt->execute([$assignment_date, $id_individual]); // Pasar la fecha como parámetro
     }
+
+    if (!empty($new_facility)) {
+        $stmt = $base_de_datos->prepare("
+            INSERT INTO facility_assignment 
+                (id_real_assig, id_individual_assi, id_facility_name, assignment_date, notes_assig) 
+            VALUES (?, ?, ?, ?, ?)
+        ");
+        $stmt->execute([
+            $new_id_real_assig,
+            $id_individual,
+            $new_facility,
+            $assignment_date, // Usar la fecha personalizada
+            $notes
+        ]);
+    }
+}
 
     $base_de_datos->commit();
     header("Location: select_assignment.php");

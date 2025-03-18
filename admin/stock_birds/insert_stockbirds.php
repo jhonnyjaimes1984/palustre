@@ -33,17 +33,17 @@ $conteo = $itemData_insert['n_individual'] + 1;
               <h3><strong>Origin Type</strong></h3>
             </div>
             <div class="card-body text-center">
-              <div class="d-flex justify-content-center">
-                <div class="custom-control custom-radio mx-3">
+              <div class="row">
+                <div class="custom-control custom-radio col-lg-4">
                   <input type="hidden" value="<?php echo $conteo ?>"  name="id_individual" required>
                   <input class="custom-control-input" type="radio" value="1" id="mostrar_1" name="origin_type" required>
                   <label for="mostrar_1" class="custom-control-label">Born Center</label>
                 </div>
-                <div class="custom-control custom-radio mx-3">
+                <div class="custom-control custom-radio col-lg-4">
                   <input class="custom-control-input" type="radio" value="0" id="ocultar_1" name="origin_type" required>
                   <label for="ocultar_1" class="custom-control-label">Capture</label>
                 </div>
-                <div class="custom-control custom-radio mx-3">
+                <div class="custom-control custom-radio col-lg-4">
                   <input class="custom-control-input" type="radio" value="2" id="ocultar_2" name="origin_type" required>
                   <label for="ocultar_2" class="custom-control-label">Transfer</label>
                 </div>
