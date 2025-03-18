@@ -146,6 +146,32 @@
     });
     
   });
+ $(function () {
+    $("#example5").DataTable({
+        order: [[0, "asc"]], // Ordenar por la primera columna (ID) en orden ascendente
+        pageLength: -1, // Mostrar todas las filas
+        lengthMenu: [[-1, 10, 20, 50, 100], ["Todos", 10, 20, 50, 100]], // Ajustar el menú de selección
+        language: {
+            "emptyTable": "No hay datos para mostrar",
+            "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+            "search": "Buscar:",
+            "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+            "lengthMenu": 'Mostrando <select>' +
+                '<option value="-1">Todos</option>' + 
+                '<option value="10">10</option>' +
+                '<option value="20">20</option>' +
+                '<option value="50">50</option>' +
+                '<option value="100">100</option>' +
+                '</select> Entradas',
+            "paginate": {
+                "first": "Primero",
+                "last": "Último",
+                "next": "Next",
+                "previous": "Anterior"
+            }
+        }
+    });
+});
 
     
 
