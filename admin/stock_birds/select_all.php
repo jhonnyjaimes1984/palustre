@@ -397,13 +397,13 @@ $mon = $sentencia_mon->fetchAll(PDO::FETCH_OBJ);
 
           <?php } ?>
 
-          
+
         </div>
         <small class="text-body-secondary"><?php echo htmlspecialchars($res_photo_mon->date_photo_mon); ?></small>
       </div>
     </div>
   </div>
-  
+
   <!-- MODAL PARA AMPLIAR IMAGEN -->
   <div class="modal fade" id="modal_<?php echo $res_photo_mon->id_photos_mon; ?>" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -416,7 +416,7 @@ $mon = $sentencia_mon->fetchAll(PDO::FETCH_OBJ);
 
         <!-- Cuerpo del modal -->
         <div class="modal-body text-center">
-          <img src="../../img_monitoring/<?php echo htmlspecialchars($res_photo->name_photo_mon); ?>" 
+          <img src="../../img_monitoring/<?php echo htmlspecialchars($res_photo_mon->name_photo_mon); ?>"
           class="img-fluid rounded" 
           alt="Photo of <?php echo htmlspecialchars($res_photo->name_photo_mon); ?>">
         </div>
@@ -578,13 +578,13 @@ $cop = $sentencia_cop->fetchAll(PDO::FETCH_OBJ);
         if ($individual_cop->male_individual1 != 0){?>
           <div class="row"> 
             <div class="col-5" style="background-color:<?php echo $male_1->left_ring_color ?> ; border: 1px solid #000000; word-wrap: break-word; overflow-wrap: break-word; text-align: center; width: 100%; white-space: normal;">
-              
+
               <font color="<?php echo $male_1->left_letter_color ?>"  style="display: block; word-break: break-word;"><?php echo $male_1->left_ring_numer ?></font>
               
             </div>
             <div class="col-2"><center><?php echo $male_1->id_individual ?></center></div>
             <div class="col-5" style="background-color:<?php echo $male_1->right_ring_color ?> ; border: 1px solid #000000; word-wrap: break-word; overflow-wrap: break-word; text-align: center; width: 100%; white-space: normal;">
-              
+
               <font color="<?php echo $male_1->right_letter_color ?>"  style="display: block; word-break: break-word;"><?php echo $male_1->right_ring_numer ?></font>
               
             </div>
@@ -601,13 +601,13 @@ $cop = $sentencia_cop->fetchAll(PDO::FETCH_OBJ);
         if ($individual_cop->male_individual2 != 0){?>
           <div class="row"> 
             <div class="col-5" style="background-color:<?php echo $male_2->left_ring_color ?> ; border: 1px solid #000000; word-wrap: break-word; overflow-wrap: break-word; text-align: center; width: 100%; white-space: normal;">
-              
+
               <font color="<?php echo $male_2->left_letter_color ?>"  style="display: block; word-break: break-word;"><?php echo $male_2->left_ring_numer ?></font>
               
             </div>
             <div class="col-2"><center><?php echo $male_2->id_individual ?></center></div>
             <div class="col-5" style="background-color:<?php echo $male_2->right_ring_color ?> ; border: 1px solid #000000; word-wrap: break-word; overflow-wrap: break-word; text-align: center; width: 100%; white-space: normal;">
-              
+
               <font color="<?php echo $male_2->right_letter_color ?>"  style="display: block; word-break: break-word;"><?php echo $male_2->right_ring_numer ?></font>
               
             </div>
@@ -624,13 +624,13 @@ $cop = $sentencia_cop->fetchAll(PDO::FETCH_OBJ);
         if ($individual_cop->male_individual3 != 0){?>
           <div class="row"> 
             <div class="col-5" style="background-color:<?php echo $male_3->left_ring_color ?> ; border: 1px solid #000000; word-wrap: break-word; overflow-wrap: break-word; text-align: center; width: 100%; white-space: normal;">
-              
+
               <font color="<?php echo $male_3->left_letter_color ?>"  style="display: block; word-break: break-word;"><?php echo $male_3->left_ring_numer ?></font>
               
             </div>
             <div class="col-2"><center><?php echo $male_3->id_individual ?></center></div>
             <div class="col-5" style="background-color:<?php echo $male_3->right_ring_color ?> ; border: 1px solid #000000; word-wrap: break-word; overflow-wrap: break-word; text-align: center; width: 100%; white-space: normal;">
-              
+
               <font color="<?php echo $male_3->right_letter_color ?>"  style="display: block; word-break: break-word;"><?php echo $male_3->right_ring_numer ?></font>
               
             </div>
@@ -647,13 +647,13 @@ $cop = $sentencia_cop->fetchAll(PDO::FETCH_OBJ);
         if ($individual_cop->female_individual1 != 0){?>
           <div class="row"> 
             <div class="col-5" style="background-color:<?php echo $fame_1->left_ring_color ?> ; border: 1px solid #000000; word-wrap: break-word; overflow-wrap: break-word; text-align: center; width: 100%; white-space: normal;">
-              
+
               <font color="<?php echo $fame_1->left_letter_color ?>"  style="display: block; word-break: break-word;"><?php echo $fame_1->left_ring_numer ?></font>
               
             </div>
             <div class="col-2"><center><?php echo $fame_1->id_individual ?></center></div>
             <div class="col-5" style="background-color:<?php echo $fame_1->right_ring_color ?> ; border: 1px solid #000000; word-wrap: break-word; overflow-wrap: break-word; text-align: center; width: 100%; white-space: normal;">
-              
+
               <font color="<?php echo $fame_1->right_letter_color ?>"><?php echo $fame_1->right_ring_numer ?></font>
               
             </div>
@@ -670,13 +670,13 @@ $cop = $sentencia_cop->fetchAll(PDO::FETCH_OBJ);
         if ($individual_cop->female_individual2 != 0){?>
           <div class="row">
             <div class="col-5" style="background-color:<?php echo $fame_2->left_ring_color ?> ; border: 1px solid #000000; word-wrap: break-word; overflow-wrap: break-word; text-align: center; width: 100%; white-space: normal;">
-              
+
               <font color="<?php echo $fame_2->left_letter_color ?>"  style="display: block; word-break: break-word;"><?php echo $fame_2->left_ring_numer ?></font>
               
             </div>
             <div class="col-2"><center><?php echo $fame_2->id_individual ?></center></div>
             <div class="col-5" style="background-color:<?php echo $fame_2->right_ring_color ?> ; border: 1px solid #000000; word-wrap: break-word; overflow-wrap: break-word; text-align: center; width: 100%; white-space: normal;">
-              
+
               <font color="<?php echo $fame_2->right_letter_color ?>"  style="display: block; word-break: break-word;"><?php echo $fame_2->right_ring_numer ?></font>
               
             </div>
@@ -694,14 +694,14 @@ $cop = $sentencia_cop->fetchAll(PDO::FETCH_OBJ);
         if ($individual_cop->female_individual3 != 0){?>
           <div class="row"> 
             <div class="col-5" style="background-color:<?php echo $fame_3->left_ring_color ?> ; border: 1px solid #000000; word-wrap: break-word; overflow-wrap: break-word; text-align: center; width: 100%; white-space: normal;">
-              
+
               <font color="<?php echo $fame_3->left_letter_color ?>"  style="display: block; word-break: break-word;"><?php echo $fame_3->left_ring_numer ?></font>
               
             </div>
             <div class="col-2"><center><?php echo $fame_3->id_individual ?></center></div>
             <div class="col-5" style="background-color:<?php echo $fame_3->right_ring_color ?> ; border: 1px solid #000000; word-wrap: break-word; overflow-wrap: break-word; text-align: center; width: 100%; white-space: normal;">
               <font color="<?php echo $fame_3->right_letter_color ?>"  style="display: block; word-break: break-word;"><?php echo $fame_3->right_ring_numer ?></font>
-              
+
             </div>
           </div>
           <div class="w-100"><br></div>
@@ -776,13 +776,13 @@ $cop = $sentencia_cop->fetchAll(PDO::FETCH_OBJ);
 
           <?php } ?>
 
-          
+
         </div>
         <small class="text-body-secondary"><?php echo htmlspecialchars($res_photo->date_photo_ind); ?></small>
       </div>
     </div>
   </div>
-  
+
   <!-- MODAL PARA AMPLIAR IMAGEN -->
   <div class="modal fade" id="modal_<?php echo $res_photo->id_photos_ind; ?>" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -875,13 +875,13 @@ $cop = $sentencia_cop->fetchAll(PDO::FETCH_OBJ);
 
           <?php } ?>
 
-          
+
         </div>
         <small class="text-body-secondary"><?php echo htmlspecialchars($res_doc->date_doc_ind); ?></small>
       </div>
     </div>
   </div>
-  
+
   <!-- MODAL PARA AMPLIAR IMAGEN -->
   <div class="modal fade" id="modal_<?php echo  $numero; ?>" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -897,7 +897,7 @@ $cop = $sentencia_cop->fetchAll(PDO::FETCH_OBJ);
          <?php
 // Ruta del archivo
          $archivo = "../../doc_individuals/" . $res_doc->name_doc_ind;
-
+          $archivo_2 = "http://localhost/bd_palustre/doc_individuals/" . urlencode($res_doc->name_doc_ind);
 // Obtener la extensión del archivo
          $extension = strtolower(pathinfo($archivo, PATHINFO_EXTENSION));
 
@@ -906,7 +906,7 @@ $cop = $sentencia_cop->fetchAll(PDO::FETCH_OBJ);
     // Mostrar PDF con iframe
           echo '<iframe src="' . htmlspecialchars($archivo) . '" width="100%" height="500px"></iframe>';
         } elseif (in_array($extension, ['doc', 'docx', 'xls', 'xlsx'])) {
-          echo '<iframe src="https://docs.google.com/gview?url=' . urlencode($archivo) . '&embedded=true" width="100%" height="600px"></iframe>';
+          echo '<iframe src="https://docs.google.com/gview?url='.urlencode($archivo_2) . '&embedded=true" width="100%" height="600px"></iframe>';
         } else {
     // Para otros archivos, solo se muestra un enlace de descarga
           echo '<a href="' . htmlspecialchars($archivo) . '" download>Descargar Archivo</a>';
