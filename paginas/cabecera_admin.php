@@ -38,14 +38,14 @@ include_once "../conf/Config.php";  include_once BASE_URL . "/conf/configuracion
   
 
   .content-wrapper {
-    transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
+    transition: margin-left 0.3s, width 0.3s;
     margin-left: 10px; /* Tamaño normal cuando el sidebar está expandido */
-    width: calc(95%);
+    width: calc(100%);
 }
 
 .sidebar-collapse .content-wrapper {
     margin-left: 10px !important; /* Ajusta el margen cuando el sidebar se colapsa */
-    width: calc(95% );
+    width: calc(100%);
 }
 
 

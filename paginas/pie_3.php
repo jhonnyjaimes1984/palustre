@@ -175,17 +175,17 @@
 
     
 
-    document.addEventListener("DOMContentLoaded", function () {
+     document.addEventListener("DOMContentLoaded", function () {
     let body = document.body;
     let content = document.querySelector(".content-wrapper");
 
     function adjustContentWidth() {
       if (body.classList.contains("sidebar-collapse")) {
-        content.style.marginLeft = "80px"; // Sidebar colapsado
-        content.style.width = "calc(95%)";
+        content.style.marginLeft = "20px"; // Sidebar colapsado
+        content.style.width = "calc(100%)";
       } else {
         content.style.marginLeft = "250px"; // Sidebar expandido
-        content.style.width = "calc(95%)";
+        content.style.width = "calc(100%)";
       }
     }
 
@@ -195,6 +195,30 @@
 
     adjustContentWidth(); // Ejecutar al cargar la página
   });
+
+      document.addEventListener("DOMContentLoaded", function() {
+    let mainContent = document.querySelector(".content-wrapper");
+    let sidebar = document.querySelector(".main-sidebar");
+    let toggleButton = document.querySelector("[data-widget='pushmenu']");
+
+    function adjustContentSize() {
+        if (sidebar.classList.contains("sidebar-collapse")) {
+            mainContent.classList.remove("col-10");
+            mainContent.classList.add("col-12");
+        } else {
+            mainContent.classList.remove("col-12");
+            mainContent.classList.add("col-12");
+        }
+    }
+
+    // Detectar cuando se haga clic en el botón de colapsar
+    toggleButton.addEventListener("click", function() {
+        setTimeout(adjustContentSize, 300); // Ajustar después del colapso del menú
+    });
+
+    // Ajustar tamaño cuando la página carga
+    adjustContentSize();
+});
 </script>
 
 

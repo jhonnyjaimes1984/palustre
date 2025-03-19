@@ -158,10 +158,10 @@ flare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
     function adjustContentWidth() {
       if (body.classList.contains("sidebar-collapse")) {
         content.style.marginLeft = "20px"; // Sidebar colapsado
-        content.style.width = "calc(95%)";
+        content.style.width = "calc(100%)";
       } else {
         content.style.marginLeft = "250px"; // Sidebar expandido
-        content.style.width = "calc(95%)";
+        content.style.width = "calc(100%)";
       }
     }
 
@@ -179,11 +179,11 @@ flare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
 
     function adjustContentSize() {
         if (sidebar.classList.contains("sidebar-collapse")) {
-            mainContent.classList.remove("col-10");
+            mainContent.classList.remove("col-12");
             mainContent.classList.add("col-12");
         } else {
             mainContent.classList.remove("col-12");
-            mainContent.classList.add("col-10");
+            mainContent.classList.add("col-12");
         }
     }
 

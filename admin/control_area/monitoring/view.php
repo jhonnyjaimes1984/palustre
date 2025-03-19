@@ -77,7 +77,7 @@ $usuario = $sentencia->fetchAll(PDO::FETCH_OBJ);
           
 
           <?php
-          $sentencia_assi = $base_de_datos->prepare("SELECT id_assignment, assignment_date, id_facility_name, notes  FROM facility_assignment where id_individual_assi = ? AND assignment_date!='' AND finish_date is null");
+          $sentencia_assi = $base_de_datos->prepare("SELECT id_assignment, assignment_date, id_facility_name, notes_assig  FROM facility_assignment where id_individual_assi = ? AND assignment_date!='' AND finish_date is null");
           $sentencia_assi->execute([$individuals->id_individual_mon]);
           $assi = $sentencia_assi->fetch(PDO::FETCH_OBJ);?>
           <td width="50%"><center>

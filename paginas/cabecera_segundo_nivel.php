@@ -8,7 +8,7 @@ include_once "../../conf/Config.php"; include_once BASE_URL ."/conf/configuracio
   <meta name="description" content="">
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Jekyll v4.1.1">
-  <link rel="icon" href="<?php echo BASE_URL;?>/image/imagen_2.png">
+   <link rel="icon" href="../../image/imagen_2.png">
   <title>Pagina de Administrador</title>
 
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
@@ -30,7 +30,8 @@ include_once "../../conf/Config.php"; include_once BASE_URL ."/conf/configuracio
   <link rel="stylesheet" href="../../plugins/summernote/summernote-bs4.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+
 
 
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -39,16 +40,15 @@ include_once "../../conf/Config.php"; include_once BASE_URL ."/conf/configuracio
 
 <style type="text/css">
   
-
-  .content-wrapper {
-    transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
+.content-wrapper {
+    transition: margin-left 0.3s, width 0.3s;
     margin-left: 10px; /* Tamaño normal cuando el sidebar está expandido */
-    width: calc(95%);
+    width: calc(100%);
 }
 
 .sidebar-collapse .content-wrapper {
     margin-left: 10px !important; /* Ajusta el margen cuando el sidebar se colapsa */
-    width: calc(95% );
+    width: calc(100%);
 }
 </style>
 

@@ -15,7 +15,7 @@ if($producto === FALSE){
   <main role="main" class="content-wrapper">
    <div class="row">
     <div class='col-12 col-lg-6'>
-      <h3><STRONG>BASE DE DATOS PALUSTRE</STRONG></h3>
+      <h3><STRONG>BASE DE DATOS PALUSTRE </STRONG></h3>
 
     </div>
 
@@ -250,27 +250,27 @@ $data_biometry = $biometry->fetch(PDO::FETCH_OBJ);?>
        <tr>
          <td><strong>Measurement Date:</strong> <?php echo !empty($data_biometry->measurement_date) ? $data_biometry->measurement_date : ''; ?>
        </td>
-       </tr>
-       <tr>
-         <td><strong>Staff:</strong><?php echo !empty($data_biometry->staff) ? $data_biometry->staff : ''; ?> </td>
-       </tr>
-       <tr>
-         <td><strong>Wing Lenght:</strong><?php echo !empty($data_biometry->wing_lenght) ? $data_biometry->wing_lenght : ''; ?> mm</td>
-       </tr>
-       <tr>
-         <td><strong>F8:</strong><?php echo !empty($data_biometry->F8) ? $data_biometry->F8 : ''; ?> mm</td>
-       </tr>
-       <tr>
-         <td><strong>Tail:</strong><?php echo !empty($data_biometry->tail) ? $data_biometry->tail : ''; ?> mm</td>
-       </tr>
-       <tr>
-         <td><strong>Tarsus:</strong><?php echo !empty($data_biometry->tarsus) ? $data_biometry->tarsus : ''; ?> mm</td>
-       </tr>
-     </tbody>
-   </table>
- </div>
+     </tr>
+     <tr>
+       <td><strong>Staff:</strong><?php echo !empty($data_biometry->staff) ? $data_biometry->staff : ''; ?> </td>
+     </tr>
+     <tr>
+       <td><strong>Wing Lenght:</strong><?php echo !empty($data_biometry->wing_lenght) ? $data_biometry->wing_lenght : ''; ?> mm</td>
+     </tr>
+     <tr>
+       <td><strong>F8:</strong><?php echo !empty($data_biometry->F8) ? $data_biometry->F8 : ''; ?> mm</td>
+     </tr>
+     <tr>
+       <td><strong>Tail:</strong><?php echo !empty($data_biometry->tail) ? $data_biometry->tail : ''; ?> mm</td>
+     </tr>
+     <tr>
+       <td><strong>Tarsus:</strong><?php echo !empty($data_biometry->tarsus) ? $data_biometry->tarsus : ''; ?> mm</td>
+     </tr>
+   </tbody>
+ </table>
+</div>
 
- <div class="col-12 col-lg-6"> 
+<div class="col-12 col-lg-6"> 
   <table >
    <tbody>
 
@@ -351,6 +351,106 @@ $mon = $sentencia_mon->fetchAll(PDO::FETCH_OBJ);
 
 </table>
 </center>
+<hr> <center><h4><font color="black">Fotografias</font></h4></center><hr>
+
+
+<div class="container">
+  <div class="flex-wrap justify-content-start" style="gap: 20px;">
+    <div class="row">
+      <?php 
+      $consulta_photos_mon = $base_de_datos->query("SELECT * FROM monitoring_photos WHERE id_individual='".$id."' ");
+      $respuesta_photo_mon = $consulta_photos_mon->fetchAll(PDO::FETCH_OBJ);
+
+      foreach ($respuesta_photo_mon as $res_photo_mon) { 
+            // Obtener información del staff
+        $id_staff_photo_mon = $base_de_datos->prepare("SELECT first_name, last_name FROM staff WHERE id_staff = ?;");
+        $id_staff_photo_mon->execute([$res_photo_mon->id_staff]);
+        $res_id_staff_mon = $id_staff_photo_mon->fetch(PDO::FETCH_OBJ);
+        ?>
+        
+        <div class="card shadow-sm p-3 mb-4 col-12 col-lg-3" 
+        style="border-radius: 10px; margin-right: 10px; background-color: #fff; border: 1px solid #ddd;">
+        <center><img src="../../img_monitoring/<?php echo htmlspecialchars($res_photo_mon->name_photo_mon); ?>" 
+         class="card-img-top img-fluid" 
+         style="max-width: 200px; height: 200px; object-fit: cover; border-radius: 8px; padding: 5px;" 
+         alt="Photo of <?php echo htmlspecialchars($res_id_staff_mon->first_name . ' ' . $res_id_staff_mon->last_name); ?>"></center>
+
+         <div class="card-body">
+          <p class="card-text">
+            <strong>Name Staff:</strong> 
+            <?php echo htmlspecialchars($res_id_staff_mon->first_name . " " . $res_id_staff_mon->last_name); ?>
+          </p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <!-- BOTÓN VIEW (ABRE EL MODAL) -->
+              <button type="button" class="btn btn-sm btn-outline-secondary" 
+              data-bs-toggle="modal" data-bs-target="#modal_<?php echo $res_photo_mon->id_photos_mon; ?>">
+              View
+            </button>
+
+            <!-- BOTÓN DELETE (CONFIRMA BORRADO) -->
+            <?php if($_SESSION['privilegio']==="Administrator"){ ?>
+              <button type="button" class="btn btn-sm btn-outline-danger" 
+              onclick="confirmDelete(<?php echo $res_photo_mon->id_photos_mon; ?>, <?php echo $id; ?>, '<?php echo $_SESSION['privilegio']; ?>')">
+              Delete Photo
+            </button>
+
+          <?php } ?>
+
+          
+        </div>
+        <small class="text-body-secondary"><?php echo htmlspecialchars($res_photo_mon->date_photo_mon); ?></small>
+      </div>
+    </div>
+  </div>
+  
+  <!-- MODAL PARA AMPLIAR IMAGEN -->
+  <div class="modal fade" id="modal_<?php echo $res_photo_mon->id_photos_mon; ?>" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <!-- Encabezado del modal -->
+        <div class="modal-header">
+          <h5 class="modal-title">View Image</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <!-- Cuerpo del modal -->
+        <div class="modal-body text-center">
+          <img src="../../img_monitoring/<?php echo htmlspecialchars($res_photo->name_photo_mon); ?>" 
+          class="img-fluid rounded" 
+          alt="Photo of <?php echo htmlspecialchars($res_photo->name_photo_mon); ?>">
+        </div>
+
+        <!-- Pie del modal -->
+        <div class="modal-footer text-center">
+          <?php 
+          if (!empty(trim($res_photo_mon->nota_photo_mon))) { 
+            echo '<p class="mb-0">' . nl2br(htmlspecialchars($res_photo->nota_photo_mon)) . '</p>'; 
+          } else { 
+            echo '<p class="mb-0 text-muted">No notes available.</p>'; 
+          }
+          ?>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<?php } ?>
+</div>
+</div>
+
+</div>
+
+<!-- SCRIPT PARA CONFIRMAR ELIMINACIÓN -->
+<script>
+  function confirmDelete(photoId, id_individuals, privilegioStaff) {
+    if (confirm("¿Estás seguro de que quieres eliminar esta foto? Esta acción no se puede deshacer.")) {
+      window.location.href = "delete_photo.php?id_photo=" + photoId + "&id_individuals=" + id_individuals + "&privilegioStaff=" + encodeURIComponent(privilegioStaff);
+    }
+  }
+</script>
 
 
 <hr>
@@ -436,7 +536,7 @@ $cop = $sentencia_cop->fetchAll(PDO::FETCH_OBJ);
     <tr> 
       <th><center>Id Pair</center></th> 
       <th><center>Inicial date / Finish date</center></th>
-      <th><center>Pair</center></th>
+      <th class="text-nowrap" style="min-width: 150px; white-space: normal;"><center>Pair</center></th>
       <th><center>Facility</center></th> 
       <th><center>Notes</center></th> 
       <th><center>Select</center></th>
@@ -447,7 +547,7 @@ $cop = $sentencia_cop->fetchAll(PDO::FETCH_OBJ);
       <tr> 
         <td><center><?php echo $individual_cop->pair_id; ?></center></td>
         <td width="10%"><center><?php echo $individual_cop->pairing_date.' - '.$individual_cop->finish_pairing_date; ?></center></td>
-        <td width="30%"><?php
+        <td class="text-nowrap" style="min-width: 150px; white-space: normal;"><?php
 
         $male_individual1 = $base_de_datos->prepare("SELECT * FROM individuals WHERE id_individual = ?;");
         $male_individual1->execute([$individual_cop->male_individual1]);
@@ -477,16 +577,16 @@ $cop = $sentencia_cop->fetchAll(PDO::FETCH_OBJ);
 
         if ($individual_cop->male_individual1 != 0){?>
           <div class="row"> 
-            <div class="col-5" style="background-color:<?php echo $male_1->left_ring_color ?> ; border: 1px solid #000000">
-              <center>
-                <font color="<?php echo $male_1->left_letter_color ?>"><?php echo $male_1->left_ring_numer ?></font>
-              </center>
+            <div class="col-5" style="background-color:<?php echo $male_1->left_ring_color ?> ; border: 1px solid #000000; word-wrap: break-word; overflow-wrap: break-word; text-align: center; width: 100%; white-space: normal;">
+              
+              <font color="<?php echo $male_1->left_letter_color ?>"  style="display: block; word-break: break-word;"><?php echo $male_1->left_ring_numer ?></font>
+              
             </div>
             <div class="col-2"><center><?php echo $male_1->id_individual ?></center></div>
-            <div class="col-5" style="background-color:<?php echo $male_1->right_ring_color ?> ; border: 1px solid #000000">
-              <center>
-                <font color="<?php echo $male_1->right_letter_color ?>"><?php echo $male_1->right_ring_numer ?></font>
-              </center>
+            <div class="col-5" style="background-color:<?php echo $male_1->right_ring_color ?> ; border: 1px solid #000000; word-wrap: break-word; overflow-wrap: break-word; text-align: center; width: 100%; white-space: normal;">
+              
+              <font color="<?php echo $male_1->right_letter_color ?>"  style="display: block; word-break: break-word;"><?php echo $male_1->right_ring_numer ?></font>
+              
             </div>
           </div>
           <div class="w-100"><br></div>
@@ -500,16 +600,16 @@ $cop = $sentencia_cop->fetchAll(PDO::FETCH_OBJ);
         <?php } 
         if ($individual_cop->male_individual2 != 0){?>
           <div class="row"> 
-            <div class="col-5" style="background-color:<?php echo $male_2->left_ring_color ?> ; border: 1px solid #000000">
-              <center>
-                <font color="<?php echo $male_2->left_letter_color ?>"><?php echo $male_2->left_ring_numer ?></font>
-              </center>
+            <div class="col-5" style="background-color:<?php echo $male_2->left_ring_color ?> ; border: 1px solid #000000; word-wrap: break-word; overflow-wrap: break-word; text-align: center; width: 100%; white-space: normal;">
+              
+              <font color="<?php echo $male_2->left_letter_color ?>"  style="display: block; word-break: break-word;"><?php echo $male_2->left_ring_numer ?></font>
+              
             </div>
             <div class="col-2"><center><?php echo $male_2->id_individual ?></center></div>
-            <div class="col-5" style="background-color:<?php echo $male_2->right_ring_color ?> ; border: 1px solid #000000">
-              <center>
-                <font color="<?php echo $male_2->right_letter_color ?>"><?php echo $male_2->right_ring_numer ?></font>
-              </center>
+            <div class="col-5" style="background-color:<?php echo $male_2->right_ring_color ?> ; border: 1px solid #000000; word-wrap: break-word; overflow-wrap: break-word; text-align: center; width: 100%; white-space: normal;">
+              
+              <font color="<?php echo $male_2->right_letter_color ?>"  style="display: block; word-break: break-word;"><?php echo $male_2->right_ring_numer ?></font>
+              
             </div>
           </div>
           <div class="w-100"><br></div>
@@ -523,16 +623,16 @@ $cop = $sentencia_cop->fetchAll(PDO::FETCH_OBJ);
         <?php } 
         if ($individual_cop->male_individual3 != 0){?>
           <div class="row"> 
-            <div class="col-5" style="background-color:<?php echo $male_3->left_ring_color ?> ; border: 1px solid #000000">
-              <center>
-                <font color="<?php echo $male_3->left_letter_color ?>"><?php echo $male_3->left_ring_numer ?></font>
-              </center>
+            <div class="col-5" style="background-color:<?php echo $male_3->left_ring_color ?> ; border: 1px solid #000000; word-wrap: break-word; overflow-wrap: break-word; text-align: center; width: 100%; white-space: normal;">
+              
+              <font color="<?php echo $male_3->left_letter_color ?>"  style="display: block; word-break: break-word;"><?php echo $male_3->left_ring_numer ?></font>
+              
             </div>
             <div class="col-2"><center><?php echo $male_3->id_individual ?></center></div>
-            <div class="col-5" style="background-color:<?php echo $male_3->right_ring_color ?> ; border: 1px solid #000000">
-              <center>
-                <font color="<?php echo $male_3->right_letter_color ?>"><?php echo $male_3->right_ring_numer ?></font>
-              </center>
+            <div class="col-5" style="background-color:<?php echo $male_3->right_ring_color ?> ; border: 1px solid #000000; word-wrap: break-word; overflow-wrap: break-word; text-align: center; width: 100%; white-space: normal;">
+              
+              <font color="<?php echo $male_3->right_letter_color ?>"  style="display: block; word-break: break-word;"><?php echo $male_3->right_ring_numer ?></font>
+              
             </div>
           </div>
           <div class="w-100"><br></div>
@@ -546,16 +646,16 @@ $cop = $sentencia_cop->fetchAll(PDO::FETCH_OBJ);
         <?php }
         if ($individual_cop->female_individual1 != 0){?>
           <div class="row"> 
-            <div class="col-5" style="background-color:<?php echo $fame_1->left_ring_color ?> ; border: 1px solid #000000">
-              <center>
-                <font color="<?php echo $fame_1->left_letter_color ?>"><?php echo $fame_1->left_ring_numer ?></font>
-              </center>
+            <div class="col-5" style="background-color:<?php echo $fame_1->left_ring_color ?> ; border: 1px solid #000000; word-wrap: break-word; overflow-wrap: break-word; text-align: center; width: 100%; white-space: normal;">
+              
+              <font color="<?php echo $fame_1->left_letter_color ?>"  style="display: block; word-break: break-word;"><?php echo $fame_1->left_ring_numer ?></font>
+              
             </div>
             <div class="col-2"><center><?php echo $fame_1->id_individual ?></center></div>
-            <div class="col-5" style="background-color:<?php echo $fame_1->right_ring_color ?> ; border: 1px solid #000000">
-              <center>
-                <font color="<?php echo $fame_1->right_letter_color ?>"><?php echo $fame_1->right_ring_numer ?></font>
-              </center>
+            <div class="col-5" style="background-color:<?php echo $fame_1->right_ring_color ?> ; border: 1px solid #000000; word-wrap: break-word; overflow-wrap: break-word; text-align: center; width: 100%; white-space: normal;">
+              
+              <font color="<?php echo $fame_1->right_letter_color ?>"><?php echo $fame_1->right_ring_numer ?></font>
+              
             </div>
           </div>
           <div class="w-100"><br></div>
@@ -569,16 +669,16 @@ $cop = $sentencia_cop->fetchAll(PDO::FETCH_OBJ);
         <?php }
         if ($individual_cop->female_individual2 != 0){?>
           <div class="row">
-            <div class="col-5" style="background-color:<?php echo $fame_2->left_ring_color ?> ; border: 1px solid #000000">
-              <center>
-                <font color="<?php echo $fame_2->left_letter_color ?>"><?php echo $fame_2->left_ring_numer ?></font>
-              </center>
+            <div class="col-5" style="background-color:<?php echo $fame_2->left_ring_color ?> ; border: 1px solid #000000; word-wrap: break-word; overflow-wrap: break-word; text-align: center; width: 100%; white-space: normal;">
+              
+              <font color="<?php echo $fame_2->left_letter_color ?>"  style="display: block; word-break: break-word;"><?php echo $fame_2->left_ring_numer ?></font>
+              
             </div>
             <div class="col-2"><center><?php echo $fame_2->id_individual ?></center></div>
-            <div class="col-5" style="background-color:<?php echo $fame_2->right_ring_color ?> ; border: 1px solid #000000">
-              <center>
-                <font color="<?php echo $fame_2->right_letter_color ?>"><?php echo $fame_2->right_ring_numer ?></font>
-              </center>
+            <div class="col-5" style="background-color:<?php echo $fame_2->right_ring_color ?> ; border: 1px solid #000000; word-wrap: break-word; overflow-wrap: break-word; text-align: center; width: 100%; white-space: normal;">
+              
+              <font color="<?php echo $fame_2->right_letter_color ?>"  style="display: block; word-break: break-word;"><?php echo $fame_2->right_ring_numer ?></font>
+              
             </div>
           </div>
           <div class="w-100"><br></div>
@@ -593,73 +693,266 @@ $cop = $sentencia_cop->fetchAll(PDO::FETCH_OBJ);
         <?php }  
         if ($individual_cop->female_individual3 != 0){?>
           <div class="row"> 
-            <div class="col-5" style="background-color:<?php echo $fame_3->left_ring_color ?> ; border: 1px solid #000000">
-              <center>
-                <font color="<?php echo $fame_3->left_letter_color ?>"><?php echo $fame_3->left_ring_numer ?></font>
-              </center>
+            <div class="col-5" style="background-color:<?php echo $fame_3->left_ring_color ?> ; border: 1px solid #000000; word-wrap: break-word; overflow-wrap: break-word; text-align: center; width: 100%; white-space: normal;">
+              
+              <font color="<?php echo $fame_3->left_letter_color ?>"  style="display: block; word-break: break-word;"><?php echo $fame_3->left_ring_numer ?></font>
+              
             </div>
             <div class="col-2"><center><?php echo $fame_3->id_individual ?></center></div>
-            <div class="col-5" style="background-color:<?php echo $fame_3->right_ring_color ?> ; border: 1px solid #000000">
-              <center
-              ><font color="<?php echo $fame_3->right_letter_color ?>"><?php echo $fame_3->right_ring_numer ?></font>
-            </center>
+            <div class="col-5" style="background-color:<?php echo $fame_3->right_ring_color ?> ; border: 1px solid #000000; word-wrap: break-word; overflow-wrap: break-word; text-align: center; width: 100%; white-space: normal;">
+              <font color="<?php echo $fame_3->right_letter_color ?>"  style="display: block; word-break: break-word;"><?php echo $fame_3->right_ring_numer ?></font>
+              
+            </div>
           </div>
-        </div>
-        <div class="w-100"><br></div>
-      <?php }else{ ?>
-        <div class="row"> 
-          <div class="col-5"></div>
-          <div class="col-2"></div>
-          <div class="col-5"></div>
-        </div>
-        <div class="w-100"><br></div> 
-      <?php } ?>
-    </td>
-    <td width="20%"><center>
-      <?php 
-      $sentencia_fac = $base_de_datos->prepare("SELECT * FROM facilities WHERE id_facility  = ?;");
-      $sentencia_fac->execute([$individual_cop->id_facility_assignment]);
-      $fac = $sentencia_fac->fetch(PDO::FETCH_OBJ); 
-      echo $fac->name_facility.' - '.$fac->type_facility.' - '.$fac->location.'<br><strong>Notes:</strong> '.$fac->notes ;?> 
-    </center></td>
-    <td width="30%"><center><?php echo $individual_cop->notes; ?> </center></td> 
-    <td><center><a class="btn btn-warning btn-sm" href=""><span data-feather="edit"></span></a></center></td> 
-  </tr>
-<?php } ?>
+          <div class="w-100"><br></div>
+        <?php }else{ ?>
+          <div class="row"> 
+            <div class="col-5"></div>
+            <div class="col-2"></div>
+            <div class="col-5"></div>
+          </div>
+          <div class="w-100"><br></div> 
+        <?php } ?>
+      </td>
+      <td width="20%"><center>
+        <?php 
+        $sentencia_fac = $base_de_datos->prepare("SELECT * FROM facilities WHERE id_facility  = ?;");
+        $sentencia_fac->execute([$individual_cop->id_facility_assignment]);
+        $fac = $sentencia_fac->fetch(PDO::FETCH_OBJ); 
+        echo $fac->name_facility.' - '.$fac->type_facility.' - '.$fac->location.'<br><strong>Notes:</strong> '.$fac->notes ;?> 
+      </center></td>
+      <td width="30%"><center><?php echo $individual_cop->notes; ?> </center></td> 
+      <td><center><a class="btn btn-warning btn-sm" href=""><span data-feather="edit"></span></a></center></td> 
+    </tr>
+  <?php } ?>
 </tbody> 
 
 </table>
 </center>
 
-      
 <hr> <center><h4><font color="black">Fotografias</font></h4></center><hr>
-<div class="col-12">
-  <div class="row">
-    <div class="col-lg-6"> 
-      <a class=" form-control btn btn-info" id="foto" target="_blank">Fotos de equipos </a> 
-    </div>
-    <div class="col-lg-6"> 
-      <a class=" form-control btn btn-success" id="foto1" >Foto Documento</a> 
+
+
+<div class="container">
+  <div class="flex-wrap justify-content-start" style="gap: 20px;">
+    <div class="row">
+      <?php 
+      $consulta_photos = $base_de_datos->query("SELECT * FROM individuals_photos WHERE id_individual='".$id."' ");
+      $respuesta_photo = $consulta_photos->fetchAll(PDO::FETCH_OBJ);
+
+      foreach ($respuesta_photo as $res_photo) { 
+            // Obtener información del staff
+        $id_staff_photo = $base_de_datos->prepare("SELECT first_name, last_name FROM staff WHERE id_staff = ?;");
+        $id_staff_photo->execute([$res_photo->id_staff]);
+        $res_id_staff = $id_staff_photo->fetch(PDO::FETCH_OBJ);
+        ?>
+        
+        <div class="card shadow-sm p-3 mb-4 col-12 col-lg-3" 
+        style="border-radius: 10px; margin-right: 10px; background-color: #fff; border: 1px solid #ddd;">
+        <center><img src="../../img_individuals/<?php echo htmlspecialchars($res_photo->name_photo_ind); ?>" 
+         class="card-img-top img-fluid" 
+         style="max-width: 200px; height: 200px; object-fit: cover; border-radius: 8px; padding: 5px;" 
+         alt="Photo of <?php echo htmlspecialchars($res_id_staff->first_name . ' ' . $res_id_staff->last_name); ?>"></center>
+
+         <div class="card-body">
+          <p class="card-text">
+            <strong>Name Staff:</strong> 
+            <?php echo htmlspecialchars($res_id_staff->first_name . " " . $res_id_staff->last_name); ?>
+          </p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <!-- BOTÓN VIEW (ABRE EL MODAL) -->
+              <button type="button" class="btn btn-sm btn-outline-secondary" 
+              data-bs-toggle="modal" data-bs-target="#modal_<?php echo $res_photo->id_photos_ind; ?>">
+              View
+            </button>
+
+            <!-- BOTÓN DELETE (CONFIRMA BORRADO) -->
+            <?php if($_SESSION['privilegio']==="Administrator"){ ?>
+              <button type="button" class="btn btn-sm btn-outline-danger" 
+              onclick="confirmDelete(<?php echo $res_photo->id_photos_ind; ?>, <?php echo $id; ?>, '<?php echo $_SESSION['privilegio']; ?>')">
+              Delete Photo
+            </button>
+
+          <?php } ?>
+
+          
+        </div>
+        <small class="text-body-secondary"><?php echo htmlspecialchars($res_photo->date_photo_ind); ?></small>
+      </div>
     </div>
   </div>
   
+  <!-- MODAL PARA AMPLIAR IMAGEN -->
+  <div class="modal fade" id="modal_<?php echo $res_photo->id_photos_ind; ?>" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <!-- Encabezado del modal -->
+        <div class="modal-header">
+          <h5 class="modal-title">View Image</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
 
+        <!-- Cuerpo del modal -->
+        <div class="modal-body text-center">
+          <img src="../../img_individuals/<?php echo htmlspecialchars($res_photo->name_photo_ind); ?>" 
+          class="img-fluid rounded" 
+          alt="Photo of <?php echo htmlspecialchars($res_photo->name_photo_ind); ?>">
+        </div>
 
-
-  <br><br><br><br>
-
-
-
-
-
-
-
-
-
-  <div class="col-12">
-
-    <a class=" form-control btn btn-info" href="imprimir.php?id=<?php echo $id ?>" target="_blank">Imprimir</a>
+        <!-- Pie del modal -->
+        <div class="modal-footer text-center">
+          <?php 
+          if (!empty(trim($res_photo->nota_photo_ind))) { 
+            echo '<p class="mb-0">' . nl2br(htmlspecialchars($res_photo->nota_photo_ind)) . '</p>'; 
+          } else { 
+            echo '<p class="mb-0 text-muted">No notes available.</p>'; 
+          }
+          ?>
+        </div>
+      </div>
+    </div>
   </div>
+
+
+
+<?php } ?>
+</div>
+</div>
+
+</div>
+
+<!-- SCRIPT PARA CONFIRMAR ELIMINACIÓN -->
+<script>
+  function confirmDelete(photoId, id_individuals, privilegioStaff) {
+    if (confirm("¿Estás seguro de que quieres eliminar esta foto? Esta acción no se puede deshacer.")) {
+      window.location.href = "delete_photo.php?id_photo=" + photoId + "&id_individuals=" + id_individuals + "&privilegioStaff=" + encodeURIComponent(privilegioStaff);
+    }
+  }
+</script>
+
+<hr> <center><h4><font color="black">Documents</font></h4></center><hr>
+
+
+<div class="container">
+  <div class="flex-wrap justify-content-start" style="gap: 20px;">
+    <div class="row">
+      <?php 
+      $consulta_doc = $base_de_datos->query("SELECT * FROM individuals_doc WHERE id_individual='".$id."' ");
+      $respuesta_doc = $consulta_doc->fetchAll(PDO::FETCH_OBJ);
+
+      foreach ($respuesta_doc as $res_doc) { 
+            // Obtener información del staff
+        $id_staff_doc = $base_de_datos->prepare("SELECT first_name, last_name FROM staff WHERE id_staff = ?;");
+        $id_staff_doc->execute([$res_doc->id_staff]);
+        $res_id_staff = $id_staff_doc->fetch(PDO::FETCH_OBJ);
+        $numero = random_int(1, 100);
+        ?>
+        
+        <div class="card shadow-sm p-3 mb-4 col-12 col-lg-3" 
+        style="border-radius: 10px; margin-right: 10px; background-color: #fff; border: 1px solid #ddd;">
+        <center><?php echo htmlspecialchars($res_doc->name_doc_ind); ?></center>
+
+        <div class="card-body">
+          <p class="card-text">
+            <strong>Name Staff:</strong> 
+            <?php echo htmlspecialchars($res_id_staff->first_name . " " . $res_id_staff->last_name); ?>
+          </p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <!-- BOTÓN VIEW (ABRE EL MODAL) -->
+              <button type="button" class="btn btn-sm btn-outline-secondary" 
+              data-bs-toggle="modal" data-bs-target="#modal_<?php echo $numero ?>">
+              View
+            </button>
+
+            <!-- BOTÓN DELETE (CONFIRMA BORRADO) -->
+            <?php if($_SESSION['privilegio']==="Administrator"){ ?>
+              <button type="button" class="btn btn-sm btn-outline-danger" 
+              onclick="confirmDelete(<?php echo $res_doc->name_doc_ind; ?>, <?php echo $id; ?>, '<?php echo $_SESSION['privilegio']; ?>')">
+              Delete Photo
+            </button>
+
+          <?php } ?>
+
+          
+        </div>
+        <small class="text-body-secondary"><?php echo htmlspecialchars($res_doc->date_doc_ind); ?></small>
+      </div>
+    </div>
+  </div>
+  
+  <!-- MODAL PARA AMPLIAR IMAGEN -->
+  <div class="modal fade" id="modal_<?php echo  $numero; ?>" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <!-- Encabezado del modal -->
+        <div class="modal-header">
+          <h5 class="modal-title">View Docs</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <!-- Cuerpo del modal -->
+        <div class="modal-body text-center">
+         <?php
+// Ruta del archivo
+         $archivo = "../../doc_individuals/" . $res_doc->name_doc_ind;
+
+// Obtener la extensión del archivo
+         $extension = strtolower(pathinfo($archivo, PATHINFO_EXTENSION));
+
+// Definir cómo se visualizará cada tipo de archivo
+         if (in_array($extension, ['pdf'])) {
+    // Mostrar PDF con iframe
+          echo '<iframe src="' . htmlspecialchars($archivo) . '" width="100%" height="500px"></iframe>';
+        } elseif (in_array($extension, ['doc', 'docx', 'xls', 'xlsx'])) {
+          echo '<iframe src="https://docs.google.com/gview?url=' . urlencode($archivo) . '&embedded=true" width="100%" height="600px"></iframe>';
+        } else {
+    // Para otros archivos, solo se muestra un enlace de descarga
+          echo '<a href="' . htmlspecialchars($archivo) . '" download>Descargar Archivo</a>';
+        }
+        ?>
+      </div>
+
+      <!-- Pie del modal -->
+      <div class="modal-footer text-center">
+        <small class="text-body-secondary"><?php echo htmlspecialchars($res_doc->date_doc_ind); ?></small>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<?php } ?>
+</div>
+</div>
+
+</div>
+
+<!-- SCRIPT PARA CONFIRMAR ELIMINACIÓN -->
+<script>
+  function confirmDelete(photoId, id_individuals, privilegioStaff) {
+    if (confirm("¿Estás seguro de que quieres eliminar esta foto? Esta acción no se puede deshacer.")) {
+      window.location.href = "delete_photo.php?id_photo=" + photoId + "&id_individuals=" + id_individuals + "&privilegioStaff=" + encodeURIComponent(privilegioStaff);
+    }
+  }
+</script>
+
+<br><br><br><br>
+
+
+
+
+
+
+
+
+
+<div class="col-12">
+
+  <a class=" form-control btn btn-info" href="imprimir.php?id=<?php echo $id ?>" target="_blank">Imprimir</a>
+</div>
 </div>
 <!-- Content Wrapper. Contains page content <div id="map"></div>-->
 
@@ -673,30 +966,5 @@ $cop = $sentencia_cop->fetchAll(PDO::FETCH_OBJ);
 </div>
 </div>
 </div>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <?php  include_once BASE_URL . "/paginas/pie_2.php";   ?>
-<script>
-    //Variable que almacena el método window.open()
-  var miVentana;
-
-    //La función window_open crea el pop-up o ventana emergente
-  function window_open(){
-    miVentana = window.open( "<?php echo "foto_3.php?id_contrato=".$id?>", "nombrePop-Up", "width=500,height=650, top=30,left=500");
-  }
-  function window_open1(){
-    miVentana = window.open( "<?php echo "foto_2.php?id_contrato=".$id?>", "nombrePop-Up", "width=500,height=650, top=30,left=500");
-  }
-
-
-
-    // Llamo a la función window_open en el evento click del botón con id = "botonWindowOpen"
-  document.getElementById("foto").onclick = function() {window_open()};
-  document.getElementById("foto1").onclick = function() {window_open1()};
-
-
-</script>
-
-
-
-
-

@@ -17,7 +17,7 @@ $conteo = $itemData_insert['n_individual'] + 1;
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 
-<main role="main" class="content-wrapper"> 
+<main role="main" class="content-wrapper col-12"> 
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"> 
     <h1 class="h2">Insert Individual</h1>
     <ol class="breadcrumb float-sm-right"><h2>Individual N° 0000<?php echo $conteo ?></h2></ol>
@@ -36,6 +36,7 @@ $conteo = $itemData_insert['n_individual'] + 1;
               <div class="row">
                 <div class="custom-control custom-radio col-lg-4">
                   <input type="hidden" value="<?php echo $conteo ?>"  name="id_individual" required>
+                  <input type="hidden" value="<?php echo $_SESSION['id_staff'] ?>"  name="id_staff" required>
                   <input class="custom-control-input" type="radio" value="1" id="mostrar_1" name="origin_type" required>
                   <label for="mostrar_1" class="custom-control-label">Born Center</label>
                 </div>
