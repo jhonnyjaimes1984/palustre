@@ -390,7 +390,7 @@ $vet = $sentencia_vet->fetchAll(PDO::FETCH_OBJ);
 <center><h4  align="center col-lg-12"><font color="black">Facility Assignment</font></h4></center>
 <hr>
 <?php
-$sentencia_assi = $base_de_datos->query("SELECT id_assignment, assignment_date, id_facility_name, notes  FROM facility_assignment where   id_individual_assi='".$producto->id_individual."'");
+$sentencia_assi = $base_de_datos->query("SELECT id_assignment, assignment_date, id_facility_name, notes_assig  FROM facility_assignment where   id_individual_assi='".$producto->id_individual."'");
 $assi = $sentencia_assi->fetchAll(PDO::FETCH_OBJ);
 ?> 
 <center><table id="example3" class="table table-bordered table-striped table-responsive">
@@ -412,7 +412,7 @@ $assi = $sentencia_assi->fetchAll(PDO::FETCH_OBJ);
         $sentencia_fac->execute([$individual_assi->id_facility_name]);
         $fac = $sentencia_fac->fetch(PDO::FETCH_OBJ); 
         echo $fac->name_facility.' - '.$fac->type_facility.' - '.$fac->location.'<br><strong>Notes:</strong> '.$fac->notes ;?> </center></td> 
-        <td width="40%"><center><?php echo $individual_assi->notes; ?> </center></td> 
+        <td width="40%"><center><?php echo $individual_assi->notes_assig; ?> </center></td> 
 
       </tr>
     <?php } ?>
@@ -631,7 +631,7 @@ $cop = $sentencia_cop->fetchAll(PDO::FETCH_OBJ);
 </table>
 </center>
 
-</div>       
+      
 <hr> <center><h4><font color="black">Fotografias</font></h4></center><hr>
 <div class="col-12">
   <div class="row">
