@@ -1,6 +1,5 @@
 <?php
-$url = $_SERVER['DOCUMENT_ROOT'];
-
+$url =  __DIR__.'/../';
 
 define('BASE_URL', $url);
 ?>
