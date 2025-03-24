@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 19-02-2025 a las 20:14:04
--- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+-- Servidor: localhost
+-- Tiempo de generación: 24-03-2025 a las 19:57:50
+-- Versión del servidor: 10.4.27-MariaDB
+-- Versión de PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -51,15 +51,15 @@ CREATE TABLE `biometry` (
 --
 
 INSERT INTO `biometry` (`id_biometry`, `id_individual`, `measurement_date`, `staff`, `wing_lenght`, `F8`, `tail`, `tarsus`, `beak_length`, `beak_head`, `beak_height`, `beak_width`, `grease`, `muscle`, `weight`, `notes_bio`) VALUES
-(1, 1, '2024-09-27', '1', 79.00, 61.00, 72.00, 21.59, 10.39, 28.72, 6.62, 6.62, 1, 2, 18.92, 'Muda completa'),
-(2, 2, '2024-10-09', 'Iván Alambiaga', 78.00, 57.00, 66.00, 20.10, 0.00, 0.00, 6.00, 0.00, 0, 2, 16.75, 'Secundarias no estan mudadas y alguna rectriz muy desgastada para haber hecho una muda completa'),
-(3, 3, '2024-10-09', 'Iván Alambiaga', 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 6.67, 0.00, 0, 0, 19.13, ''),
-(4, 4, '2024-10-09', 'Iván alambiaga', 78.00, 57.00, 65.00, 20.23, 0.00, 0.00, 6.07, 0.00, 0, 2, 17.22, ''),
-(5, 5, '2024-09-27', 'Javi Gans', 59.50, 41.00, 85.00, 20.22, 8.47, 26.37, 0.00, 0.00, 1, 3, 12.83, '1-8 (5) 9 (4)\r\n'),
-(6, 6, '2024-09-27', 'Javi Gans', 0.00, 0.00, 87.00, 19.51, 7.97, 25.97, 0.00, 0.00, 1, 3, 12.84, ' 1-5 (5) 6 (4) 7 (3) 8 (1) 9 (1) . No se puede tomar hoy las mediciones de ala y F8 Porque esta mudando. Pileo sin plumas desde hace años.\r\n'),
-(7, 8, '2024-10-09', 'Javi Gans', 61.00, 47.00, 82.00, 19.04, 9.18, 26.94, 0.00, 0.00, 1, 2, 13.68, 'Muda completa\r\n'),
-(8, 9, '2024-09-27', 'Javi Gans', 58.00, 44.00, 87.00, 18.30, 7.42, 25.95, 0.00, 0.00, 1, 3, 12.72, 'Muda completa\r\n'),
-(9, 10, '2024-10-09', 'Javi Gans', 57.50, 42.00, 75.00, 16.54, 7.64, 25.00, 0.00, 0.00, 1, 3, 12.24, 'Muda completa');
+(1, 1, '2024-09-27', '1', '79.00', '61.00', '72.00', '21.59', '10.39', '28.72', '6.62', '6.62', 1, 2, '18.92', 'Muda completa'),
+(2, 2, '2024-10-09', 'Iván Alambiaga', '78.00', '57.00', '66.00', '20.10', '0.00', '0.00', '6.00', '0.00', 0, 2, '16.75', 'Secundarias no estan mudadas y alguna rectriz muy desgastada para haber hecho una muda completa'),
+(3, 3, '2024-10-09', 'Iván Alambiaga', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '6.67', '0.00', 0, 0, '19.13', ''),
+(4, 4, '2024-10-09', 'Iván alambiaga', '78.00', '57.00', '65.00', '20.23', '0.00', '0.00', '6.07', '0.00', 0, 2, '17.22', ''),
+(5, 5, '2024-09-27', 'Javi Gans', '59.50', '41.00', '85.00', '20.22', '8.47', '26.37', '0.00', '0.00', 1, 3, '12.83', '1-8 (5) 9 (4)\r\n'),
+(6, 6, '2024-09-27', 'Javi Gans', '0.00', '0.00', '87.00', '19.51', '7.97', '25.97', '0.00', '0.00', 1, 3, '12.84', ' 1-5 (5) 6 (4) 7 (3) 8 (1) 9 (1) . No se puede tomar hoy las mediciones de ala y F8 Porque esta mudando. Pileo sin plumas desde hace años.\r\n'),
+(7, 8, '2024-10-09', 'Javi Gans', '61.00', '47.00', '82.00', '19.04', '9.18', '26.94', '0.00', '0.00', 1, 2, '13.68', 'Muda completa\r\n'),
+(8, 9, '2024-09-27', 'Javi Gans', '58.00', '44.00', '87.00', '18.30', '7.42', '25.95', '0.00', '0.00', 1, 3, '12.72', 'Muda completa\r\n'),
+(9, 10, '2024-10-09', 'Javi Gans', '57.50', '42.00', '75.00', '16.54', '7.64', '25.00', '0.00', '0.00', 1, 3, '12.24', 'Muda completa');
 
 -- --------------------------------------------------------
 
@@ -8474,7 +8474,15 @@ INSERT INTO `facilities` (`id_facility`, `name_facility`, `type_facility`, `loca
 (13, 'PEDROS013', 'JAULA DE CRIA 1 METRO', 'SUR', ''),
 (14, 'PEDROS014', 'JAULA DE CRIA 1 METRO', 'SUR', ''),
 (15, 'PEDROS015', 'JAULA DE CRIA 1 METRO', 'SUR', ''),
-(16, 'PEDROS016', 'JAULA DE CRIA 1 METRO', 'SUR', '');
+(16, 'PEDROS016', 'JAULA DE CRIA 1 METRO', 'SUR', ''),
+(17, 'breeding aviary 1', '2x2x2.5m', 'sur', ''),
+(18, 'breeding aviary 2', '2x2x2.5m', 'sur', ''),
+(19, 'breeding aviary 3', '2x2x2.5m', 'sur', ''),
+(20, 'breeding aviary 4', '2x2x2.5m', 'sur', ''),
+(21, 'breeding aviary 5', '2x2x2.5m', 'sur', ''),
+(22, 'breeding aviary 6', '2x2x2.5m', 'sur', ''),
+(23, 'breeding aviary 7', '2x2x2.5m', 'sur', ''),
+(24, 'breeding aviary 8\r\n', '2x2x2.5m', 'sur', '');
 
 -- --------------------------------------------------------
 
@@ -8484,29 +8492,21 @@ INSERT INTO `facilities` (`id_facility`, `name_facility`, `type_facility`, `loca
 
 CREATE TABLE `facility_assignment` (
   `id_assignment` int(255) NOT NULL,
+  `id_real_assig` int(255) NOT NULL,
   `id_individual_assi` int(255) NOT NULL,
   `id_facility_name` varchar(255) NOT NULL,
   `assignment_date` date NOT NULL,
   `finish_date` date DEFAULT NULL,
-  `notes` text NOT NULL
+  `notes_assig` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `facility_assignment`
 --
 
-INSERT INTO `facility_assignment` (`id_assignment`, `id_individual_assi`, `id_facility_name`, `assignment_date`, `finish_date`, `notes`) VALUES
-(1, 1, '2', '2025-01-24', '2025-01-10', ''),
-(2, 2, '2', '2025-01-24', NULL, ''),
-(3, 8, '2', '2025-01-24', NULL, ''),
-(4, 9, '2', '2025-01-24', NULL, ''),
-(5, 5, '3', '2025-01-22', NULL, ''),
-(6, 6, '3', '2025-01-22', NULL, ''),
-(7, 4, '1', '2025-01-25', NULL, ''),
-(8, 7, '1', '2025-01-25', NULL, ''),
-(9, 3, '7', '2025-01-19', '2025-01-23', ''),
-(10, 3, '6', '2025-01-23', NULL, ''),
-(11, 1, '10', '2025-01-10', NULL, 'se queda solo de momento');
+INSERT INTO `facility_assignment` (`id_assignment`, `id_real_assig`, `id_individual_assi`, `id_facility_name`, `assignment_date`, `finish_date`, `notes_assig`) VALUES
+(1, 1, 1, '19', '2025-03-24', NULL, 'Ojo cambiar la fecha'),
+(2, 1, 2, '18', '2025-03-24', NULL, 'Ojo el que mira');
 
 -- --------------------------------------------------------
 
@@ -8561,39 +8561,90 @@ CREATE TABLE `individuals` (
   `right_letter_color` varchar(255) NOT NULL,
   `right_ring_numer` varchar(255) NOT NULL,
   `notes` text NOT NULL,
-  `Photo/doc` mediumblob NOT NULL
+  `Photo/doc` mediumblob NOT NULL,
+  `status_bd` int(1) NOT NULL DEFAULT 1,
+  `id_staff_delete` int(255) DEFAULT NULL,
+  `date_delete` varchar(30) NOT NULL,
+  `nota_delete` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `individuals`
 --
 
-INSERT INTO `individuals` (`id_individual`, `id_parents`, `specie`, `origin`, `origin_type`, `born_center`, `P.N/Zepa`, `Transfer_center`, `sex`, `entry_date`, `year`, `nickname`, `genetic_code`, `status`, `left_leg`, `left_ring_type`, `left_ring_color`, `left_letter_color`, `left_ring_numer`, `right_leg`, `right_ring_type`, `right_ring_color`, `right_letter_color`, `right_ring_numer`, `notes`, `Photo/doc`) VALUES
-(1, 0, '1', '853', 0, '', 'albufera mallorca', '', 1, '2022-09-15', '2021', 'Praxt', 'A', 'breeder', 1, 'PVC', 'white', 'black', 'A00', 1, 'PVC', 'GREEN', 'BLACK', '00', 'El mejor reproductor', ''),
-(2, 0, '1', '853', 0, '', '', '', 2, '2024-10-09', '2024', 'Violant', 'B', 'breeder', 1, 'PVC', 'white', 'black', 'A01', 0, '', '', '', '', '', ''),
-(3, 0, '1', '853', 0, '', '', '', 1, '2024-10-09', '2024', 'Jaume', 'C', 'breeder', 0, 'PVC', 'white', 'black', 'A02', 0, '', '', '', '', '', ''),
-(4, 0, '1', '853', 0, '', '', '', 2, '2024-10-09', '2024', 'Simpa', 'D', 'breeder', 0, 'PVC', 'white', 'black', 'A03', 0, '', '', '', '', '', ''),
-(5, 0, '4', '1987', 0, '', '', '', 1, '0000-00-00', '2021', '', 'A', 'breeder', 0, 'metal', 'green', 'black', 'GREEN', 0, '', '', '', '', '', ''),
-(6, 0, '4', '1987', 0, '', '', '', 1, '0000-00-00', '2021', 'Fraile', 'B', 'breeder', 0, '0', '', '', '', 0, '', '', '', '', '', ''),
-(7, 0, '4', '203', 0, '', '', '', 1, '0000-00-00', '2019', '', '0', 'Die', 0, 'metal', 'blue', 'black', 'BOF EAA 582 27 19 017', 0, '', '', '', '', '', ''),
-(8, 0, '4', '203', 0, '', '', '', 2, '0000-00-00', '2021', '', '0', 'No Breeder', 0, 'metal', 'purple', 'black', 'BOF EAA 582 27 21 010\r\n', 0, '', '', '', '', '', ''),
-(9, 0, '4', '203', 0, '', '', '', 1, '0000-00-00', '2017', '', '0', 'No Breeder', 0, 'metal', 'brown', 'black', 'FQ76 NB22 NL 2 8 17\r\n\r\n', 0, '', '', '', '', '', ''),
-(10, 0, '4', '203', 0, '', '', '', 2, '0000-00-00', '2023', '', '0', 'No Breeder', 0, 'metal', 'navy blue', 'black', 'NL5 671 BEC 2 8 23 09\r\n\r\n', 0, '', '', '', '', '', ''),
-(11, 0, '5', '7157', 0, '', '', '', 0, '2024-11-08', '2023', '', 'A', 'breeder', 0, 'PVC', 'blue', 'black', '1H870 23 ', 0, '', '', '', '', '', ''),
-(12, 0, '5', '7157', 0, '', '', '', 0, '2024-11-08', '2022', '', 'B', 'breeder', 0, 'PVc', 'brown', 'black', '39 FNP227 VCP012P', 0, '', '', '', '', '', ''),
-(13, 0, '5', '7157', 0, '', '', '', 0, '2024-11-08', '0000', '', 'C', 'breeder', 0, 'metal', 'yellow', '', '15', 0, '', '', '', '', '', ''),
-(14, 0, '5', '7157', 0, '', '', '', 0, '2024-11-08', '2022', '', 'D', 'breeder', 0, 'PVC', 'brown', 'black', '360 XFOI IT 22 VE77', 0, '', '', '', '', '', ''),
-(15, 0, '5', '7157', 0, '', '', '', 0, '2024-11-08', '0000', '', 'F', 'breeder', 0, 'PVC', 'purple', 'black', '8 FNP15f 112J', 0, '', '', '', '', '', ''),
-(16, 0, '5', '7157', 0, '', '', '', 0, '2024-11-08', '0000', '', 'G', 'breeder', 0, 'metal', 'green', '', '12 ', 0, '', '', '', '', '', ''),
-(17, 0, '5', '7157', 0, '', '', '', 0, '2024-11-08', '0000', '', 'H', 'breeder', 0, 'metal', 'purple', '', '12', 0, '', '', '', '', '', ''),
-(18, 0, '5', '7157', 0, '', '', '', 0, '2024-11-08', '2021', '', 'I', 'breeder', 0, 'PVC', 'purple', 'black', '088 ES21 6A 33', 0, '', '', '', '', '', ''),
-(19, 0, '5', '7157', 0, '', '', '', 0, '2024-11-08', '2022', '', 'J', 'breeder', 0, 'PVC', 'brown', 'black', '59 FNP22 VCP012P', 0, '', '', '', '', '', ''),
-(20, 0, '5', '7157', 0, '', '', '', 0, '2024-11-08', '0000', '', 'K', 'breeder', 0, 'metal', 'orange', '', '12', 0, '', '', '', '', '', ''),
-(21, 0, '5', '7157', 0, '', '', '', 0, '2024-11-08', '0000', '', 'L', 'breeder', 0, 'metal and PVC', 'red and pink', '', '8', 0, '', '', '', '', '', ''),
-(22, 0, '5', '7157', 0, '', '', '', 0, '2024-11-08', '0000', '', 'M', 'breeder', 0, 'metal and PVC', 'red and purple', '', '', 0, '', '', '', '', '', ''),
-(23, 0, '<br />\n<b>Warning</b>:  Undefined property: stdClass::$is_species in <b>C:xampphtdocsd_palustreadmininsert_stockbirds.php</b> on line <b>162</b><br />\n', '4587', 3, '', 'mar muerto', '', 1, '2025-01-16', '2002', 'DASDASD', '4526gsjdkfjsa', 'Genetically_excluded', 0, '', '', '', '', 0, '', '', '', '', 'borrar', ''),
-(24, 0, '5', '4587', 4, '', 'borrar', '', 1, '2025-01-16', '2006', 'borrar', 'borrar', 'Breeder', 0, '', '', '', '', 0, '', '', '', '', 'dead', ''),
-(25, 0, '1', '8132', 5, '', 'dsd', '', 1, '2025-01-22', '2002', 'DASDASD', '5156', 'Breeder', 0, '', '', '', '', 0, '', '', '', '', 'fsfsdf', '');
+INSERT INTO `individuals` (`id_individual`, `id_parents`, `specie`, `origin`, `origin_type`, `born_center`, `P.N/Zepa`, `Transfer_center`, `sex`, `entry_date`, `year`, `nickname`, `genetic_code`, `status`, `left_leg`, `left_ring_type`, `left_ring_color`, `left_letter_color`, `left_ring_numer`, `right_leg`, `right_ring_type`, `right_ring_color`, `right_letter_color`, `right_ring_numer`, `notes`, `Photo/doc`, `status_bd`, `id_staff_delete`, `date_delete`, `nota_delete`) VALUES
+(1, 0, '1', '853', 0, '', 'albufera mallorca', '', 1, '2022-09-15', 2021, 'Praxt', 'A', 'breeder', 1, 'PVC', 'white', 'black', 'A00', 1, 'PVC', 'GREEN', 'BLACK', '00', 'El mejor reproductor', '', 1, 0, '', ''),
+(2, 0, '1', '853', 0, '', '', '', 2, '2024-10-09', 2024, 'Violant', 'B', 'breeder', 1, 'PVC', 'white', 'black', 'A01', 0, '', '', '', '', '', '', 1, 0, '', ''),
+(3, 0, '1', '853', 0, '', '', '', 1, '2024-10-09', 2024, 'Jaume', 'C', 'breeder', 0, 'PVC', 'white', 'black', 'A02', 0, '', '', '', '', '', '', 1, 0, '', ''),
+(4, 0, '1', '853', 0, '', '', '', 2, '2024-10-09', 2024, 'Simpa', 'D', 'breeder', 0, 'PVC', 'white', 'black', 'A03', 0, '', '', '', '', '', '', 1, 0, '', ''),
+(5, 0, '4', '1987', 0, '', '', '', 1, '0000-00-00', 2021, '', 'A', 'breeder', 0, 'metal', 'green', 'black', 'GREEN', 0, '', '', '', '', '', '', 1, 0, '', ''),
+(6, 0, '4', '1987', 0, '', '', '', 1, '0000-00-00', 2021, 'Fraile', 'B', 'breeder', 0, '0', '', '', '', 0, '', '', '', '', '', '', 1, 0, '', ''),
+(7, 0, '4', '203', 0, '', '', '', 1, '0000-00-00', 2019, '', '0', 'Die', 0, 'metal', 'blue', 'black', 'BOF EAA 582 27 19 017', 0, '', '', '', '', '', '', 1, 0, '', ''),
+(8, 0, '4', '203', 0, '', '', '', 2, '0000-00-00', 2021, '', '0', 'No Breeder', 0, 'metal', 'purple', 'black', 'BOF EAA 582 27 21 010\r\n', 0, '', '', '', '', '', '', 1, 0, '', ''),
+(9, 0, '4', '203', 0, '', '', '', 1, '0000-00-00', 2017, '', '0', 'No Breeder', 0, 'metal', 'brown', 'black', 'FQ76 NB22 NL 2 8 17\r\n\r\n', 0, '', '', '', '', '', '', 1, 0, '', ''),
+(10, 0, '4', '203', 0, '', '', '', 2, '0000-00-00', 2023, '', '0', 'No Breeder', 0, 'metal', 'navy blue', 'black', 'NL5 671 BEC 2 8 23 09\r\n\r\n', 0, '', '', '', '', '', '', 1, 0, '', ''),
+(11, 0, '5', '7157', 0, '', '', '', 0, '2024-11-08', 2023, '', 'A', 'breeder', 0, 'PVC', 'blue', 'black', '1H870 23 ', 0, '', '', '', '', '', '', 1, 0, '', ''),
+(12, 0, '5', '7157', 0, '', '', '', 0, '2024-11-08', 2022, '', 'B', 'breeder', 0, 'PVc', 'brown', 'black', '39 FNP227 VCP012P', 0, '', '', '', '', '', '', 1, 0, '', ''),
+(13, 0, '5', '7157', 0, '', '', '', 0, '2024-11-08', 0000, '', 'C', 'breeder', 0, 'metal', 'yellow', '', '15', 0, '', '', '', '', '', '', 1, 0, '', ''),
+(14, 0, '5', '7157', 0, '', '', '', 0, '2024-11-08', 2022, '', 'D', 'breeder', 0, 'PVC', 'brown', 'black', '360 XFOI IT 22 VE77', 0, '', '', '', '', '', '', 1, 0, '', ''),
+(15, 0, '5', '7157', 0, '', '', '', 0, '2024-11-08', 0000, '', 'F', 'breeder', 0, 'PVC', 'purple', 'black', '8 FNP15f 112J', 0, '', '', '', '', '', '', 1, 0, '', ''),
+(16, 0, '5', '7157', 0, '', '', '', 0, '2024-11-08', 0000, '', 'G', 'breeder', 0, 'metal', 'green', '', '12 ', 0, '', '', '', '', '', '', 1, 0, '', ''),
+(17, 0, '5', '7157', 0, '', '', '', 0, '2024-11-08', 0000, '', 'H', 'breeder', 0, 'metal', 'purple', '', '12', 0, '', '', '', '', '', '', 1, 0, '', ''),
+(18, 0, '5', '7157', 0, '', '', '', 0, '2024-11-08', 2021, '', 'I', 'breeder', 0, 'PVC', 'purple', 'black', '088 ES21 6A 33', 0, '', '', '', '', '', '', 1, 0, '', ''),
+(19, 0, '5', '7157', 0, '', '', '', 0, '2024-11-08', 2022, '', 'J', 'breeder', 0, 'PVC', 'brown', 'black', '59 FNP22 VCP012P', 0, '', '', '', '', '', '', 1, 0, '', ''),
+(20, 0, '5', '7157', 0, '', '', '', 0, '2024-11-08', 0000, '', 'K', 'breeder', 0, 'metal', 'orange', '', '12', 0, '', '', '', '', '', '', 1, 0, '', ''),
+(21, 0, '5', '7157', 0, '', '', '', 0, '2024-11-08', 0000, '', 'L', 'breeder', 0, 'metal and PVC', 'red and pink', '', '8', 0, '', '', '', '', '', '', 1, 0, '', ''),
+(22, 0, '5', '7157', 0, '', '', '', 0, '2024-11-08', 0000, '', 'M', 'breeder', 0, 'metal and PVC', 'red and purple', '', '', 0, '', '', '', '', '', '', 1, 0, '', ''),
+(23, 0, '<br />\n<b>Warning</b>:  Undefined property: stdClass::$is_species in <b>C:xampphtdocsd_palustreadmininsert_stockbirds.php</b> on line <b>162</b><br />\n', '4587', 3, '', 'mar muerto', '', 1, '2025-01-16', 2002, 'DASDASD', '4526gsjdkfjsa', 'Genetically_excluded', 0, '', '', '', '', 0, '', '', '', '', 'borrar', '', 1, 0, '', ''),
+(24, 0, '5', '4587', 4, '', 'borrar', '', 1, '2025-01-16', 2006, 'borrar', 'borrar', 'Breeder', 0, '', '', '', '', 0, '', '', '', '', 'dead', '', 1, 0, '', ''),
+(25, 0, '1', '8132', 5, '', 'dsd', '', 1, '2025-01-22', 2002, 'DASDASD', '5156', 'Breeder', 0, '', '', '', '', 0, '', '', '', '', 'fsfsdf', '', 1, 0, '', ''),
+(26, 0, '2', '5716', 6, '', 'Prueba web', '', 2, '2025-03-20', 2000, 'Prueba22222', '2222', 'Die', 1, 'PVC', 'Black', 'white', 'Web', 1, 'Aluminium', 'Light Blue', 'black', 'Wb', 'Prueba web', '', 1, NULL, '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `individuals_doc`
+--
+
+CREATE TABLE `individuals_doc` (
+  `id_doc_ind` int(255) NOT NULL,
+  `id_individual` int(255) NOT NULL,
+  `id_staff` int(255) NOT NULL,
+  `name_doc_ind` varchar(255) NOT NULL,
+  `nota_doc_ind` text NOT NULL,
+  `date_doc_ind` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `individuals_doc`
+--
+
+INSERT INTO `individuals_doc` (`id_doc_ind`, `id_individual`, `id_staff`, `name_doc_ind`, `nota_doc_ind`, `date_doc_ind`) VALUES
+(1, 1, 1, 'Depredadores urbanos.docx', 'asdasdas\r\nlsdhfsdlfhdj', '2025-03-19'),
+(2, 1, 1, '67dac407e35d4_Normativa examen anillador CMA Marzo 2025.pdf', 'asdasdas\r\nlsdhfsdlfhdj', '2025-03-19'),
+(3, 32, 1, '67dac407e35d4_Normativa examen anillador CMA Marzo 2025.pdf', '', '2025-03-19');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `individuals_photos`
+--
+
+CREATE TABLE `individuals_photos` (
+  `id_photos_ind` int(255) NOT NULL,
+  `id_individual` int(255) NOT NULL,
+  `id_staff` int(255) NOT NULL,
+  `name_photo_ind` varchar(255) NOT NULL,
+  `nota_photo_ind` text NOT NULL,
+  `date_photo_ind` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `individuals_photos`
+--
+
+INSERT INTO `individuals_photos` (`id_photos_ind`, `id_individual`, `id_staff`, `name_photo_ind`, `nota_photo_ind`, `date_photo_ind`) VALUES
+(2, 1, 1, 'id46.jpg', 'asdasdas\r\nlsdhfsdlfhdj', '2025-03-19');
 
 -- --------------------------------------------------------
 
@@ -8662,6 +8713,7 @@ INSERT INTO `meteorology` (`id_meteorology`, `temperature`, `humidity`, `wind_sp
 
 CREATE TABLE `monitoring` (
   `id_monitoring` int(255) NOT NULL,
+  `cont_id_real` int(255) NOT NULL,
   `id_staff_mon` int(11) NOT NULL,
   `specie` varchar(255) NOT NULL,
   `id_individual_mon` int(255) NOT NULL,
@@ -8681,13 +8733,30 @@ CREATE TABLE `monitoring` (
   `notes` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
 --
--- Volcado de datos para la tabla `monitoring`
+-- Estructura de tabla para la tabla `monitoring_photos`
 --
 
-INSERT INTO `monitoring` (`id_monitoring`, `id_staff_mon`, `specie`, `id_individual_mon`, `status_mon`, `pair_id`, `id_external_distutbance`, `interior_mon`, `external_mon`, `date`, `start_time_mon`, `finish_time_mon`, `take_mon_photo_video`, `id_master_routine`, `id_master_reproductive`, `id_master_chicken`, `id_meteorology`, `notes`) VALUES
-(1, 1, '1', 1, 0, 2, 1, 1, 0, '2024-12-11', '2024-12-20 12:59:00.033000', '2024-12-20 13:59:00.599000', '', 125, 12, 0, 0, 'Hoy fue una observación de comportamiento normal.'),
-(2, 2, '1', 1, 0, 0, 2, 0, 1, '2024-12-20', '2024-12-20 12:59:00.033000', '2024-12-20 13:59:00.599000', '', 0, 10, 0, 0, 'Hoy fue una observación de comportamiento normal.');
+CREATE TABLE `monitoring_photos` (
+  `id_photos_mon` int(255) NOT NULL,
+  `id_individual` int(255) NOT NULL,
+  `id_staff` int(255) NOT NULL,
+  `name_photo_mon` varchar(255) NOT NULL,
+  `nota_photo_mon` text NOT NULL,
+  `date_photo_mon` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `monitoring_photos`
+--
+
+INSERT INTO `monitoring_photos` (`id_photos_mon`, `id_individual`, `id_staff`, `name_photo_mon`, `nota_photo_mon`, `date_photo_mon`) VALUES
+(1, 1, 1, 'id46_1.jpg', 'asdasdas\r\nlsdhfsdlfhdj', '2025-03-19'),
+(2, 1, 1, 'id46_1.jpg', 'asdasdas\r\nlsdhfsdlfhdj', '2025-03-19'),
+(3, 1, 1, 'id46_1.jpg', 'asdasdas\r\nlsdhfsdlfhdj', '2025-03-19'),
+(4, 1, 1, 'id46_1.jpg', 'asdasdas\r\nlsdhfsdlfhdj', '2025-03-19');
 
 -- --------------------------------------------------------
 
@@ -8860,19 +8929,119 @@ INSERT INTO `mon_routing_control` (`id_master_routine`, `id_routing_control`, `b
 
 CREATE TABLE `nest` (
   `id_nest` int(255) NOT NULL,
-  `nest_origin` varchar(255) NOT NULL,
+  `id_facility` int(255) NOT NULL,
+  `id_type_nest1` int(255) NOT NULL,
+  `id_type_nest2` int(255) NOT NULL,
   `nest_orientation` varchar(255) NOT NULL,
   `nest_access` varchar(255) NOT NULL,
   `nest_coverage` varchar(255) NOT NULL,
   `nest_height` varchar(255) NOT NULL,
-  `id_nest_main_material` varchar(255) NOT NULL,
-  `id_nest_substrate` varchar(255) NOT NULL,
-  `id_parental_nesting_parents` varchar(255) NOT NULL,
-  `nest_size` int(255) NOT NULL,
-  `nest_trademark` varchar(255) NOT NULL,
-  `nest_model` varchar(255) NOT NULL,
-  `nest_photo` mediumblob NOT NULL
+  `id_parental_nesting_parents1` int(255) NOT NULL,
+  `id_parental_nesting_parents2` int(255) NOT NULL,
+  `id_parental_nesting_parents3` int(255) NOT NULL,
+  `id_parental_nesting_parents4` int(255) NOT NULL,
+  `id_nest_photo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `nest`
+--
+
+INSERT INTO `nest` (`id_nest`, `id_facility`, `id_type_nest1`, `id_type_nest2`, `nest_orientation`, `nest_access`, `nest_coverage`, `nest_height`, `id_parental_nesting_parents1`, `id_parental_nesting_parents2`, `id_parental_nesting_parents3`, `id_parental_nesting_parents4`, `id_nest_photo`) VALUES
+(1, 17, 32, 15, '244W', 'EXTERNAL', 'EXPOSED', 'HIGH', 0, 0, 0, 0, 0),
+(2, 17, 17, 8, '244W', 'EXTERNAL', 'EXPOSED', 'HIGH', 0, 0, 0, 0, 0),
+(3, 17, 33, 14, '62N', 'INSIDE', 'EXPOSED', 'HIGH', 0, 0, 0, 0, 0),
+(4, 17, 21, 0, '147SE', 'INSIDE', 'EXPOSED', 'HIGH', 0, 0, 0, 0, 0),
+(5, 17, 25, 3, '56NE', 'INSIDE', 'EXPOSED', 'HIGH', 0, 0, 0, 0, 0),
+(6, 17, 22, 0, '56NE', 'INSIDE ', 'EXPOSED', 'MEDIUM', 0, 0, 0, 0, 0),
+(7, 18, 32, 15, '244W', 'EXTERNAL', 'EXPOSED', 'HIGH', 0, 0, 0, 0, 0),
+(8, 18, 17, 8, '244W', 'EXTERNAL', 'EXPOSED', 'HIGH', 0, 0, 0, 0, 0),
+(9, 18, 33, 14, '62N', 'INSIDE', 'EXPOSED', 'HIGH', 0, 0, 0, 0, 0),
+(10, 18, 21, 0, '153SE', 'INSIDE', 'EXPOSED', 'HIGH', 0, 0, 0, 0, 0),
+(11, 18, 25, 3, '56NE', 'INSIDE', 'EXPOSED', 'HIGH', 0, 0, 0, 0, 0),
+(12, 18, 21, 0, '333NW', 'INSIDE', 'EXPOSED', 'HIGH', 0, 0, 0, 0, 0),
+(13, 18, 35, 14, '333NW', 'INSIDE', 'EXPOSED', 'HIGH', 0, 0, 0, 0, 0),
+(14, 18, 39, 15, '209SW', 'INSIDE ', 'EXPOSED', 'MEDIUM', 0, 0, 0, 0, 0),
+(15, 18, 22, 0, '56NE', 'INSIDE', 'PROTECTED', 'MEDIUM', 0, 0, 0, 0, 0),
+(16, 18, 18, 2, '333NW', 'INSIDE', 'EXPOSED', 'MEDIUM', 0, 0, 0, 0, 0),
+(17, 18, 29, 0, '333NW', 'INSIDE', 'PROTECTED', 'LOW', 0, 0, 0, 0, 0),
+(18, 19, 32, 15, '244W', 'EXTERNAL', 'EXPOSED', 'HIGH', 0, 0, 0, 0, 0),
+(19, 19, 17, 8, '244W', 'EXTERNAL', 'EXPOSED', 'HIGH', 0, 0, 0, 0, 0),
+(20, 19, 33, 14, '62N', 'INSIDE', 'EXPOSED', 'HIGH', 0, 0, 0, 0, 0),
+(21, 19, 21, 0, '333NW', 'INSIDE', 'EXPOSED', 'HIGH', 0, 0, 0, 0, 0),
+(22, 19, 25, 3, '56NE', 'EXTERNAL', 'EXPOSED', 'HIGH', 0, 0, 0, 0, 0),
+(23, 19, 21, 0, '333NW', 'INSIDE', 'EXPOSED', 'HIGH', 0, 0, 0, 0, 0),
+(24, 19, 35, 14, '333NW', 'INSIDE', 'EXPOSED', 'HIGH', 0, 0, 0, 0, 0),
+(25, 19, 22, 0, '56NE', 'INSIDE', 'PROTECTED', 'MEDIUM', 0, 0, 0, 0, 0),
+(26, 19, 18, 3, '333NW', 'INSIDE', 'EXPOSED', 'MEDIUM', 0, 0, 0, 0, 0),
+(27, 19, 29, 0, '333NW', 'INSIDE', 'PROTECTED', 'LOW', 0, 0, 0, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `nest_type`
+--
+
+CREATE TABLE `nest_type` (
+  `id_nest_` int(255) NOT NULL,
+  `nest_namemodel` varchar(255) NOT NULL,
+  `nest_size` varchar(255) NOT NULL,
+  `nest_description` varchar(255) NOT NULL,
+  `photo_nest_type` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `nest_type`
+--
+
+INSERT INTO `nest_type` (`id_nest_`, `nest_namemodel`, `nest_size`, `nest_description`, `photo_nest_type`) VALUES
+(1, 'Nido de algodón', 'Diámetro: 9 cm.', 'Nido fabricado con algodón todo hecho a mano de forma artesanal encolado y cosido ideal para la cría de canarios.\r\n\r\nEl material de algodón es de gran calidad, suave y de buen material con ello mantendrás el nido del pájaro calientito, cómodo y de larga d', 'id1'),
+(2, 'Nido de pita', 'Diámetro 10 cm.\r\nProfundida 5 cm.', 'Nido de pita idóneo para la cría de canarios.\r\nAdaptable a cualquier modelo de portanidos.\r\nCalidad insuperable.\r\nFabricación absolutamente artesanal.', 'id2'),
+(3, 'Nido de yute', 'Diámetro: 10 cm.', 'Nido de yute ideal para la cría de canarios.\r\nAdaptable a cualquier modelo de portanidos.\r\nCalidad insuperable.\r\n\r\nFabricación absolutamente artesanal.', 'id3'),
+(4, 'Nido de plástico', 'Diámetro 8 cm.\r\nAlto 5 cm.', 'Nido de plástico', 'id4'),
+(5, 'Nido plástico forrado algodón', 'Diámetro: 9,5 cm.\r\nProfunsdidad: 4 cm.', 'Nido de plástico forrado de algodón especial antienredos para canarios o aves de similar tamaño.\r\n\r\nNido para pájaros fabricado en plastico de buena calidad y resistencia.\r\n\r\nEstá forrado con algodón preparado para que no se enreden las patitas de los páj', 'id5'),
+(6, 'Nido de poliester blanco', 'Diámetro: 10,5 cm.', 'Nido fabricado en poliestre blanco', 'id6'),
+(7, 'Nido yute canario 9 cm', 'Diámetro 9cm', 'Nido yute canario 9 cm', 'id7'),
+(8, 'Nido yute silvestre 8 cm', 'Diámetro 8 cm', 'Nido yute silvestre 8 cm', 'id8'),
+(9, 'Nido Yute Cardenalitos', 'Diametro interior 6 cm\r\nDiamentro exterior 9,5 cm', 'Nido de Yute cardenalito, de tamaño ideal para la cria de este tipo de aves y similar.\r\n\r\nGracias a las alas que tiene el nido, encaja perfectamente en los portanidos de plastico y se ajusta muy bien.', 'id9'),
+(10, 'Nido forro yute', 'Diámetro10cm', 'Nido forro yute', 'id10'),
+(11, 'Nido de Algodón 7 cm', 'Diámetro interior: 7 cm.\r\nDiámetro exterior: 9 cm.', 'Nido de algodón para jilguero o cardenalito', 'id11'),
+(12, 'NIDO MIMBRE CANARIOS', 'Diametro: 10 cm', 'Nido de mimbre para la cira de Canarios y aves de tamaño similar\r\nNido de mimbre especial para la cría de Canarios y demas pajaros de tamaño similar', 'id12'),
+(13, 'Nido de arcilla para palomas', 'desconocido', 'nido de arcilla', 'id13'),
+(14, 'Forro Nido Poliester Blanco M. A\r\n', 'desconocido', 'Foro para nidos fabricado en poliéster prensado y troquelado especial para los Nidos Nicolás Moldes Ave , tambien ajusta sin problema en los portanidos interior de plástico.', 'id14'),
+(15, 'Esterilla nido', 'desconocido', 'Las esterillas para nidos aíslan de la humedad y suciedad a los pichones.\r\nSu fabricación en forma de estrella, hace que se adapte perfectamente al nido, evitando que el ave pueda sacarla del mismo.\r\n\r\nSon muy fáciles de limpiar y sus aves se sentirán muy', 'id15'),
+(16, 'Nido interior de plástico con ganchos de plástico', 'Diámetro 10 cm', 'Portanido de plástico, idóneo para nidos de canarios y pájaros silvestres.\r\n\r\nFabricado en plástico blanco con ganchos de plástico.Su fabricación en forma de estrella, hace que se adapte perfectamente al nido, evitando que el ave pueda sacarla del mismo.\r', 'id16'),
+(17, 'Nido interior de plástico con ganchos metálicos', 'Diámetro 10 cm', 'Portanido de plástico, idóneo para nidos de canarios y pájaros silvestres.\r\n\r\nPortanido de plástico ideal para nidos de canarios y pájaros silvestres. Fabricado en plástico blanco con ganchos de plastico\r\n\r\n', 'id17'),
+(18, 'Portanido de aro metálico', 'Diámetro 10 cm', 'Aro portanido realizado en metal\r\nPortanido de plástico ideal para nidos de canarios y pájaros silvestres. Fabricado en plástico blanco con ganchos de plastico\r\n\r\n', 'id18'),
+(19, 'Portanido Cesta', 'Diámetro: 12 x 7 cm', 'Cesta adaptable a la forma de nuestros nidos\r\n', 'id19'),
+(20, 'Portanido interior cesta Pequeño', 'Diametro: 10 cm\r\nFondo: 6 cm', 'Portanido interior de cesta pequeño ideal para aves silvestres y cardenalitos.\r\n\r\n', 'id20'),
+(21, 'Nido Interior Plastico Confort', 'Diametro: 10 cm\r\n', 'Nido interior plástico con ganchos de plástico y forro de borreguito.\r\n\r\nNido muy practico de plástico de 10 cm de diámetro con comoda protección de borreguito ideal para la cria. Fabricado para que el ave se sienta confortable y seguro dentro del nido.\r\n', 'id21'),
+(22, 'Nido Nicolas M. A', 'Diametro exterior 10.9 cm\r\nDiametro interior: 8.7 cm', 'El Nido Nicolás está fabricado en un material muy resistente y de fácil limpieza.\r\n\r\nEste nido es perfecto para canarios y pájaros de tamaño similar, fabricado en un plástico muy resistente y flexible, hacen una estancia agradable y confortable debido a s', 'id22'),
+(23, 'Portanido Cabina con Puerta', '12 x 12 x 12 cm.', 'Portanido - cabina practicable con ganchos metálicos.', 'id23'),
+(24, 'Nido externo lujo beige', '12 cm x 13 cm x 16 cm.\r\nDiámetro: 9.5 cm.', 'Nido externo de lujo, ideal para canarios, con base extraíble. Portanido en plástico rígido. Laterales opacos y puerta trasera de guillotina en rejilla.\r\n\r\n', 'id24'),
+(25, 'Nido externo lujo verde', '12 cm x 13 cm x 16 cm.\r\nDiámetro: 9.5 cm.', 'Nido externo de lujo, ideal para canarios, con base extraíble. Portanido en plástico rígido. Laterales opacos y puerta trasera de guillotina en rejilla.\r\nAcabado verde', 'id25'),
+(26, 'NIDO SANSARA BEIGE', 'Dimensiones:12,5cm x 19,5cm x 16,5cm\r\nDiámetro cesta 10 cm', 'El Nido Sansara de 2Gr es ideal para canarios, silvestres y aves de tamaño similar.\r\n\r\n\r\nEl nido SanSara de 2GR es un nido práctico y cómodo para pájaros canarios y Jilgueros en general, hecho completamente de plástico sólido.\r\n\r\nEl nido SanSara pertenece', 'id26'),
+(27, 'NIDO CARDINAL 8 cm', '12,5 x 18 x 16,5 cm', 'Nido Cardinal 8 cm de 2GR, es un nido externo, práctico y cómodo para pájaros spinius y jilgueros en general. Fabricado de plástico sólido.\r\n\r\nCanasta interior totalmente extraíble con diámetro interno de 8cm.\r\n\r\nSu puerta externa de revisión, nos permite', 'id27'),
+(28, 'NIDO SANSARA VERDE 10cm', 'Dimensiones:12,5cm x 19,5cm x 16,5cm\r\nDiámetro cesta 10 cm', 'El Nido Sansara de 2Gr es ideal para canarios, silvestres y aves de tamaño similar.\r\n\r\n\r\nEl nido SanSara de 2GR es un nido práctico y cómodo para pájaros canarios y Jilgueros en general, hecho completamente de plástico sólido.\r\n\r\nEl nido SanSara pertenece', 'id28'),
+(29, 'NIDO ISABELA M.A', 'Exterior:\r\n11 cm altura,\r\n12,5 cm. de ancho\r\nlargo 13,5 cm.\r\nInterior:\r\naltura 9 cm.\r\n12 cm de ancho \r\nlargo 12.5 cm.', 'Nido para exóticos, interior y exterior, adaptable para casi todas las jaulas, también adaptable a jaulas con puertas de muelle o guillotina.\r\nFabricados con material plástico no tóxico, muy resistente y de fácil limpieza.\r\nSu amplitud lo hace muy cómodo ', 'id29'),
+(30, 'NIDO DUBAI M.A', 'Exterior:\r\n11 cm altura,\r\n12,5 cm. de ancho\r\nlargo 13,5 cm.\r\nInterior:\r\naltura 9 cm.\r\n12 cm de ancho \r\nlargo 12.5 cm.', 'Nido exterior e interior, adaptable a todo tipo de jaulas, tanto jaulas con puerta de muelle como con puerta de guillotina.\r\nCon cajón inferior totalmente extraíble, para poder acceder bien a los huevos y las crías, y con ventilación en paredes y fondo de', 'id30'),
+(31, 'Portanido Cabina Sin Puerta', '12 x 12 x 12 cm.', 'Portanido exterior cabina con ganchos metalicos, sin Puerta trasera.', 'id31'),
+(32, 'Nido Exótico', '9,5 x 13 x 10 cm.', 'Nido idóneo para diamante mandarín y otros pájaros exóticos\r\nNido fabricado en plástico rígido de color marrón.\r\nCompacto y con ganchos de plástico intercambiables que permiten colgar tanto por delante como por detrás.\r\nDispone de una puerta superior para', 'id32'),
+(33, 'Nido Diamante', '16 x 13 x 12', 'Nido especial para Diamantes.', 'id33'),
+(34, 'Nido de perla', '16 x 13 x 12 cm.', 'Nido especial para periquitos.\r\nSe entrega desmontado.\r\nEntrada redonda tapa trasera para inspección\r\nUso interior y exterior ', 'id34'),
+(35, 'NIDO PARA EXOTICOS IDIA VERDE', 'desconocido', 'Nido para exótico de la marca idia, con fondo ovalado.\r\nEste nido al tener su fondo ovalado evita que se dispersen los huevos dentro del nido y también tiene ranuras para una buena ventilación.\r\nEsta fabricado en plástico de alta calidad.', 'id35'),
+(36, 'Nido Tropicales', '10 x 12 cm.', 'Nido hecho de mimbre, de pequeño tamaño ideal para pequeños pájaros exóticos como mandarines, isabelitas, azulitos, degollados, etc...', 'id36'),
+(37, 'Nido Exotico M. A', 'Alto 12 cm\r\nPuerta: 47 ancho\r\nAncho 10 cm\r\nLargo 10.3 cm', 'Presentamos el nuevo nido de Moldes Ave, fabricado en un material plástico muy resistente y flexible.\r\nEste nido es ideal para pájaros exóticos, especial para Diamante Mandarín, Forbes, Papagayo, Bichenov, Tricolor e Isabelitas, etc. Debido a su gran capa', 'id37'),
+(38, 'NIDO COCO CON ESCALERA', 'largo: 54cm\r\nancho: 13cm\r\nfondo coco: 10-12 cm (Aprox)', 'Divertida casita de coco con escalera y cuerda para pájaros exóticos.\r\nProducto de fibra de coco natural. A diferencia de los modelos de casa de pájaros de plástico. Esta calidad del producto hace que sea la casa de pájaros ecológica perfecta para tu amig', 'id38'),
+(39, 'Nido BreedR', '17,5 x 22,5 x 19,5 cm', 'El nido BreedR es un diseño bonito y flexible debido a las diferentes aperturas de entrada. De esta forma, tu mismo decides qué pájaros pueden anidar en el. Puedes elegir entre las tres aperturas posibles con los tamaños: 28 mm, 35 mm ó 40 mm.\r\nModo de em', 'id39'),
+(40, 'Nido de madera para Isabelitas', 'Alto 12 cm\r\nAncho 12 cm\r\nFondo 12 cm', 'Nido fabricado en madera de 1.5 cm de grosor. Especial para Isabelitas y aves de tamaño similar.\r\nEste nido es de gran resistencia y tiene un gran aislamiento de la temperatura.\r\nCon apertura para observar los huevos y pichones de las aves.', 'id40'),
+(41, 'Nido madera para Mandarin', 'Alto 12 cm\r\nAncho 12 cm\r\nFondo 15 cm\r\nDiametro de la entrada 3 cm', 'Nido fabricado en madera de 1.5 cm de grosor. Especial para Diamantes Mandarin y aves de tamaño similar.\r\nEste nido es de gran resistencia y tiene un gran aislamiento de la temperatura.\r\nCon apertura para observar los huevos y pichones de las aves.', 'id41'),
+(42, 'Nido de madera periquitos', 'Alto 12 cm\r\nAncho 20 cm\r\nFondo 13 cm\r\nDiametro de la entrada 4 cm', 'Nido horizontal fabricado en madera de 1.5 cm de grosor. Especial para Periquitos y aves de tamaño similar.\r\nEste nido es de gran resistencia y tiene un gran aislamiento de la temperatura.\r\nCon apertura para observar los huevos y pichones de las aves.', 'id42'),
+(43, 'Nido de madera para Agaporni Horizontal', 'Alto 14 cm\r\nAncho 20 cm\r\nFondo 15 cm\r\nDiametro de la entrada 5 cm', 'Nido horizontal fabricado en madera de 1.5 cm de grosor. Especial para Agapornis y aves de tamaño similar.\r\nEste nido es de gran resistencia y tiene un gran aislamiento de la temperatura.\r\nCon apertura para observar los huevos y pichones de las aves.', 'id43'),
+(44, 'Nido de madera para Agaporni Vertical', 'Alto 20 cm\r\nAncho 14 cm\r\nFondo 17 cm\r\nDiametro de la entrada 4.5 cm', 'Nido vertical fabricado en madera de 1.5 cm de grosor. Especial para Agapornis y aves de tamaño similar.\r\nEste nido es de gran resistencia y tiene un gran aislamiento de la temperatura.\r\nCon apertura para observar los huevos y pichones de las aves.', 'id44'),
+(45, 'Nido Cotorra Madera', 'Alto 32 cm\r\nAncho 24 cm\r\nFondo 27 cm\r\nDiametro de la entrada 7.5 cm', 'Nido fabricado en madera DM de 1 cm de grosor. Especial para Cotorras y aves de tamaño similar.\r\nEste nido es de gran resistencia y tiene un gran aislamiento de la temperatura.\r\nCon apertura para observar los huevos y pichones de las aves.', 'id45'),
+(46, 'Esterilla para palomas', 'desconocido', 'Las esterillas para nidos de palomas quedan perfectamente colocadas, evitando que la paloma pueda sacarla del nido. Son muy fáciles de limpiar, además que aíslan la humedad y la suciedad a los pichones.', 'id46'),
+(47, 'Natural Nest / Nido Natural', 'desconocido', 'Natural Nest: A nest built by the bird in a natural environment, typically hidden within dense vegetation, providing shelter and protection for eggs and chicks.\r\n\r\nNido Natural: Un nido construido por el ave en un entorno natural, típicamente oculto dentr', 'id47');
 
 -- --------------------------------------------------------
 
@@ -8900,7 +9069,8 @@ INSERT INTO `origin` (`id_origin`, `id_individual`, `origin_type`, `entry_date`,
 (2, 36, '1', '2025-01-15', 3, 33, 4982, ''),
 (3, 0, '0', '2025-01-16', 14, 30, 4587, ''),
 (4, 0, '0', '2025-01-16', 14, 30, 4587, ''),
-(5, 0, '0', '2025-01-22', 19, 52, 8132, '');
+(5, 0, '0', '2025-01-22', 19, 52, 8132, ''),
+(6, 0, '0', '2025-03-20', 5, 38, 5716, '');
 
 -- --------------------------------------------------------
 
@@ -9020,7 +9190,8 @@ INSERT INTO `species` (`id_species`, `scientific_name`, `common_name`) VALUES
 (2, 'Emberiza schoeniclus lusitanica', 'escribano palustre iberoccidental'),
 (3, 'Emberiza schoeniclus schoeniclus', 'escribano palustre norteño'),
 (4, 'Panurus biarmicus biarmicus', 'bigotudo'),
-(5, 'Lonchura striata domestica', 'isabelita del japon');
+(5, 'Lonchura striata domestica', 'isabelita del japon'),
+(6, 'Haemorhous mexicanus', 'camachuelo mejicano');
 
 -- --------------------------------------------------------
 
@@ -9048,8 +9219,7 @@ CREATE TABLE `staff` (
 --
 
 INSERT INTO `staff` (`id_staff`, `first_name`, `last_name`, `role`, `company`, `email`, `password`, `phone`, `access_level`, `start_date`, `finish_date`, `notes`) VALUES
-(1, 'Daniel', 'Mons García', 'Reproduction_technician\r\n', 'Tragsa\r\n', 'danielmons.granja@gmail.com', '1234', '+34 645359396', 'Administrator', '2024-09-02', '0000-00-00', ''),
-(2, 'j', 'j', 'Administrator\r\n', '', 'ing.jhonnyjaimes@gmail.com', '1234', '', 'Administrator', '0000-00-00', '0000-00-00', '');
+(1, 'Daniel', 'Mons García', 'Reproduction_technician\r\n', 'Tragsa\r\n', 'danielmons.granja@gmail.com', '1234', '+34 645359396', 'Administrator', '2024-09-02', '0000-00-00', '');
 
 -- --------------------------------------------------------
 
@@ -9320,6 +9490,12 @@ ALTER TABLE `individuals`
   ADD PRIMARY KEY (`id_individual`);
 
 --
+-- Indices de la tabla `individuals_photos`
+--
+ALTER TABLE `individuals_photos`
+  ADD PRIMARY KEY (`id_photos_ind`);
+
+--
 -- Indices de la tabla `material_nest`
 --
 ALTER TABLE `material_nest`
@@ -9338,6 +9514,12 @@ ALTER TABLE `monitoring`
   ADD PRIMARY KEY (`id_monitoring`);
 
 --
+-- Indices de la tabla `monitoring_photos`
+--
+ALTER TABLE `monitoring_photos`
+  ADD PRIMARY KEY (`id_photos_mon`);
+
+--
 -- Indices de la tabla `mon_chicken_control`
 --
 ALTER TABLE `mon_chicken_control`
@@ -9354,6 +9536,18 @@ ALTER TABLE `mon_reproductive_control`
 --
 ALTER TABLE `mon_routing_control`
   ADD PRIMARY KEY (`id_master_routine`);
+
+--
+-- Indices de la tabla `nest`
+--
+ALTER TABLE `nest`
+  ADD PRIMARY KEY (`id_nest`);
+
+--
+-- Indices de la tabla `nest_type`
+--
+ALTER TABLE `nest_type`
+  ADD PRIMARY KEY (`id_nest_`);
 
 --
 -- Indices de la tabla `origin`
@@ -9477,13 +9671,13 @@ ALTER TABLE `external_disturbance`
 -- AUTO_INCREMENT de la tabla `facilities`
 --
 ALTER TABLE `facilities`
-  MODIFY `id_facility` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_facility` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `facility_assignment`
 --
 ALTER TABLE `facility_assignment`
-  MODIFY `id_assignment` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_assignment` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `incubation`
@@ -9496,6 +9690,12 @@ ALTER TABLE `incubation`
 --
 ALTER TABLE `individuals`
   MODIFY `id_individual` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+
+--
+-- AUTO_INCREMENT de la tabla `individuals_photos`
+--
+ALTER TABLE `individuals_photos`
+  MODIFY `id_photos_ind` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `material_nest`
@@ -9513,7 +9713,13 @@ ALTER TABLE `meteorology`
 -- AUTO_INCREMENT de la tabla `monitoring`
 --
 ALTER TABLE `monitoring`
-  MODIFY `id_monitoring` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_monitoring` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT de la tabla `monitoring_photos`
+--
+ALTER TABLE `monitoring_photos`
+  MODIFY `id_photos_mon` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `mon_chicken_control`
@@ -9534,10 +9740,22 @@ ALTER TABLE `mon_routing_control`
   MODIFY `id_master_routine` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT de la tabla `nest`
+--
+ALTER TABLE `nest`
+  MODIFY `id_nest` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
+-- AUTO_INCREMENT de la tabla `nest_type`
+--
+ALTER TABLE `nest_type`
+  MODIFY `id_nest_` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+
+--
 -- AUTO_INCREMENT de la tabla `origin`
 --
 ALTER TABLE `origin`
-  MODIFY `id_origin` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_origin` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `pairs`
@@ -9567,7 +9785,7 @@ ALTER TABLE `privileges`
 -- AUTO_INCREMENT de la tabla `species`
 --
 ALTER TABLE `species`
-  MODIFY `id_species` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_species` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `staff`
