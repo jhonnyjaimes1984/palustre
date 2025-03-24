@@ -3,7 +3,7 @@ date_default_timezone_set("Europe/Madrid");
 //DB details
 $dbHost = 'localhost';
 $dbUsername = 'root';
-$dbPassword = '';
+$dbPassword = '16612416301084Jh';
 $dbName = 'bd_palustre';
 
 //Create connection and select DB

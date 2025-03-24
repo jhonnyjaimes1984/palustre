@@ -1,3 +1,5 @@
 <?php
-define('BASE_URL', $_SERVER['DOCUMENT_ROOT'] . '/bd_palustre');
+$url =  __DIR__.'/../';
+
+define('BASE_URL', $url);
 ?>
