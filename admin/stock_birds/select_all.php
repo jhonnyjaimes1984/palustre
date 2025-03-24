@@ -388,7 +388,7 @@ $mon = $sentencia_mon->fetchAll(PDO::FETCH_OBJ);
               View
             </button>
 
-            <!-- BOTÓN DELETE (CONFIRMA BORRADO) -->
+            <!-- BOTÓN DELETE (CONFIRMA BORRADO) 
             <?php if($_SESSION['privilegio']==="Administrator"){ ?>
               <button type="button" class="btn btn-sm btn-outline-danger" 
               onclick="confirmDelete(<?php echo $res_photo_mon->id_photos_mon; ?>, <?php echo $id; ?>, '<?php echo $_SESSION['privilegio']; ?>')">
@@ -396,6 +396,7 @@ $mon = $sentencia_mon->fetchAll(PDO::FETCH_OBJ);
             </button>
 
           <?php } ?>
+          -->
 
 
         </div>
@@ -418,14 +419,14 @@ $mon = $sentencia_mon->fetchAll(PDO::FETCH_OBJ);
         <div class="modal-body text-center">
           <img src="../../img_monitoring/<?php echo htmlspecialchars($res_photo_mon->name_photo_mon); ?>"
           class="img-fluid rounded" 
-          alt="Photo of <?php echo htmlspecialchars($res_photo->name_photo_mon); ?>">
+          alt="Photo of <?php echo htmlspecialchars($res_photo_mon->name_photo_mon); ?>">
         </div>
 
         <!-- Pie del modal -->
         <div class="modal-footer text-center">
           <?php 
           if (!empty(trim($res_photo_mon->nota_photo_mon))) { 
-            echo '<p class="mb-0">' . nl2br(htmlspecialchars($res_photo->nota_photo_mon)) . '</p>'; 
+            echo '<p class="mb-0">' . nl2br(htmlspecialchars($res_photo_mon->nota_photo_mon)) . '</p>'; 
           } else { 
             echo '<p class="mb-0 text-muted">No notes available.</p>'; 
           }
@@ -767,7 +768,7 @@ $cop = $sentencia_cop->fetchAll(PDO::FETCH_OBJ);
               View
             </button>
 
-            <!-- BOTÓN DELETE (CONFIRMA BORRADO) -->
+            <!-- BOTÓN DELETE (CONFIRMA BORRADO) 
             <?php if($_SESSION['privilegio']==="Administrator"){ ?>
               <button type="button" class="btn btn-sm btn-outline-danger" 
               onclick="confirmDelete(<?php echo $res_photo->id_photos_ind; ?>, <?php echo $id; ?>, '<?php echo $_SESSION['privilegio']; ?>')">
@@ -775,6 +776,8 @@ $cop = $sentencia_cop->fetchAll(PDO::FETCH_OBJ);
             </button>
 
           <?php } ?>
+
+          -->
 
 
         </div>
@@ -866,7 +869,7 @@ $cop = $sentencia_cop->fetchAll(PDO::FETCH_OBJ);
               View
             </button>
 
-            <!-- BOTÓN DELETE (CONFIRMA BORRADO) -->
+            <!-- BOTÓN DELETE (CONFIRMA BORRADO) 
             <?php if($_SESSION['privilegio']==="Administrator"){ ?>
               <button type="button" class="btn btn-sm btn-outline-danger" 
               onclick="confirmDelete(<?php echo $res_doc->name_doc_ind; ?>, <?php echo $id; ?>, '<?php echo $_SESSION['privilegio']; ?>')">
@@ -874,6 +877,7 @@ $cop = $sentencia_cop->fetchAll(PDO::FETCH_OBJ);
             </button>
 
           <?php } ?>
+          -->
 
 
         </div>
@@ -905,8 +909,6 @@ $cop = $sentencia_cop->fetchAll(PDO::FETCH_OBJ);
          if (in_array($extension, ['pdf'])) {
     // Mostrar PDF con iframe
           echo '<iframe src="' . htmlspecialchars($archivo) . '" width="100%" height="500px"></iframe>';
-        } elseif (in_array($extension, ['doc', 'docx', 'xls', 'xlsx'])) {
-          echo '<iframe src="https://docs.google.com/gview?url='.urlencode($archivo_2) . '&embedded=true" width="100%" height="600px"></iframe>';
         } else {
     // Para otros archivos, solo se muestra un enlace de descarga
           echo '<a href="' . htmlspecialchars($archivo) . '" download>Descargar Archivo</a>';
