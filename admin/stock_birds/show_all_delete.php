@@ -16,7 +16,7 @@ if (($_SERVER['REQUEST_METHOD'] === 'POST' || $_SERVER['REQUEST_METHOD'] === 'GE
 
     try {
         // Query to get the individual data
-        $query = $base_de_datos->prepare("UPDATE `individuals` SET `status_bd`= 1, `id_staff_delete`='', `date_delete`= '', `nota_delete`= '' WHERE id_individual = ?");
+        $query = $base_de_datos->prepare("UPDATE `individuals` SET `status_bd`= 1, `id_staff_delete`=null, `date_delete`= '', `nota_delete`= '' WHERE id_individual = ?");
         $query->execute([$id_individual]);
 
         $individual = $query->fetch(PDO::FETCH_ASSOC);
@@ -101,7 +101,7 @@ $usuario = $sentencia->fetchAll(PDO::FETCH_OBJ);
           <td><center><?php echo $individuals->nickname ?></center></td>
           <td width="20%"><center><?php echo $individuals->scientific_name ?></center></td>
           <?php
-          $sentencia_assi = $base_de_datos->prepare("SELECT id_assignment, assignment_date, id_facility_name, notes  FROM facility_assignment where id_individual_assi = ? AND assignment_date!='' AND finish_date is null");
+          $sentencia_assi = $base_de_datos->prepare("SELECT id_assignment, assignment_date, id_facility_name  FROM facility_assignment where id_individual_assi = ? AND assignment_date!='' AND finish_date is null");
           $sentencia_assi->execute([$individuals->id_individual]);
           $assi = $sentencia_assi->fetch(PDO::FETCH_OBJ);?>
           <td width="50%"><center>
